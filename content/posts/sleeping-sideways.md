@@ -2,6 +2,7 @@
 title: Sleeping Sideways
 date: 2026-05-14
 tags: [travel, gear]
+type: draft
 summary: Ordered a Radica Rover for the F-150. The lower 48 national parks don't plan themselves.
 bsky: false
 issueNumber: 71
