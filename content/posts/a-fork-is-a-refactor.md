@@ -38,4 +38,4 @@ That's a refactor.
 
 [journey]:
 prev: doug-mcilroy-would-recognize-it
-Written at the moment of doing it — the fork happened in this session, this post was drafted first. The content repo separation was recognized while thinking through what it would take for the renderer to be genuinely forkable by someone else.
+Written at the moment of doing it — the post was drafted before the work. Content copied to theTube-content [commit 927698e]. Renderer updated and content/ removed from theTube [commit 58cd252]. 75 open issues closed in theTube with a note pointing to theTube-content. GitHub's new repo form doesn't include Creative Commons licenses — added CC BY 4.0 manually. The symlink (`content → ../theTube-content/content`) makes local dev work without changing any paths in the renderer.
