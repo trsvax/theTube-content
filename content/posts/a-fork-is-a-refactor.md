@@ -2,7 +2,6 @@
 title: A Fork Is a Refactor
 date: 2026-05-15
 tags: [tech]
-draft: true
 summary: The content and the renderer started in the same repo because that was convenient. When the separation became obvious, the tool for making it was git fork. Same operation as extract class, just at repo scale.
 ---
 
