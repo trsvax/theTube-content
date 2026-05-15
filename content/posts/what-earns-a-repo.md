@@ -42,7 +42,22 @@ The test is independence. Glue that only makes sense in context of the specific 
 
 When everything that's domain-specific is extracted, what remains in the renderer is the wiring: read markdown, apply design, apply callouts, produce HTML, deploy. That's not nothing — it's the integration point. But it's thin. Thin enough that forking it is low cost, and operating it is replacing config repos, not editing code.
 
-The pipe has more joints than it looks. Each joint is a place where the system becomes more composable.
+## IAM as the infrastructure boundary
+
+The repo boundary is a code boundary. IAM is the same boundary at the infrastructure layer.
+
+Each workflow gets its own IAM user scoped to exactly its output path and nothing more:
+
+| Workflow         | IAM permissions                                                           |
+| ---------------- | ------------------------------------------------------------------------- |
+| Main deploy      | `s3:PutObject` on `thetube-today/*`, CloudFront invalidation              |
+| Journey build    | `s3:PutObject` on `thetube-today/journeys/*` only                         |
+| Design delivery  | `s3:PutObject` on `thetube-today/images/posts/*` only                     |
+| Subscribe Lambda | `s3:GetObject` + `s3:PutObject` on `thetube-today/_subscribers.json` only |
+
+The journey build can't touch the post HTML. The design delivery can't touch the subscriber registry. The separation of concerns goes all the way down — from the repo boundary to the S3 path boundary to the IAM policy.
+
+The pipe has more joints than it looks. Each joint is a place where the system becomes more composable — and more auditable.
 
 [journey]:
 prev: the-pattern-generalizes

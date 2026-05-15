@@ -64,3 +64,15 @@ Dependabot: free. Copilot Autofix: included with Copilot. Scheduled Actions: fre
 Zero ongoing manual work. No security team. No SCA subscription.
 
 A solo developer can have enterprise-grade supply chain security with zero ongoing manual work. It's all GitHub and a few configuration files.
+
+## The build machine is the runtime
+
+There's a security property that falls out of "deploys run in GitHub Actions, never locally" — one that wasn't designed in.
+
+The AWS credentials never exist on your machine. They live in GitHub's secret store. The ephemeral Actions VM uses them, finishes, disappears. No `~/.aws/credentials` to leak, no session token to hijack, no persistent process holding keys.
+
+Your machine is a git client. A compromised laptop means: someone can push commits. Branch protection on `main` limits even that — no direct pushes, PRs required. They can't read GitHub secrets. They can't touch S3. They can't access the private repo beyond what's already checked out locally.
+
+The attacker gets your local working copy of the markdown files. Public content they could already read on the site.
+
+That security posture is a consequence of architecture, not a deliberate hardening step. The build machine is the runtime. Your machine is just an editor and a git client. The blast radius of a breach shrinks accordingly.
