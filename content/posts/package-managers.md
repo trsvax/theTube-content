@@ -2,7 +2,7 @@
 title: I Don't Want to Be Friends With npm
 date: 2026-05-14
 tags: [tech]
-draft: true
+type: draft
 summary: npm's trust model is broken. You're one transitive dependency away from trusting everyone who has ever published a package.
 issueNumber: 37
 discussionNumber: 39

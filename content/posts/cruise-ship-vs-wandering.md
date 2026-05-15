@@ -2,7 +2,7 @@
 title: Cruise Ship vs Wandering
 date: 2026-05-14
 tags: [tech, travel]
-draft: true
+type: draft
 summary: Two development styles. One has a Gantt chart. One finds URL aliases by renaming a file.
 issueNumber: 56
 discussionNumber: 58

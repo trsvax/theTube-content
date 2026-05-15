@@ -3,7 +3,7 @@ title: The Build Is a Pipe
 date: 2026-05-15
 tags: [tech, architecture]
 summary: The deploy pipeline is just another Unix pipe. Each repo owns one stage.
-draft: true
+type: draft
 ---
 
 The deploy workflow in most projects is treated as a single monolithic script. One repo, one workflow, one big blob of steps that does everything. That works fine until you split your content out of your app repo — and then you have to ask: who builds what?

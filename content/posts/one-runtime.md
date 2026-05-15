@@ -2,7 +2,7 @@
 title: The Browser Didn't Win on Merit
 date: 2026-05-14
 tags: [tech]
-draft: true
+type: draft
 summary: Client-server died not because the browser was better software, but because one runtime for everything was an overwhelming operational advantage. Web 2.0 kept that win and threw out everything else.
 issueNumber: 65
 discussionNumber: 67

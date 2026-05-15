@@ -2,7 +2,7 @@
 title: The Site Map Is a Graph
 date: 2026-05-14
 tags: [tech]
-draft: true
+type: draft
 summary: Posts link to each other through the journey block. prev, next, forks. The build already has enough to draw the graph.
 issueNumber: 46
 discussionNumber: 48

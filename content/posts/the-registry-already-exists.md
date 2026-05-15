@@ -2,7 +2,7 @@
 title: The Registry Already Exists
 date: 2026-05-15
 tags: [tech]
-draft: true
+type: draft
 summary: GitHub is already the package registry. Dependabot scans each repo. Secret scanning runs on each repo. The security tooling is built around the unit that matters — the repo. The format-agreement model gets that for free.
 ---
 

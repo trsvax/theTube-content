@@ -2,7 +2,7 @@
 title: The File Is the Spec
 date: 2026-05-15
 tags: [tech]
-draft: true
+type: draft
 summary: The markdown file doesn't just contain the post. It contains the spec for everything assembled around it — images, journey narrative, audience, status. One file, complete picture.
 ---
 

@@ -2,7 +2,7 @@
 title: URL Aliases
 date: 2026-05-14
 tags: [tech]
-draft: true
+type: draft
 summary: The post owns its URL surface. shortSlug and redirectFrom are just alias types — the filename is canonical, everything else is a name the post also answers to.
 issueNumber: 40
 discussionNumber: 42

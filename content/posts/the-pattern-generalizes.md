@@ -2,7 +2,7 @@
 title: The Pattern Generalizes
 date: 2026-05-15
 tags: [tech]
-draft: true
+type: draft
 summary: Content got its own repo. Design is next. Every concern that evolves independently gets its own repo — that's the pattern, not the exception.
 ---
 
