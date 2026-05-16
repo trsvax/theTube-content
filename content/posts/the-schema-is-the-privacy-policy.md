@@ -76,13 +76,13 @@ GraphQL directive transformers close that gap. The directive definition includes
 ```js
 const RedactedDirective = {
   visitFieldDefinition(field) {
-    const { resolve } = field
+    const { resolve } = field;
     field.resolve = async (source, args, context, info) => {
-      const value = await resolve(source, args, context, info)
-      return context.isAgent ? '[REDACTED]' : value
-    }
-  }
-}
+      const value = await resolve(source, args, context, info);
+      return context.isAgent ? "[REDACTED]" : value;
+    };
+  },
+};
 ```
 
 The transformer wraps every resolver that touches a `@redacted` field at schema build time — before any request runs. The label and the behavior are the same artifact. You can't declare `@redacted` and forget to wire up the enforcement because the enforcement is in the declaration.
@@ -97,16 +97,16 @@ The Proxy is the right place to split the audit trail. Every sensitive field acc
 function getSensitive(args, context) {
   return new Proxy(args._sensitive, {
     get(target, key) {
-      const value = target[key]
+      const value = target[key];
 
       // Safe log — shareable with agents, support tools, dashboards
       logger.info({
         field: key,
-        value: '[REDACTED]',
+        value: "[REDACTED]",
         sensitive: true,
         resolver: context.resolverName,
-        requestId: context.requestId
-      })
+        requestId: context.requestId,
+      });
 
       // Audit log — restricted store, real value, compliance use only
       auditLogger.info({
@@ -114,12 +114,12 @@ function getSensitive(args, context) {
         value: value,
         resolver: context.resolverName,
         userId: context.userId,
-        requestId: context.requestId
-      })
+        requestId: context.requestId,
+      });
 
-      return value
-    }
-  })
+      return value;
+    },
+  });
 }
 ```
 
@@ -136,7 +136,7 @@ There are two categories of code that touch args, and they need different rules.
 **Infrastructure code** — timing, tracing, request logging — never needs to know which fields are sensitive. It logs `args` as a whole:
 
 ```js
-logger.info("timing %j", { duration, resolver: info.fieldName, args })
+logger.info("timing %j", { duration, resolver: info.fieldName, args });
 ```
 
 `%j` calls `JSON.stringify`, which fires `toJSON` on any sensitive values. Safe by default, no knowledge of which fields are PII required. The convention does the work.
@@ -144,7 +144,7 @@ logger.info("timing %j", { duration, resolver: info.fieldName, args })
 **Resolver code** — actual business logic — explicitly declares what PII it needs:
 
 ```js
-const { name, phone } = pii(args, context)
+const { name, phone } = pii(args, context);
 ```
 
 One line. The naming is deliberate — `pii()` not `getSensitive()`. It's a declaration: this resolver uses PII. A reviewer searching for PII access searches for `pii(`. A lint rule flags resolvers that access known sensitive field names without calling `pii()` first. TypeScript makes `Sensitive<string>` unassignable to `string`, so the compiler enforces the boundary at every callsite.

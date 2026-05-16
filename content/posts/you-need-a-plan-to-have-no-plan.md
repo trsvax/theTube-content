@@ -1,9 +1,9 @@
 ---
-title: Logs Are the Test Suite
+title: You Need a Plan to Have No Plan
 date: 2026-05-16
 tags: [tech]
 type: draft
-summary: Tests get ignored. Lint gets disabled. Mock databases test the mock. The log stream running continuously against production is the only test suite that works when nobody is paying attention.
+summary: Invest upfront in infrastructure — structured logs, schema annotations, operation capture — and you never have to plan a test, a report, or a query again. The planning happens once. The flexibility is permanent.
 ---
 
 I gave up writing tests before I got around to turning off the linter. Both decisions were correct.
