@@ -89,6 +89,46 @@ The transformer wraps every resolver that touches a `@redacted` field at schema 
 
 The schema stops being documentation and starts being executable policy.
 
+## Two logs, one access event
+
+The Proxy is the right place to split the audit trail. Every sensitive field access fires two log entries automatically — the resolver doesn't know either is happening.
+
+```js
+function getSensitive(args, context) {
+  return new Proxy(args._sensitive, {
+    get(target, key) {
+      const value = target[key]
+
+      // Safe log — shareable with agents, support tools, dashboards
+      logger.info({
+        field: key,
+        value: '[REDACTED]',
+        sensitive: true,
+        resolver: context.resolverName,
+        requestId: context.requestId
+      })
+
+      // Audit log — restricted store, real value, compliance use only
+      auditLogger.info({
+        field: key,
+        value: value,
+        resolver: context.resolverName,
+        userId: context.userId,
+        requestId: context.requestId
+      })
+
+      return value
+    }
+  })
+}
+```
+
+The regular log goes anywhere — it never had PII. The audit log goes to a restricted store with stricter access controls, separate encryption, its own retention policy. The `requestId` ties them together: if you need the real value for a specific request, look it up in the audit store by ID.
+
+The resolver writes `const sensitive = getSensitive(args, context)` and then `sensitive.email` like a normal property access. Both log entries happen on that read. The logging can't be skipped, can't be forgotten, can't be commented out during debugging. The act of reading the value is the log entry.
+
+Two loggers, one Proxy, zero burden on resolver authors.
+
 ## The schema as contract
 
 The real value is that this composes. Mark a field `@redacted` once in the schema. Output redaction, input stripping, log tagging, and browser verification all enforce the same contract automatically. Add a new PII field and it's protected everywhere immediately. Forget to mark one and a lint rule catches it in CI.
