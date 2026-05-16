@@ -18,7 +18,7 @@ This is Doug McIlroy's pipe model applied to publishing. Small tools, clear inte
 
 ## Built in public
 
-Each idea starts as a GitHub issue, gets built, and gets written about. The code and the writing ship together. The posts about how this works are part of the thing that works.
+Each idea starts as a file. It gets written, shaped, and published when it's ready. The code and the writing ship together. The posts about how this works are part of the thing that works.
 
 The repo-as-package model means anyone can fork the renderer and point it at their own content. The Austin Healey restorer, the solo developer with a stack they want to own — fork it, bring your own content and design, deploy to your own S3 bucket. The renderer is the only shared thing.
 
