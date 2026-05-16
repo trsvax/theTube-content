@@ -129,6 +129,28 @@ The resolver writes `const sensitive = getSensitive(args, context)` and then `se
 
 Two loggers, one Proxy, zero burden on resolver authors.
 
+## Two conventions, two kinds of code
+
+There are two categories of code that touch args, and they need different rules.
+
+**Infrastructure code** — timing, tracing, request logging — never needs to know which fields are sensitive. It logs `args` as a whole:
+
+```js
+logger.info("timing %j", { duration, resolver: info.fieldName, args })
+```
+
+`%j` calls `JSON.stringify`, which fires `toJSON` on any sensitive values. Safe by default, no knowledge of which fields are PII required. The convention does the work.
+
+**Resolver code** — actual business logic — explicitly declares what PII it needs:
+
+```js
+const { name, phone } = pii(args, context)
+```
+
+One line. The naming is deliberate — `pii()` not `getSensitive()`. It's a declaration: this resolver uses PII. A reviewer searching for PII access searches for `pii(`. A lint rule flags resolvers that access known sensitive field names without calling `pii()` first. TypeScript makes `Sensitive<string>` unassignable to `string`, so the compiler enforces the boundary at every callsite.
+
+The split maps to two teams. Infrastructure engineers write timing and tracing code — they follow `%j` and never think about which fields are sensitive. Feature engineers write resolver code — they declare PII access explicitly and the type system holds them to it. Each side has one rule. Neither needs to know what the other is doing.
+
 ## The schema as contract
 
 The real value is that this composes. Mark a field `@redacted` once in the schema. Output redaction, input stripping, log tagging, and browser verification all enforce the same contract automatically. Add a new PII field and it's protected everywhere immediately. Forget to mark one and a lint rule catches it in CI.
