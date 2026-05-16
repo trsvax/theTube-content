@@ -19,8 +19,8 @@ draft: false
 
 Post body...
 
-[design]: /images/posts/a-fork-is-a-refactor/og-image.png
-[journey]: /journeys/a-fork-is-a-refactor.json
+[design]: /images/posts/dont-let-your-repo-be-a-junk-drawer/og-image.png
+[journey]: /journeys/dont-let-your-repo-be-a-junk-drawer.json
 ```
 
 That file tells you everything:

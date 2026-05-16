@@ -29,5 +29,5 @@ The footer already shows all three commit SHAs. The structure is ready for the f
 Every concern that evolves independently gets its own repo. That's the pattern, not the exception.
 
 [journey]:
-prev: a-fork-is-a-refactor
+prev: dont-let-your-repo-be-a-junk-drawer
 Wrote this before doing the work — same as the content fork post. The design repo doesn't exist yet. Stability first, then the fork.

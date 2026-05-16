@@ -8,7 +8,7 @@ summary: GitHub already generates an Atom feed of commits. The raw file URL is a
 
 GitHub already generates an Atom feed for every repo: `github.com/trsvax/theTube-content/commits/main.atom`. New post, new commit, new feed entry. No RSS file to generate, no separate build step, no feed reader plugin.
 
-The raw file URL is always current: `raw.githubusercontent.com/trsvax/theTube-content/main/content/posts/a-fork-is-a-refactor.md`. The GitHub API lists all posts with metadata. Any service that can read GitHub can subscribe to the content without touching the published site.
+The raw file URL is always current: `raw.githubusercontent.com/trsvax/theTube-content/main/content/posts/dont-let-your-repo-be-a-junk-drawer.md`. The GitHub API lists all posts with metadata. Any service that can read GitHub can subscribe to the content without touching the published site.
 
 The repo is the feed. The question is whether the URL should say so.
 
@@ -27,7 +27,11 @@ The build already knows what changed. After `next build`, a post-build step diff
 The receiver doesn't need to understand git. It gets:
 
 ```json
-{ "slug": "a-fork-is-a-refactor", "bsky": true, "event": "publish" }
+{
+  "slug": "dont-let-your-repo-be-a-junk-drawer",
+  "bsky": true,
+  "event": "publish"
+}
 ```
 
 That's enough to crosspost to Bluesky, send a newsletter, update a search index, or notify a feed aggregator.

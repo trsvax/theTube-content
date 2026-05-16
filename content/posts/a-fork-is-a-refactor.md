@@ -1,41 +1,49 @@
 ---
-title: A Fork Is a Refactor
-date: 2026-05-15
+title: Don't Let Your Repo Be a Junk Drawer
+date: 2026-05-16
 tags: [tech]
 type: draft
-summary: The content and the renderer started in the same repo because that was convenient. When the separation became obvious, the tool for making it was git fork. Same operation as extract class, just at repo scale.
+summary: The private repo started with fonts and ended up with Lambda code and CDK stacks. "Private" is not a concern — it's an access control label. The fix is a fork, and forks are cheap.
 ---
 
-The content and the renderer started in the same repo because it was convenient. One push deployed everything. No coordination between repos, no multi-checkout workflows, no token management. It worked.
+Everything started in one repo because what else would you do. One push deployed everything. Simple.
 
-It was also wrong. Not catastrophically wrong — the site ran fine. But the concern boundary was in the wrong place. The markdown files and the Next.js app had nothing to say to each other beyond "please render me." They didn't need to share a commit history, a branch, or a deploy lifecycle.
+The first problem was the fonts. Licensed typefaces can't live in a public repo. So a private repo was the obvious move. While I was there, private posts went in too. Then the auth Lambda. Then the CDK infrastructure stack.
 
-The separation became obvious when thinking about forkability. If someone wanted a blog like this one — the Austin Healey restorer, the solo developer with a stack they want to own — they should be able to fork the renderer and get a working blog. Not fork the renderer and get someone else's posts.
+Everything landed in one private repo because it shared one property: not public.
 
-## Extract class, repo scale
+That's not a concern. That's an access control label. You can't organize a repo around it any more than you can organize a codebase around "files that happen to be large." The fonts, the private posts, the Lambda, and the CDK stack have nothing to do with each other. They change at different rates, for different reasons, by different people someday. I don't want my graphic designer committing auth Lambda code.
 
-In code, when a class accumulates responsibilities that belong elsewhere, the move is "extract class." You identify the boundary, move the code, update the callers, run the tests. The class before and the class after are related by lineage, not by code.
+The private repo was a monorepo in disguise. It took a while to notice.
 
-A fork is the same operation at repo scale. The content repo is a fork of the app repo at the moment the separation was recognized. The history shows the before — content and renderer coupled. The fork point shows the after — the moment the concern was named.
+## Fork when it's wrong
 
-The fork doesn't hide the history. It records it. The content _did_ live with the implementation. That's honest. The commit that strips the renderer out of the content repo and the commit that strips the content out of the renderer repo are the refactor, visible in the log.
+The fix was to fork again — pull the private content out of the infra repo, give it its own repo, point the deploy pipeline at both. Two checkout steps instead of one. The content didn't change. The infra didn't change. Only where things lived changed.
 
-## The pipe becomes possible
+That's what makes repos pluggable. Builders don't care which content repos they pull from — they care that the repos exist at checkout time and contain markdown files in the right directory. Swapping one repo for two is a deploy.yml change, not a rewrite. The interface is the contract.
 
-Before the separation, the renderer and the content were one thing. After, they're two tools with a clear interface: markdown files with YAML frontmatter, in a directory the renderer knows how to read.
+This is extract module at repo scale. In code: you notice two things are tangled, you extract a function, a class, a module. The caller doesn't change — it imports from a new location. In repos: you notice two concerns are tangled, you fork. Builders don't change — they check out from a new location.
 
-That's the Unix pipe. The content repo writes to stdout (markdown files). The renderer reads from stdin (the same files, via a checkout step in Actions). They don't need to know about each other beyond the format agreement.
+## You don't design it upfront
 
-A third tool — a different renderer, a search indexer, a Bluesky poster — can read from the same content repo without touching the renderer. The interface is public. The content is portable.
+Every fork in this project came from noticing something was wrong, not from planning it in advance. Content and builder were wrong — fork. Private content and infra were wrong — fork. The organization emerged from the mistakes.
 
-## What the fork proves
+That's fine. The cost of reorganizing is low because the interface is thin: a directory convention and a checkout step. As long as that holds, the internals can move freely. You can iterate toward the right structure instead of having to predict it.
 
-That the renderer is genuinely separable. If you can separate it from its own content, someone else can point it at their content. The fork of the app repo as a content repo is the proof-of-concept for every future fork.
+The fork doesn't hide the history. It records it. The content _did_ live with the builder. The private posts _did_ live with the Lambda. That's honest. The commit that extracts them is the refactor, visible in the log.
 
-The Austin Healey restorer forks the renderer. They point it at their own content repo. They never see theTube's posts. The renderer never sees their posts unless they choose to show them. The separation that should have existed from the start now exists — and the path from here to there is a fork and two cleanup commits.
+## What the pipe makes possible
 
-That's a refactor.
+Split right, the whole thing is a pipeline. Sources — any number of content repos — feed builders. Builders produce files. The files go to S3. CloudFront distributes them. Any HTTP client consumes them.
+
+That builders is plural is a feature. Next.js produces HTML pages. The indexer produces content.json files. A feed generator could produce an RSS feed. Each reads from the same content repos, each produces files, each is independent. Add one without touching the others.
+
+Each stage does one thing and doesn't know about the others. S3 doesn't know what built the files. Builders don't know which client will read them. A new content repo is just another source — another checkout, another directory merge, no other changes required.
+
+The interface is public. The content is portable. The fork that separated them made that possible.
 
 [journey]:
 prev: doug-mcilroy-would-recognize-it
-Written at the moment of doing it — the post was drafted before the work. Content copied to theTube-content [commit 927698e]. Renderer updated and content/ removed from theTube [commit 58cd252]. 75 open issues closed in theTube with a note pointing to theTube-content. GitHub's new repo form doesn't include Creative Commons licenses — added CC BY 4.0 manually. The symlink (`content → ../theTube-content/content`) makes local dev work without changing any paths in the renderer.
+First version written at the moment of doing the content/builder split — drafted before the work. Content copied to theTube-content [commit 927698e]. Builder updated and content/ removed from theTube [commit 58cd252]. 75 open issues closed in theTube with a note pointing to theTube-content. GitHub's new repo form doesn't include Creative Commons licenses — added CC BY 4.0 manually. The symlink (`content → ../theTube-content/content`) makes local dev work without changing any paths in the builder.
+
+Pulled back to draft after publishing — the post was right but incomplete. The private repo was the second mistake: fonts, private posts, Lambda, and CDK infrastructure all dumped together because they shared one property — not public. "Private" is not a concern. Rewrote to lead with that story and draw the fuller picture: you don't design the organization upfront, you fork when you notice the wrong thing is bundled.
