@@ -67,6 +67,28 @@ Now the logs are queryable on the sensitivity dimension. Which queries touched s
 
 Tiered retention follows naturally. `sensitive: false` logs keep indefinitely. `sensitive: true` logs purge on schedule. Same log store, different lifecycle based on a field value.
 
+## The directive runs code
+
+The objection to schema-level annotations is that they're documentation until something enforces them. `@redacted` on a field is a label. Labels don't redact anything.
+
+GraphQL directive transformers close that gap. The directive definition includes the enforcement:
+
+```js
+const RedactedDirective = {
+  visitFieldDefinition(field) {
+    const { resolve } = field
+    field.resolve = async (source, args, context, info) => {
+      const value = await resolve(source, args, context, info)
+      return context.isAgent ? '[REDACTED]' : value
+    }
+  }
+}
+```
+
+The transformer wraps every resolver that touches a `@redacted` field at schema build time — before any request runs. The label and the behavior are the same artifact. You can't declare `@redacted` and forget to wire up the enforcement because the enforcement is in the declaration.
+
+The schema stops being documentation and starts being executable policy.
+
 ## The schema as contract
 
 The real value is that this composes. Mark a field `@redacted` once in the schema. Output redaction, input stripping, log tagging, and browser verification all enforce the same contract automatically. Add a new PII field and it's protected everywhere immediately. Forget to mark one and a lint rule catches it in CI.
