@@ -47,17 +47,19 @@ Each stage does one thing and doesn't know about the others. S3 doesn't know wha
 The interface is just files. The content is portable. The fork that separated them made that possible.
 
 [journey]:
-prev: doug-mcilroy-would-recognize-it
-First version written at the moment of doing the content/builder split — drafted before the work. Content copied to theTube-content [commit 927698e]. Builder updated and content/ removed from theTube [commit 58cd252]. 75 open issues closed in theTube with a note pointing to theTube-content. GitHub's new repo form doesn't include Creative Commons licenses — added CC BY 4.0 manually. The symlink (`content → ../theTube-content/content`) makes local dev work without changing any paths in the builder.
 
-Pulled back to draft after publishing — the post was right but incomplete. The private repo was the second mistake: fonts, private posts, Lambda, and CDK infrastructure all dumped together because they shared one property — not public. "Private" is not a concern. Rewrote to lead with that story and draw the fuller picture: you don't design the organization upfront, you fork when you notice the wrong thing is bundled.
-
-The meta-lesson: the post itself was a mistake that got fixed. Published wrong, pulled back, rewritten, retitled. Don't live with your mistakes — fix them. Same advice, applied to the post giving the advice.
-
-Relevant: Adam Savage reorganized his shop hardware into Sortimo containers, got it right — then realized the index (a flat list) was the wrong format. Rebuilt it as a wheel. Same lesson one level up: the organization can be right while the interface is still wrong. https://www.youtube.com/watch?v=EDdpMf_tv0w
-
-My son described his mom's painting process as a "continuous mess up." Insightful. Each mark is a mistake that changes what the next mark needs to be. The painting process isn't the plan — it's the accumulated responses to what went wrong or right. Same as the repo structure. Same as this post. Fix enough mistakes and you have art.
-
-I've done monorepos before. One checkout and git management is easier — those were real arguments. With AI, those aren't problems anymore. The case for keeping everything together gets weaker while the case for separating concerns stays the same.
-
-Before AI, this architecture was borderline for one person — managing multiple repos, keeping deploy workflows in sync, CDK + Lambda + CloudFront, debugging auth edge cases. Doable but miserable. With AI it's clearly one person. The cognitive overhead of context-switching between repos and build configs is exactly where AI helps most. This is designed for one person with AI, not a team without it.
+> prev: doug-mcilroy-would-recognize-it
+>
+> First version written at the moment of doing the content/builder split — drafted before the work. Content copied to theTube-content [commit 927698e]. Builder updated and content/ removed from theTube [commit 58cd252]. 75 open issues closed in theTube with a note pointing to theTube-content. GitHub's new repo form doesn't include Creative Commons licenses — added CC BY 4.0 manually. The symlink (`content → ../theTube-content/content`) makes local dev work without changing any paths in the builder.
+>
+> Pulled back to draft after publishing — the post was right but incomplete. The private repo was the second mistake: fonts, private posts, Lambda, and CDK infrastructure all dumped together because they shared one property — not public. "Private" is not a concern. Rewrote to lead with that story and draw the fuller picture: you don't design the organization upfront, you fork when you notice the wrong thing is bundled.
+>
+> The meta-lesson: the post itself was a mistake that got fixed. Published wrong, pulled back, rewritten, retitled. Don't live with your mistakes — fix them. Same advice, applied to the post giving the advice.
+>
+> Relevant: Adam Savage reorganized his shop hardware into Sortimo containers, got it right — then realized the index (a flat list) was the wrong format. Rebuilt it as a wheel. Same lesson one level up: the organization can be right while the interface is still wrong. https://www.youtube.com/watch?v=EDdpMf_tv0w
+>
+> My son described his mom's painting process as a "continuous mess up." Insightful. Each mark is a mistake that changes what the next mark needs to be. The painting process isn't the plan — it's the accumulated responses to what went wrong or right. Same as the repo structure. Same as this post. Fix enough mistakes and you have art.
+>
+> I've done monorepos before. One checkout and git management is easier — those were real arguments. With AI, those aren't problems anymore. The case for keeping everything together gets weaker while the case for separating concerns stays the same.
+>
+> Before AI, this architecture was borderline for one person — managing multiple repos, keeping deploy workflows in sync, CDK + Lambda + CloudFront, debugging auth edge cases. Doable but miserable. With AI it's clearly one person. The cognitive overhead of context-switching between repos and build configs is exactly where AI helps most. This is designed for one person with AI, not a team without it.
