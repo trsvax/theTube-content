@@ -36,6 +36,8 @@ AI-generated code is the same deal. Different variable names, different approach
 
 The spec is the source code. The code is the object code.
 
+People didn't trust compilers either. Wrote assembly by hand because they couldn't verify the output. Where are they now? The ones who let go shipped faster. The ones who held on are maintaining legacy systems nobody else can read. Same thing is happening with AI-generated code right now.
+
 [journey]:
 prev: you-cant-argue-with-the-second-law
 Came from asking: if the code was deleted, could it be rebuilt? The answer is yes — from the specs and docs alone. That proves the journal-to-spec-to-code chain is live, not decorative. The journal leads to the code. It's not documentation after the fact.
