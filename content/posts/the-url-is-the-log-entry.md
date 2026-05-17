@@ -49,14 +49,20 @@ It's a tracking pixel without the pixel. The URL is structured data. CloudFront 
 
 ## Format detection
 
+The event is in the path. The context is in the query string. Sub-events use path hierarchy — it's a filesystem.
+
+```
+/logs/link/dead?url=https://example.com/gone&post=my-post
+/logs/link/slow?url=https://example.com/page&ms=3200
+/logs/deploy/start?commit=abc1234
+/logs/deploy/done?commit=abc1234&duration=28s
+/logs/error/js?msg=TypeError&post=my-post
+/logs/error/fetch?url=https://api.example.com&status=500
+```
+
+Easy to filter in CloudFront logs — match on the URI path. No query string parsing to find the event type. Different CloudFront behaviors per event type if you ever need them.
+
 If the query string starts with `{`, it's JSON. Otherwise it's key=value pairs. The reader handles both — duck typing for log format. No configuration, no content-type header, no negotiation.
-
-```
-/log?event=dead-link&url=https://example.com/gone
-/log?{"event":"dead-link","url":"https://example.com/gone","meta":{"post":"my-post"}}
-```
-
-Key=value for simple events. JSON when you need nested data. The reader figures out what it got. Same pattern as everything else.
 
 ## vs. the 5-machine cluster
 
