@@ -41,6 +41,10 @@ Same pattern as JavaScript's `Proxy` object — intercept the access, return onl
 
 ## Why it's worth exploring
 
+It makes the whole thing feel dynamic — like there's a server. But there isn't one. It's a static file being filtered at the edge. CloudFront is the server you don't have to maintain. Lambda@Edge is the middleware you don't have to deploy. The static file is the database you don't have to back up. It looks dynamic to the user but the infrastructure is still just files on S3.
+
+That's the Plan 9 thing again — the namespace looks unified to the client, but it's assembled from different sources at request time. The client doesn't know or care how it's composed.
+
 It's the same argument as the rest of the platform: one source of truth, multiple readers, the proxy handles access. The build stays simple. The edge does the work. Failure is an option — if it doesn't work, the current approach is fine and the journal means I learned something.
 
 [journey]:
