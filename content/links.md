@@ -13,6 +13,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 - [Oh No Type Company](https://ohnotype.co) — the type foundry behind Swear Display
 - [Cloudflare Radar](https://radar.cloudflare.com) — internet traffic and trends, live
 - [ZeroFS](https://github.com/Barre/ZeroFS) — 9P server for S3, mount your bucket as a filesystem
+- [html-validator-cli](https://www.npmjs.com/package/html-validator-cli) — validate HTML from the command line
 
 ## Interesting things
 
