@@ -14,6 +14,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 - [Cloudflare Radar](https://radar.cloudflare.com) — internet traffic and trends, live
 - [ZeroFS](https://github.com/Barre/ZeroFS) — 9P server for S3, mount your bucket as a filesystem
 - [Nu HTML Checker](https://validator.w3.org/nu/about.html) — W3C HTML validator, runs locally or as a service
+- [axe-scan](https://github.com/ttsukagoshi/axe-scan) — accessibility scanner, automated a11y testing
 
 ## Interesting things
 
