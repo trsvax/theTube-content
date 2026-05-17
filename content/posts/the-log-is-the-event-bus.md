@@ -35,9 +35,27 @@ Higher latency for simplicity and reliability. That's a better trade for a perso
 
 Lambda@Edge already validates the JWT. It knows who the user is. It adds the identity to the request before logging. The comment is attributed by the edge, not self-reported by the client. No trust in the browser. The auth layer you already have does the work.
 
-## Same pattern, different readers
+## Two paths, one format
 
-Same file (the CloudFront log), multiple readers with different objectives. The indexer queries it with Athena. The comment processor extracts events and produces artifacts. The browser reads the artifacts. Nobody coordinates. Each reader does its own thing.
+Not everything needs the same latency:
+
+- `/logs/...` — cheap, async, 5-20 min latency. CloudFront logs the request, Lambda processes the log batch later. Free at the CDN layer. Good for: dead links, analytics, error reporting.
+- `/fastevent/...` — Lambda processes immediately, writes to S3 in real time. Sub-200ms warm, sub-300ms cold. Costs per invocation. Good for: comments, reactions, anything the next visitor should see.
+
+Same event format. Same URL pattern. Same output files. The client picks the SLA by choosing the path. No infrastructure change — just a different CloudFront behavior routing to a Lambda instead of to nothing.
+
+## What else fits
+
+Anything that's "user did X" or "client observed Y":
+
+- Reactions/likes — `/fastevent/react?post=my-post&type=👍`
+- Bookmarks — `/logs/event/bookmark?post=my-post`
+- Read tracking — `/logs/event/read?post=my-post`
+- Form submissions — any form, serialize to the URL, process later
+- Polls/votes — `/fastevent/vote?poll=best-framework&choice=htmx`
+- Error reporting — `/logs/error/js?msg=...&stack=...`
+
+The form is the UI. The URL is the persistence. The processor arrives when you need it. Build the form first, deal with the implementation later — the data is captured either way.
 
 [journey]:
 prev: the-url-is-the-log-entry
