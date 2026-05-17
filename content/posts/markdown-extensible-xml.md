@@ -27,4 +27,16 @@ The extension costs the writer nothing. You type it and keep writing. Any render
 
 XML's extensibility was a contract. Markdown's extensibility is a gap — and gaps are more useful than contracts when you don't know yet what you need to extend.
 
+## Nobody owns the tag
+
+XML namespaces assumed ownership. `xmlns:xsl` points to a URL — the W3C owns that namespace, defines what it means, controls the schema. The model is: one owner, one definition, one validator.
+
+In practice, a tag like `[design]:` doesn't have one owner. The renderer sees it and thinks "show an image or a placeholder." The GitHub workflow sees it and thinks "create an issue." Neither knows about the other. They just both know how to handle that tag in their own way.
+
+That's the Unix pipe model applied to document semantics. The file is the data. Each tool reads it and does its own thing. They don't coordinate — they agree on the format. The tag is the interface, not the implementation.
+
+Ownership doesn't make sense here because the tag isn't a possession — it's a contract. `[design]:` means "this block describes a visual asset that needs to be produced." What each tool does with that information is its own business. A renderer shows a placeholder. A workflow creates an issue. A future tool might generate the image with AI. None of them need permission from the others.
+
+The namespace, if you need one, is just collision avoidance — a way to say "my `design` is different from your `design`." Until there's an actual collision, it's premature structure. And premature structure is what killed XML adoption in the first place.
+
 The good parts of markdown aren't the things Gruber designed. They're the things he left undefined.
