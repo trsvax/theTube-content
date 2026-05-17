@@ -1,26 +1,28 @@
-theTube is a personal publishing system built on a simple constraint: static HTML first, everything else optional.
-
-No server. No database. No CMS. The pages are files on S3, served through CloudFront. Authentication is real — signed cookies, Lambda@Edge, Cognito — but it sits on top of files. Remove the auth layer and the site still works. Remove the JavaScript and the site still works. It works in Lynx. It costs about $1 a month.
+theTube is a serverless publishing platform. No server. No database. Everything is a file and a URL. The CDN is the platform — it serves content, handles auth, ingests events, and scales globally. What looks like a static site supports user input, real-time writes, and role-based access. Works in Lynx. Costs about a dollar a month.
 
 The architecture is its own argument for how much of the web doesn't need to be as complicated as it is.
 
-## Content is the most portable thing
+## Files at URLs
 
-Posts are Markdown files with YAML frontmatter in a git repo. No proprietary format, no export button, no lock-in. The content repo is public. If this site disappears, the writing doesn't.
+The contract is three words: files at URLs. Writers put data at a path. Readers fetch from that path. Nothing cares what built the file or what reads it. S3 is the pipe between them.
 
-Every concern that evolves independently gets its own repo. Content in one. Design in another. The renderer wires them together at build time. The format agreement between repos — Markdown files, CSS, JSON — is the interface. Any tool that speaks the format can participate.
+Posts are Markdown files. Comments are text files. Logs are HTTP requests the CDN records. The feed is a JSON manifest. All files. All URLs. All decoupled.
+
+## Journal-driven development
+
+The development methodology: vague idea → journal → spec → code, where the last three are a loop. The journal entry is the unit of work — one file, whole story. AI is the bridge between prose and implementation. The spec is the source code. The code is the object code — disposable, regenerable.
+
+The journal stays current because it _is_ the work. You can't build something without writing about it first. Five years later you can open the file and reconstruct the what, the why, and the how.
 
 ## The Unix pipe model
 
-GitHub Actions is the shell. The content repo writes Markdown. The renderer reads it and produces HTML. CloudFront serves it. Each step does one thing. None of them need to know about each other beyond the format.
+GitHub Actions is the shell. The content repo writes Markdown. The renderer reads it and produces HTML. CloudFront serves it. The log ingests events. Lambdas process them. Each step does one thing. None of them need to know about each other beyond the format.
 
-This is Doug McIlroy's pipe model applied to publishing. Small tools, clear interfaces, compose at the shell. The whole stack is four npm dependencies: Next.js, React, React DOM, marked.
+Doug McIlroy's pipe model applied to publishing. Small tools, clear interfaces, compose at the shell.
 
-## Built in public
+## Built with AI
 
-Each idea starts as a file. It gets written, shaped, and published when it's ready. The code and the writing ship together. The posts about how this works are part of the thing that works.
-
-The repo-as-package model means anyone can fork the renderer and point it at their own content. The Austin Healey restorer, the solo developer with a stack they want to own — fork it, bring your own content and design, deploy to your own S3 bucket. The renderer is the only shared thing.
+Written completely by AI, directed by a human. The human role is direction, judgment, and writing. The AI role is code, debugging, and implementation. The skills and specs give AI enough context to build without constant correction.
 
 ## Source
 
