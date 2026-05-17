@@ -19,3 +19,4 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 ## Interesting things
 
 - [Wayback Machine](https://web.archive.org) — the internet's memory
+- [If AI is so good at coding, where are the open source contributions?](https://pivot-to-ai.com/2025/05/13/if-ai-is-so-good-at-coding-where-are-the-open-source-contributions/) — the question that answers itself
