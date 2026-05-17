@@ -58,6 +58,14 @@ If the query string starts with `{`, it's JSON. Otherwise it's key=value pairs. 
 
 Key=value for simple events. JSON when you need nested data. The reader figures out what it got. Same pattern as everything else.
 
+## vs. the 5-machine cluster
+
+The alternative is Elastic — a 5-machine cluster that needs patching every month, breaks its API every major release, requires shard rebalancing, index lifecycle policies, and a security team that always wants it updated. All that operational overhead just to store and query text.
+
+CloudFront access logs + S3 + Athena: no patches, no API changes, no cluster management. The log format is stable. S3 doesn't have security vulnerabilities you need to patch. Athena is standard SQL that won't change. Zero machines. Same data, same queries, no ops.
+
+The entropy argument again — Elastic fights it with constant maintenance. The serverless approach accepts it by having nothing to maintain. The second law wins either way, but one path costs you weekends.
+
 [journey]:
 prev: content-json-at-the-edge
 Came from the dead link detection idea — the browser notices a broken link and needs somewhere to report it. Creating a GitHub issue is too aggressive. Logging is right. The simplest possible log is a fetch to a URL that CloudFront records. Zero new infrastructure.
