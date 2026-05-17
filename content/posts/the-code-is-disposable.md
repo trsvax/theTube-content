@@ -28,6 +28,14 @@ The code is just one possible implementation of both. Disposable. Regenerable.
 
 You don't need to read the code to understand the system. You read the spec. You don't need to read the spec to understand the thinking. You read the journal. The code is the least important artifact in the repo.
 
+## The spec is the source code
+
+Compilers didn't generate the same binary run to run either — different optimization passes, different register allocation, different link order. Same source, different object code. Nobody cared because the behavior was the same.
+
+AI-generated code is the same deal. Different variable names, different approach to the same problem, but same behavior. The spec defines the behavior. The implementation is just one possible compilation of it.
+
+The spec is the source code. The code is the object code.
+
 [journey]:
 prev: you-cant-argue-with-the-second-law
 Came from asking: if the code was deleted, could it be rebuilt? The answer is yes — from the specs and docs alone. That proves the journal-to-spec-to-code chain is live, not decorative. The journal leads to the code. It's not documentation after the fact.
