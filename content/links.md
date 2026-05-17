@@ -11,6 +11,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 - [JotBird](https://www.jotbird.com) — paste Markdown, get a shareable URL, no account
 - [Oh No Type Company](https://ohnotype.co) — the type foundry behind Swear Display
 - [Cloudflare Radar](https://radar.cloudflare.com) — internet traffic and trends, live
+- [ZeroFS](https://github.com/Barre/ZeroFS) — 9P server for S3, mount your bucket as a filesystem
 
 ## Interesting things
 
