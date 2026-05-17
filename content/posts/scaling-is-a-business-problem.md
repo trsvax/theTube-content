@@ -28,6 +28,18 @@ The serverless model is linear. Every additional request costs the same fraction
 
 The same architecture that costs a dollar at personal scale costs proportionally more at enterprise scale — but it's the same architecture. No migration, no re-platform, no "we need to rewrite this in Go for performance." The code doesn't change. The bill changes.
 
+## What about the hard problems?
+
+The things people say require a server:
+
+- **Real-time collaboration** — it's a pipe (WebSocket). The hard part is conflict resolution, not the transport.
+- **Transactions** — banks don't really solve this either. They use eventual consistency + reconciliation. "Pending" exists because the system isn't actually atomic. They pretend and fix it later.
+- **Long-running processes** — rent a machine for the duration (EC2 Spot). Not a server you maintain — a machine you rent for an hour and throw away.
+- **Streaming** — it's a pipe. WebRTC is peer-to-peer, doesn't even need a server beyond signaling.
+- **Complex queries** — data warehouse problem. Redshift, BigQuery, Athena. Not a server problem.
+
+None of them require a traditional server/database architecture. They require specific tools for specific jobs — pipes, rented compute, warehouses. The "server + database" pattern isn't the answer to any of them. It's just the default people reach for because it's familiar.
+
 [journey]:
 prev: already-distributed
 The distribution post led to "why would anyone use a server?" The answer is familiarity, not necessity. Scaling is the clearest example — it's only an engineering problem if you chose an architecture that makes it one.
