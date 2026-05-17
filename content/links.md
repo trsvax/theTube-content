@@ -5,6 +5,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 ## People
 
 - [Adam Savage's Tested](https://www.youtube.com/channel/UCiDJtJKMICpb9B1qf7qjEOA) — making things, workshop builds, curiosity as a practice
+- [Alistair Mavin](https://alistairmavin.com) — EARS requirements syntax
 
 ## Tools and tech
 
