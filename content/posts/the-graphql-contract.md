@@ -84,6 +84,14 @@ Mutations are writes to the event log. Queries are reads from S3. The schema tie
 
 The transport is HTTP. The persistence is a file. The processing is decoupled from the request. No WebSocket subscription needed. Just: write an event, read a file.
 
+## No server to attack
+
+Even if you open a public API that accepts arbitrary GraphQL queries, it doesn't run on your main server. It's a Lambda — isolated, ephemeral, scales independently. A bad query can't take down your site because there's no shared process. The function handles it and disappears.
+
+Webhooks (Stripe payment confirmed, GitHub issue closed) — same thing. A Lambda receives it, processes it, writes a file. No server sitting there waiting for callbacks.
+
+Nothing shares a process. Every operation is isolated. A malicious query can't DOS your site because the site is static files on a CDN. The Lambda is a separate thing that can't affect the serving layer.
+
 [journey]:
 prev: plugins-are-specs-not-code
 The plugin model needs a protocol. GraphQL is already well-known to AI and well-specified. The insight: the query lives in the repo, not in the client or a server. The repo is the schema. The client just says what it wants.
