@@ -92,6 +92,10 @@ Webhooks (Stripe payment confirmed, GitHub issue closed) — same thing. A Lambd
 
 Nothing shares a process. Every operation is isolated. A malicious query can't DOS your site because the site is static files on a CDN. The Lambda is a separate thing that can't affect the serving layer.
 
+## Async isn't a compromise
+
+`fetch()` is already async. Every API call in the browser is already `await`. The developer experience is identical whether the response comes in 50ms (fastevent) or you poll a file 5 minutes later. It's all promises either way. The async model isn't a tradeoff — it's what JS already does. The "sync" APIs people are used to are async under the hood anyway.
+
 [journey]:
 prev: plugins-are-specs-not-code
 The plugin model needs a protocol. GraphQL is already well-known to AI and well-specified. The insight: the query lives in the repo, not in the client or a server. The repo is the schema. The client just says what it wants.
