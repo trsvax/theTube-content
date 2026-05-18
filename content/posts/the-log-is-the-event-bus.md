@@ -39,10 +39,17 @@ Lambda@Edge already validates the JWT. It knows who the user is. It adds the ide
 
 Not everything needs the same latency:
 
-- `/logs/...` — cheap, async, 5-20 min latency. CloudFront logs the request, Lambda processes the log batch later. Free at the CDN layer. Good for: dead links, analytics, error reporting.
-- `/fastevent/...` — Lambda processes immediately, writes to S3 in real time. Sub-200ms warm, sub-300ms cold. Costs per invocation. Good for: comments, reactions, anything the next visitor should see.
+- `/events/...` — cheap, async, 5-20 min latency. CloudFront logs the request, Lambda processes the log batch later. Returns 202 with no body. Fire and forget. Good for: dead links, analytics, error reporting.
+- `/fastevent/...` — Lambda processes immediately, writes to S3 in real time. Sub-200ms warm, sub-300ms cold. Returns 202 with `Location` header pointing to where the result will appear. The browser knows exactly where to check back. Good for: comments, reactions, anything the next visitor should see.
 
-Same event format. Same URL pattern. Same output files. The client picks the SLA by choosing the path. No infrastructure change — just a different CloudFront behavior routing to a Lambda instead of to nothing.
+```
+POST /fastevent/comment?post=my-post&body=great+post
+
+HTTP 202 Accepted
+Location: /comments/my-post.txt
+```
+
+Standard HTTP semantics — no custom headers, no invented protocol. The `Location` on a 202 means "the result will be here when it's ready."
 
 ## What else fits
 
