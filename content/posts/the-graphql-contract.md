@@ -35,6 +35,46 @@ Leverage existing specs instead of inventing new ones. The GraphQL spec is someo
 
 This is how plugins communicate. The client sends operationName + data to any plugin's endpoint. The plugin's repo defines what operations exist. Different repos = different plugins = different behavior. Same client interface for all of them.
 
+## One file, many readers
+
+The schema file:
+- AI reads it → generates the Lambda resolver
+- AI reads it → generates the client form
+- AI reads it → generates the validation
+- Humans read it → understand what operations exist
+- The build reads it → generates type definitions
+
+One file. Five readers. Each produces something different. Nobody coordinates.
+
+## Extensible with directives
+
+GraphQL directives (`@`) are the extension mechanism:
+
+```graphql
+type Mutation {
+  addComment(post: String!, body: String!): Comment @realtime @auth(role: "user")
+  submitFeedback(post: String!, note: String!): Feedback @moderate
+}
+```
+
+`@realtime` → use `/fastevent/`. `@moderate` → use `/events/` batch path. `@auth` → require JWT. Readers that don't know a directive ignore it. Same pattern as `[tag]:` blocks in markdown.
+
+## Build time, not runtime
+
+For your own platform where you control both sides, the queries are known at build time. Pre-defined operations, pre-defined responses. The "GraphQL server" is just a lookup table: operationName → do this thing.
+
+If you ever need full runtime query parsing for a public API — pass the query in the request body via `/fastevent/`. The Lambda runs it against the schema. Same endpoint, more data in the request. Add that capability when someone actually needs it. Not before.
+
+## The wire format stays simple
+
+The schema is the contract between humans and AI. The wire format stays name=value:
+
+```
+/events/comment/submit?post=my-post&body=great+post&name=barry
+```
+
+The schema says "addComment takes post (required), body (required), name (optional)." That's for AI and validation — not for the transport. Simplest possible wire format. Richest possible contract. They don't have to be the same thing.
+
 [journey]:
 prev: plugins-are-specs-not-code
 The plugin model needs a protocol. GraphQL is already well-known to AI and well-specified. The insight: the query lives in the repo, not in the client or a server. The repo is the schema. The client just says what it wants.
