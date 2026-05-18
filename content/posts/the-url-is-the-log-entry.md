@@ -2,8 +2,8 @@
 title: The URL Is the Log Entry
 date: 2026-05-17
 tags: [tech]
-type: journal
-audience: user
+type: post
+audience: public
 status: vague-thought
 coffee: 1
 summary: The browser fetches a URL with the event in the query string. CloudFront logs the request. No backend, no analytics service. The log is a side effect of the request existing.
