@@ -5,6 +5,7 @@ tags: [tech]
 type: journal
 audience: user
 status: vague-thought
+coffee: 1
 summary: The browser fetches a URL with the event in the query string. CloudFront logs the request. No backend, no analytics service. The log is a side effect of the request existing.
 ---
 
