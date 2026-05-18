@@ -54,7 +54,7 @@ The URL is structured data. CloudFront is the log collector. S3 is the storage. 
 
 ## Format detection
 
-The event is in the path. The content is in the query string. Sub-events use path hierarchy — it's a UNIX system.
+The event is in the path. The content is in the query string. Sub-events use path hierarchy — "It's a UNIX system! I know this!"
 
 ```
 /events/link/dead?url=https://example.com/gone&post=my-post
