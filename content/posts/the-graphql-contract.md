@@ -75,6 +75,15 @@ The schema is the contract between humans and AI. The wire format stays name=val
 
 The schema says "addComment takes post (required), body (required), name (optional)." That's for AI and validation — not for the transport. Simplest possible wire format. Richest possible contract. They don't have to be the same thing.
 
+## Async GraphQL via files
+
+Mutations are writes to the event log. Queries are reads from S3. The schema ties them together. All async. All files. No GraphQL server running.
+
+- Mutation → `/events/comment/submit?...` → logged, processed later by Lambda → writes result to S3
+- Query → `GET /comments/my-post.txt` → read a file
+
+The transport is HTTP. The persistence is a file. The processing is decoupled from the request. No WebSocket subscription needed. Just: write an event, read a file.
+
 [journey]:
 prev: plugins-are-specs-not-code
 The plugin model needs a protocol. GraphQL is already well-known to AI and well-specified. The insight: the query lives in the repo, not in the client or a server. The repo is the schema. The client just says what it wants.
