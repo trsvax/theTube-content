@@ -20,6 +20,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 
 - [Wayback Machine](https://web.archive.org) — the internet's memory
 - [If AI is so good at coding, where are the open source contributions?](https://pivot-to-ai.com/2025/05/13/if-ai-is-so-good-at-coding-where-are-the-open-source-contributions/) — the question that answers itself
+- [Ken Thompson on Plan 9](https://www.youtube.com/watch?v=EoYUZtZl02g) — "the best operating system out there" but will "never make it, ever, ever."
 
 ## RSS
 
