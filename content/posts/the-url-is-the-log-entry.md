@@ -86,3 +86,5 @@ next: dont-fight-the-lego-blocks, the-log-is-the-event-bus
 Came from the dead link detection idea — the browser notices a broken link and needs somewhere to report it. Creating a GitHub issue is too aggressive. Logging is right. The simplest possible log is a fetch to a URL that CloudFront records. Zero new infrastructure. The write/index split means you don't need CPU to do both in real time — write is free, index is on-demand. You might never query it, and that's fine.
 
 Decision: renamed from `/logs/` to `/events/` — it's what it actually is. Something might act on it, not just index it later.
+
+Built it. 10 lines in the CloudFront Function. More durable, more available, more scalable, cheaper, and tamper-proof than the billion-dollar logging industry. They're fighting the architecture — running servers to index data you might never query.
