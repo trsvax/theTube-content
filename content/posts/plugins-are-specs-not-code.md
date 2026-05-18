@@ -32,6 +32,14 @@ Plugin compatibility problems disappear because there's no foreign code. Every i
 
 Fork the comment spec repo. That's installing the plugin. The spec is the interface. The implementation is generated. Uninstall = remove the repo. Upgrade = pull the latest spec and regenerate.
 
+## Merge specs, swap stacks
+
+"Give me the comment plugin spec + the platform spec but swap Next.js for Vue and AWS for Azure." AI reads both specs and generates an implementation using Vue components, Azure Blob Storage, Azure CDN, Azure Functions. Same behavior, different stack.
+
+The specs are stack-agnostic — they describe *what*, not *how*. The implementation choices are made at generation time based on what you tell AI you want. One comment spec. Infinite implementations. Each native to its target platform.
+
+And it can still publish to your S3. The contract is files at URLs. A Vue app on Azure can produce a `content.json` and sync it to your S3 bucket. Or to its own Azure Blob Storage. Or both. The front end fetches from a URL — doesn't care which cloud hosts it. Multi-cloud by default. Because the interface is HTTP, not an SDK.
+
 [journey]:
 prev: the-log-is-the-event-bus
 The event bus enables comments. Comments are the first plugin. The plugin model emerged: specs not code, AI generates the implementation, no compatibility issues because there's no foreign code.
