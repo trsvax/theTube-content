@@ -69,6 +69,8 @@ The build syncs between them. Both are file servers. Both are versioned. Both ar
 
 The deploy workflow reads `blocks.md`, clones each referenced repo at the pinned version, mounts them into the build tree, builds, deploys. Add a plugin = add a line = next deploy includes it. That's `package-lock.json` — except it's a markdown table and the "packages" are specs, not code.
 
+Lines of code to implement this plugin system: zero. `blocks.md` is a markdown table. The comment spec is a GraphQL schema. Neither is code. The implementation comes when you say "build it." Until then — a complete plugin architecture with versioning, isolation, discovery, and reproducible builds. No code.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
