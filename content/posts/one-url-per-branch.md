@@ -22,4 +22,7 @@ You can click the URL. That's the whole thing. Artifacts you can't visit aren't 
 
 [journey]:
 prev: designers-dont-know-git
+next: per-user-namespaces
 The 502 from the CloudFront function bug made the case. Every push to main is live. A broken URI rewrite is immediately a broken site. The fix was one push away, but that's one push where nobody could visit the root URL. A dev branch with its own URL would have caught it before it touched production.
+
+Later realized: subdomains per branch is the team solution. For solo + AI, per-user namespaces are simpler — same URL, the edge routes by identity. You see your branch. Everyone else sees main. No subdomain, no wildcard cert, no extra DNS. The code is thin enough that breaking changes are rare anyway.
