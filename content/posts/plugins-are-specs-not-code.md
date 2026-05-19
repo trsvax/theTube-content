@@ -83,6 +83,12 @@ The specs are stack-agnostic — they describe *what*, not *how*. The implementa
 
 And it can still publish to your S3. The contract is files at URLs. A Vue app on Azure can produce a `content.json` and sync it to your S3 bucket. Or to its own Azure Blob Storage. Or both. The front end fetches from a URL — doesn't care which cloud hosts it. Multi-cloud by default. Because the interface is HTTP, not an SDK.
 
+## Zero lines
+
+Lines of code to implement this plugin system: zero. `blocks.md` is a markdown table. The comment spec is a GraphQL schema. Neither is code. The implementation comes when you say "build it." Until then — a complete plugin architecture with versioning, isolation, discovery, and reproducible builds. No code.
+
+That's a pretty big feature.
+
 [journey]:
 prev: the-log-is-the-event-bus
 The event bus enables comments. Comments are the first plugin. The plugin model emerged: specs not code, AI generates the implementation, no compatibility issues because there's no foreign code.
@@ -94,11 +100,3 @@ Key insight: the comments repo doesn't need to be in the workspace. `blocks.md` 
 Evaluation workflow: AI reads the spec from the URL, gives an opinion (does it fit, security concerns, what's missing), and you decide whether to dig deeper. 30 lines of GraphQL is auditable in seconds. Thousands of lines of code isn't. The spec is the pitch — read it, evaluate it, adopt it or don't. No commitment until you clone.
 
 Multiple repos can respond to the same block — not a collision, a collaboration. One renders the UI, another indexes, another sends notifications. Same block, different readers, different jobs.
-
-## Zero lines
-
-## Zero lines
-
-Lines of code to implement this plugin system: zero. `blocks.md` is a markdown table. The comment spec is a GraphQL schema. Neither is code. The implementation comes when you say "build it." Until then — a complete plugin architecture with versioning, isolation, discovery, and reproducible builds. No code.
-
-That's a pretty big feature.
