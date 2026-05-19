@@ -52,6 +52,8 @@ AI fetches the schema at that tag, not `main`. The spec can evolve without affec
 
 AI can diff the two schema versions and tell you what changed: "Added `parentId` for threading — no breakage." "Removed `author`, replaced with `userId` — breaking, form needs to change." You decide: upgrade or stay. If you upgrade, AI generates the new implementation and shows you the diff as a PR. The upgrade path is: read the diff, understand the impact, merge or don't.
 
+`blocks.md` is Plan 9's mount table. Each line mounts a remote resource (the spec repo) into your namespace at a mount point (the block name). Version pinning is mounting a specific snapshot. Upgrading is remounting a newer version. `mount trsvax/thetube-comments@v1.2 /comment` — same semantics, different syntax.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
