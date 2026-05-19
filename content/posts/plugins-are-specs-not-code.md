@@ -40,6 +40,16 @@ The plugin lives in its own repo with its own deploy. Its IAM credentials are sc
 
 Even if the plugin code has a bug or gets compromised, the blast radius is one prefix. The rest of the site is untouchable. That's real isolation — not "runs in the same process and hopes for the best" like WordPress. Actually separate. Actually sandboxed. By IAM, not by code.
 
+## Versioned specs
+
+Pin a spec version in `blocks.md`:
+
+```
+| `[comment]:` | trsvax/thetube-comments@v1.2 | Comment form and display |
+```
+
+AI fetches the schema at that tag, not `main`. The spec can evolve without affecting your implementation until you choose to bump. Upgrading = AI reads the new spec and regenerates. Not you debugging breaking changes in someone else's code.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
