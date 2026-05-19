@@ -95,4 +95,6 @@ Evaluation workflow: AI reads the spec from the URL, gives an opinion (does it f
 
 Multiple repos can respond to the same block — not a collision, a collaboration. One renders the UI, another indexes, another sends notifications. Same block, different readers, different jobs.
 
+## Zero lines
+
 Lines of code to implement this plugin system: zero. `blocks.md` is a markdown table. The comment spec is a GraphQL schema. Neither is code. The implementation comes when you say "build it." Until then — a complete plugin architecture with versioning, isolation, discovery, and reproducible builds. No code.
