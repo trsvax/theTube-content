@@ -2,8 +2,8 @@
 title: Plugins Are Specs, Not Code
 date: 2026-05-18
 tags: [tech]
-type: journal
-audience: user
+type: post
+audience: public
 status: vague-thought
 coffee: 2
 summary: A plugin isn't code you install — it's a spec you combine with your platform spec. AI generates the implementation that fits your site. No compatibility issues.
