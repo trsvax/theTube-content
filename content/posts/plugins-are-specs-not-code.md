@@ -5,7 +5,7 @@ tags: [tech]
 type: journal
 audience: user
 status: vague-thought
-coffee: 1
+coffee: 2
 summary: A plugin isn't code you install — it's a spec you combine with your platform spec. AI generates the implementation that fits your site. No compatibility issues.
 ---
 
@@ -30,9 +30,9 @@ Plugin compatibility problems disappear because there's no foreign code. Every i
 
 ## The repo is the plugin
 
-You don't even need to fork. AI reads the spec from the URL, generates the implementation native to your site, and opens a PR. You review. Merge = installed. No fork, no clone, no manual step.
+The plugin lives in its own repo with its own deploy. Install = add a line to `blocks.md`. The plugin repo deploys independently to its own S3 prefix. Your site fetches from its URLs. No code enters your repo. No PR to merge. No foreign code to audit.
 
-Uninstall = revert the PR. Upgrade = AI reads the updated spec and opens a new PR with the changes. The spec repo is never in your workspace unless you're contributing to it.
+Uninstall = remove the line from `blocks.md`. The plugin's S3 prefix can stay or be cleaned up — either way your site stops using it.
 
 ## Plugin isolation
 
