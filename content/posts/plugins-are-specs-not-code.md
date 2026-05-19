@@ -63,6 +63,12 @@ Multiple entries for the same block merge — like Plan 9's `bind`. The order in
 
 The build syncs between them. Both are file servers. Both are versioned. Both are addressable by URL. Two file servers, one namespace, merged at build time. Plan 9 with two file servers mounted into one view.
 
+## blocks.md is the build filesystem
+
+`blocks.md` is in git. Every commit records exactly what the build filesystem looked like — which repos, which versions, which mount points. Go back to any commit and you know exactly what was mounted. Fully reproducible builds from the mount table.
+
+The deploy workflow reads `blocks.md`, clones each referenced repo at the pinned version, mounts them into the build tree, builds, deploys. Add a plugin = add a line = next deploy includes it. That's `package-lock.json` — except it's a markdown table and the "packages" are specs, not code.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
