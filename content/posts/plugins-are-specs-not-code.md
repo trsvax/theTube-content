@@ -43,3 +43,9 @@ And it can still publish to your S3. The contract is files at URLs. A Vue app on
 [journey]:
 prev: the-log-is-the-event-bus
 The event bus enables comments. Comments are the first plugin. The plugin model emerged: specs not code, AI generates the implementation, no compatibility issues because there's no foreign code.
+
+Built `blocks.md` as the plugin registry — maps block names to usage and spec URLs. The workspace only needs to know how to *use* a block, not how it works. The spec URL is for when AI needs to implement it. Two levels of knowledge, accessed on demand.
+
+Key insight: the comments repo doesn't need to be in the workspace. `blocks.md` is the pointer. AI follows the URL when it needs the details. Install a plugin = add a line. Uninstall = remove the line. The repo is never cloned unless you're working on the plugin itself.
+
+Multiple repos can respond to the same block — not a collision, a collaboration. One renders the UI, another indexes, another sends notifications. Same block, different readers, different jobs.
