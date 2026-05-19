@@ -34,6 +34,12 @@ You don't even need to fork. AI reads the spec from the URL, generates the imple
 
 Uninstall = revert the PR. Upgrade = AI reads the updated spec and opens a new PR with the changes. The spec repo is never in your workspace unless you're contributing to it.
 
+## Plugin isolation
+
+The plugin lives in its own repo with its own deploy. Its IAM credentials are scoped to its own S3 prefix — `s3://bucket/comments/*` only. It can't touch posts, can't touch the main site, can't read private content. Least privilege by infrastructure.
+
+Even if the plugin code has a bug or gets compromised, the blast radius is one prefix. The rest of the site is untouchable. That's real isolation — not "runs in the same process and hopes for the best" like WordPress. Actually separate. Actually sandboxed. By IAM, not by code.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
