@@ -9,7 +9,7 @@ coffee: 1
 summary: A plugin isn't code you install — it's a spec you combine with your platform spec. AI generates the implementation that fits your site. No compatibility issues.
 ---
 
-The traditional plugin model: install someone else's code, hope it works with your theme, override their CSS, fight their assumptions. WordPress plugins break each other. npm packages have version conflicts. The plugin never quite fits.
+The traditional plugin model: install someone else's code, hope it works with your theme, override their CSS, fight their assumptions. WordPress plugins break each other. npm packages have version conflicts. The plugin never quite fits. And you might get more code than you want — supply chain attacks hide in dependencies you didn't audit. Installing a plugin means trusting everything it pulls in.
 
 ## The new model
 
