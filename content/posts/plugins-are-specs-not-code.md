@@ -30,7 +30,9 @@ Plugin compatibility problems disappear because there's no foreign code. Every i
 
 ## The repo is the plugin
 
-Fork the comment spec repo. That's installing the plugin. The spec is the interface. The implementation is generated. Uninstall = remove the repo. Upgrade = pull the latest spec and regenerate.
+You don't even need to fork. AI reads the spec from the URL, generates the implementation native to your site, and opens a PR. You review. Merge = installed. No fork, no clone, no manual step.
+
+Uninstall = revert the PR. Upgrade = AI reads the updated spec and opens a new PR with the changes. The spec repo is never in your workspace unless you're contributing to it.
 
 ## Discovery
 
