@@ -50,6 +50,8 @@ Pin a spec version in `blocks.md`:
 
 AI fetches the schema at that tag, not `main`. The spec can evolve without affecting your implementation until you choose to bump. Upgrading = AI reads the new spec and regenerates. Not you debugging breaking changes in someone else's code.
 
+AI can diff the two schema versions and tell you what changed: "Added `parentId` for threading — no breakage." "Removed `author`, replaced with `userId` — breaking, form needs to change." You decide: upgrade or stay. If you upgrade, AI generates the new implementation and shows you the diff as a PR. The upgrade path is: read the diff, understand the impact, merge or don't.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
