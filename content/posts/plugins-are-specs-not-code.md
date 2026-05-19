@@ -97,4 +97,8 @@ Multiple repos can respond to the same block — not a collision, a collaboratio
 
 ## Zero lines
 
+## Zero lines
+
 Lines of code to implement this plugin system: zero. `blocks.md` is a markdown table. The comment spec is a GraphQL schema. Neither is code. The implementation comes when you say "build it." Until then — a complete plugin architecture with versioning, isolation, discovery, and reproducible builds. No code.
+
+That's a pretty big feature.
