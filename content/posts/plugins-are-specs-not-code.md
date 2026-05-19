@@ -54,6 +54,15 @@ AI can diff the two schema versions and tell you what changed: "Added `parentId`
 
 `blocks.md` is Plan 9's mount table. Each line mounts a remote resource (the spec repo) into your namespace at a mount point (the block name). Version pinning is mounting a specific snapshot. Upgrading is remounting a newer version. `mount trsvax/thetube-comments@v1.2 /comment` — same semantics, different syntax.
 
+Multiple entries for the same block merge — like Plan 9's `bind`. The order in the table is the priority. Move a line up or down to change precedence. No configuration flags. Just row order.
+
+## Two file servers
+
+- **Git** — the source file server. Versioned, content-addressed, full history. Where specs, content, and code live. The write side.
+- **S3** — the serving file server. Versioned, durable, globally accessible via CloudFront. Where the built output lives. The read side.
+
+The build syncs between them. Both are file servers. Both are versioned. Both are addressable by URL. Two file servers, one namespace, merged at build time. Plan 9 with two file servers mounted into one view.
+
 ## Discovery
 
 "I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
