@@ -32,6 +32,12 @@ Plugin compatibility problems disappear because there's no foreign code. Every i
 
 Fork the comment spec repo. That's installing the plugin. The spec is the interface. The implementation is generated. Uninstall = remove the repo. Upgrade = pull the latest spec and regenerate.
 
+## Discovery
+
+"I want comments" → AI searches for spec repos that provide `[comment]`, reads each schema, gives you a comparison in 30 seconds. You pick. No marketplace UI needed — AI is the discovery engine.
+
+The semantic web promised this — machines reading specs and understanding what services do. It failed because it required XML, RDF, OWL, and a PhD to participate. This delivers it via GraphQL schemas and markdown READMEs that AI reads naturally. The semantic web, realized through formats AI already understands.
+
 ## Merge specs, swap stacks
 
 "Give me the comment plugin spec + the platform spec but swap Next.js for Vue and AWS for Azure." AI reads both specs and generates an implementation using Vue components, Azure Blob Storage, Azure CDN, Azure Functions. Same behavior, different stack.
