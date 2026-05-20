@@ -13,4 +13,4 @@ Got asked for my LinkedIn yesterday. Don't have one. Figured I'd just get a card
 
 ![theTube business card](/images/business-card.svg)
 
-White card, the logo, `theTube.today`. No phone number, no job title, no address. The URL is the interface to everything else.
+White card, the logo, `theTube.today`. No phone number, no job title, no address. I'll manage my own identity — don't need help from LinkedIn. The URL is the interface to everything else.
