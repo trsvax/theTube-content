@@ -13,6 +13,4 @@ Tried to call about a business card. Realized I don't need one printed — I nee
 
 ![theTube business card](/images/business-card.svg)
 
-Dark background, the logo mark, `theTube.today`. Standard card proportions (3.5 × 2 inches) so it renders correctly if someone does print it.
-
-The whole brand fits in a single SVG. No phone number, no job title, no address. The URL is the interface to everything else.
+White card, the logo, `theTube.today`. Half the content of a normal card — no phone number, no job title, no address. The URL is the interface to everything else.
