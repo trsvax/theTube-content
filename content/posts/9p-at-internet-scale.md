@@ -3,7 +3,7 @@ title: 9P at Internet Scale
 date: 2026-05-20
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: Plan 9 and NFS had it right — files as the interface, namespace as the abstraction, stateless operations. HTTPS + CDN + JWT is the same model without the LAN constraint.

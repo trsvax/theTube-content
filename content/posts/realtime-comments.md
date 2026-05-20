@@ -4,7 +4,7 @@ date: 2026-05-18
 updated: 2026-05-20
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: Same as moderated. Add a Lambda. That's it. The architecture doesn't change. The form doesn't change. The logging doesn't change.

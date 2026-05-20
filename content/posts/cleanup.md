@@ -3,7 +3,7 @@ title: Cleanup
 date: 2026-05-20
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: Small things skipped in the flow. Batch them later.

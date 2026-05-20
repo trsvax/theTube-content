@@ -3,7 +3,7 @@ title: Same Hooks, No Server
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 origin: bike
