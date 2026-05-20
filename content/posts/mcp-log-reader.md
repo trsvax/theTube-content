@@ -27,7 +27,7 @@ Currently verifying events requires: `aws s3 cp ... - | gunzip | grep ...`. Work
 
 ## The pattern
 
-Same as everything else — read a file, filter it, return the result. The MCP server is just another reader of the same log files. It doesn't need special access — just S3 read on the logs prefix.
+Same as everything else — read a file, filter it, return the result. The MCP server is just another reader of the same log files. It has its own IAM role and namespace — scoped to the logs prefix, with `@pii` fields filtered at read time by the schema.
 
 ## Could also
 
