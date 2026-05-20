@@ -1,6 +1,7 @@
 ---
 title: The URL Is the Log Entry
 date: 2026-05-17
+updated: 2026-05-20
 tags: [tech]
 type: post
 audience: public
@@ -91,3 +92,5 @@ Came from the dead link detection idea — the browser notices a broken link and
 Decision: renamed from `/logs/` to `/events/` — it's what it actually is. Something might act on it, not just index it later.
 
 Built it. 10 lines in the CloudFront Function. More durable, more available, more scalable, cheaper, and tamper-proof than the billion-dollar logging industry. They're fighting the architecture — running servers to index data you might never query.
+
+2026-05-20: Added "grepping like the 90s" — verified the comment form by grepping the logs. The tools haven't changed because they didn't need to. Added `updated` field to frontmatter because the post keeps growing.
