@@ -17,7 +17,7 @@ The simple version of comments. No real-time. No pressure. Comments accumulate i
 
 1. Visitor submits comment → `GET /events/comment/submit?post=my-post&body=...&name=...`
 2. CloudFront logs it. Returns 202. Done from the visitor's perspective.
-3. You query the log when you want: `SELECT * FROM logs WHERE uri LIKE '/events/comment/submit%'`
+3. You check the logs when you want: `aws s3 cp s3://bucket/logs/latest.gz - | gunzip | grep comment` — or ask AI to do it.
 4. Review. Approve the good ones.
 5. Approved comments get written to `comments/my-post.txt` in S3.
 6. Next build (or a Lambda) picks them up. They're live.
