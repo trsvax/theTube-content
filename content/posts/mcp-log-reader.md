@@ -31,6 +31,7 @@ Same as everything else — read a file, filter it, return the result. The MCP s
 
 ## Could also
 
+- Apply `@pii` schema filter — strip marked fields before returning results to AI
 - Run Athena queries and return results
 - Watch for new log files and alert on patterns
 - Summarize activity since last session
