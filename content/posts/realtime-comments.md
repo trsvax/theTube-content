@@ -16,6 +16,14 @@ Without the Lambda, both paths are identical — CloudFront returns 202, the eve
 
 The architecture doesn't change. The form doesn't change. The logging doesn't change. One function is the only difference between batch and real-time.
 
+## The logs are the backlog
+
+A UI person can ship the form today with `useMutation('comment/submit', { fast: true })`. It hits `/fastevent/`, gets 202 from the CloudFront Function, data is captured in the logs. The form works. The UI is done.
+
+Events hitting `/fastevent/` that return 202 from the CloudFront Function (not a Lambda) = "this path exists in the UI but nobody's handling it yet." The log is the backlog. No ticket system needed. The logs *are* the tickets.
+
+The follow-up is Lambda event processing — reading the logs and writing the files. The UI ships first. The backend catches up. No coordination. No blocking.
+
 ## The flow
 
 1. Visitor submits comment → `POST /fastevent/comment` with body `{ post: "my-post", body: "great post" }`
