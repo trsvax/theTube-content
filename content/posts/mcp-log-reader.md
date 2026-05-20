@@ -3,11 +3,13 @@ title: MCP Log Reader
 date: 2026-05-20
 tags: [tech]
 type: journal
-audience: user
-status: vague-thought
+audience: public
+status: draft
 coffee: 0
 summary: An MCP server that reads CloudFront logs from S3. Query events, verify deploys, check comments — all from the chat without running CLI commands.
 ---
+
+DRAFT
 
 An MCP server that fetches CloudFront logs from S3, decompresses them, and returns filtered results. Then AI can query the logs directly during a conversation.
 
