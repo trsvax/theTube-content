@@ -48,6 +48,8 @@ This is why starting to collect now matters even without a processor. The data a
 
 That's fine. The logging cluster philosophy: observe everything, act on what you choose. The log is the source of truth. The action is separate and human-driven.
 
+Just grepping the logs like the 90s. And it works. Same as it did then. The tools haven't changed because they didn't need to. `grep` is still the right answer for "find this thing in these files." The 5-machine Elastic cluster was the detour.
+
 ## The pattern
 
 The URL is structured data. CloudFront is the log collector. S3 is the storage. Athena is the query engine. All of it already exists and costs nothing at this scale.
