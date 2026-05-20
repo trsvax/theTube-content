@@ -45,6 +45,12 @@ const { mutate } = useComment(post);
 
 One form, one component. Anonymous visitors get moderated comments. Authenticated users get real-time. The server still enforces — Lambda@Edge rejects unauthorized requests to `/fastevent/`. But the client doesn't need a feature flag or conditional logic. The role *is* the feature flag.
 
+## It's just fetch
+
+`useQuery('comments', { post: 'my-post' })` is `fetch('/comments/my-post.txt')` with loading state. That's it. The schema maps operation → URL pattern, the hook does the fetch. Without JS, it's `<a href="/comments/my-post.txt">` — the file exists at a URL regardless.
+
+But if you're writing React, you reach for `useQuery`. It's what your hands type. The hook doesn't add capability — the URL was always the interface. It adds the developer ergonomics that make the file-based backend feel like any other data layer.
+
 ## Why this matters
 
 The async model disappears from the developer's perspective. They write the same code they'd write against a server. The fact that there's no server is an implementation detail hidden by the hook.
