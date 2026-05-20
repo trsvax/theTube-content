@@ -40,7 +40,7 @@ All of these are just "read the log, write a file." Different UIs for the same o
 
 ## Cost
 
-Zero beyond what already exists. The events endpoint is live. CloudFront logs the submissions. You query with Athena when you want. The approval step writes a file. No new infrastructure.
+Zero beyond what already exists. The events endpoint is live. CloudFront logs the submissions. You grep the logs when you want. The approval step writes a file. No new infrastructure.
 
 [journey]:
 prev: the-log-is-the-event-bus
