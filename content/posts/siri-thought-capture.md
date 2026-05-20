@@ -40,5 +40,19 @@ Apple Notes works but it's a silo. The thought is trapped in iCloud until you ma
 
 `origin=walk` or `origin=watch` or `origin=bike`. When you grep later, you know where the thought came from. The frontmatter `origin:` field in journal entries maps directly to this.
 
+## Share Sheet
+
+The same shortcut appears in the iOS Share Sheet. Any app that can share text or URLs can feed the log:
+
+- **Safari** → share a URL. `type=bookmark&url=...&title=...`
+- **Text selection** → share highlighted text from any app. `type=quote&text=...&source=app`
+- **Photos** → share an image. `type=image&description=...` (the image itself doesn't hit the URL — just the metadata. The photo stays in iCloud. The log records that you flagged it.)
+- **Maps** → share a location. `type=place&name=...&lat=...&lng=...`
+- **Voice Memos** → share a recording. `type=audio&title=...` (same — log the event, not the file)
+
+Each type maps to a different URL path: `/events/thought/capture`, `/events/bookmark/capture`, `/events/place/capture`. Or one path with a `type` parameter. Either way — it's a GET, it's logged, grep later.
+
+The Share Sheet is the input layer. The log is the storage. The MCP reader is the query layer. Same architecture, different entry point.
+
 [journey]:
 Walk thought (meta). Tried "Hey Siri, remind me when I get home" — works but the reminder is a dead end. A Siri Shortcut that hits a URL puts the thought in the same log as everything else. Same grep, same MCP, same namespace. Works from the watch too — crown action, dictate, done.
