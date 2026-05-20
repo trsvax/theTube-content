@@ -45,3 +45,5 @@ Zero beyond what already exists. The events endpoint is live. CloudFront logs th
 [journey]:
 prev: the-log-is-the-event-bus
 The batch processing path applied to comments. The log holds submissions. You review when ready. Approve = write a file. Simple, no spam, no pressure.
+
+2026-05-20: Built it. Comment form submits to `/events/comment/submit`, returns 202 in 1ms. Verified in the CloudFront logs — post, body, authenticated user, all captured. Grepped the logs like the 90s. Works.
