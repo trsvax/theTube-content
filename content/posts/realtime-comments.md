@@ -1,15 +1,20 @@
 ---
 title: Real-Time Comments
 date: 2026-05-18
+updated: 2026-05-20
 tags: [tech]
 type: journal
 audience: user
 status: vague-thought
 coffee: 0
-summary: Comments via fastevent. Lambda validates, writes to S3, returns Location header. The next visitor sees the comment. Sub-second. No server.
+summary: Same as moderated. Add a Lambda. That's it. The architecture doesn't change. The form doesn't change. The logging doesn't change.
 ---
 
-The fast version. Comment appears immediately — no moderation queue, no waiting for a build. The visitor submits, the Lambda processes, the file updates, the next page load shows it.
+Same form. Same hook. Same event logged to CloudFront. The only difference: a Lambda that also writes the file immediately.
+
+Without the Lambda, both paths are identical — CloudFront returns 202, the event is in the logs. Real-time doesn't exist until the Lambda exists. And the Lambda is one function that reads the request and writes a file.
+
+The architecture doesn't change. The form doesn't change. The logging doesn't change. One function is the only difference between batch and real-time.
 
 ## The flow
 
