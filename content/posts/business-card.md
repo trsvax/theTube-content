@@ -9,7 +9,7 @@ coffee: 0
 summary: An SVG business card — the logo and a URL. That's all you need when the site is the portfolio.
 ---
 
-Tried to call about a business card. Ended up just making the SVG and sending it over.
+Got asked for my LinkedIn yesterday. Don't have one. Figured I'd just get a card printed — the logo and a URL. That's the whole pitch.
 
 ![theTube business card](/images/business-card.svg)
 
