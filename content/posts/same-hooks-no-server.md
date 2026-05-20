@@ -31,6 +31,20 @@ A developer who's used Apollo can use these hooks without learning anything new.
 - `useQuery(opName, params)` → fetches the file at the known URL. Returns loading/error/data.
 - The schema (from `blocks.md` → spec URL) tells the hook which path to use.
 
+## The role picks the path
+
+The client knows the user's role from the JWT. The schema declares `@auth(role: "user")` on `addCommentRealtime`. That directive does double duty — server-side enforcement *and* client-side routing hint.
+
+```tsx
+// One hook. The role decides the path.
+const { mutate } = useComment(post);
+
+// role === 'user' → addCommentRealtime → /fastevent/ → instant
+// role === null   → addComment → /events/ → moderated
+```
+
+One form, one component. Anonymous visitors get moderated comments. Authenticated users get real-time. The server still enforces — Lambda@Edge rejects unauthorized requests to `/fastevent/`. But the client doesn't need a feature flag or conditional logic. The role *is* the feature flag.
+
 ## Why this matters
 
 The async model disappears from the developer's perspective. They write the same code they'd write against a server. The fact that there's no server is an implementation detail hidden by the hook.

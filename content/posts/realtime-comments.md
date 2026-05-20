@@ -27,12 +27,21 @@ The follow-up is Lambda event processing — reading the logs and writing the fi
 ## The flow
 
 1. Visitor submits comment → `POST /fastevent/comment` with body `{ post: "my-post", body: "great post" }`
-2. Lambda@Edge validates the JWT — knows who the user is
-3. Lambda validates the data (post exists, body not empty)
-4. Lambda appends to `comments/my-post.txt` in S3
-5. Returns `202 Accepted` with `Location: /comments/my-post.txt`
-6. Browser can poll the Location URL or just show "comment submitted"
-7. Next visitor loads the page → fetches `comments/my-post.txt` → sees the comment
+2. CloudFront Function (viewer request) checks for JWT — no token → 403 immediately. No origin hit, no Lambda, no cost.
+3. Lambda@Edge validates the JWT signature and role claim — knows who the user is
+4. Lambda validates the data (post exists, body not empty)
+5. Lambda appends to `comments/my-post.txt` in S3
+6. Returns `202 Accepted` with `Location: /comments/my-post.txt`
+7. Browser can poll the Location URL or just show "comment submitted"
+8. Next visitor loads the page → fetches `comments/my-post.txt` → sees the comment
+
+## Two-layer enforcement
+
+The CloudFront Function is the bouncer. No JWT, no entry — 403 inline, sub-millisecond, before anything expensive runs. It can't do full crypto validation (10ms limit, no libraries), but it can check token presence and basic structure (three base64 segments).
+
+Lambda@Edge is the real check. Validates the signature, checks the role claim, rejects expired tokens. This is where `@auth(role: "user")` is actually enforced.
+
+The client hook would never call `/fastevent/` without a token anyway. The 403 is the safety net, not the routing mechanism.
 
 ## Sub-second
 
@@ -54,6 +63,10 @@ Standard HTTP. `202 Accepted` + `Location` tells the client where to find the re
 - Personal blog with few visitors: real-time for logged-in users. You trust them (they signed up).
 - Public-facing with unknown visitors: moderated. Review before publish.
 - Both: real-time for `user` role, moderated for anonymous. The auth layer decides the path.
+
+## The client picks the path
+
+The schema has `@auth(role: "user")` on `addCommentRealtime`. The client already knows the role from the JWT. So the hook picks the operation automatically — `user` role calls `/fastevent/`, anonymous calls `/events/`. One form, one component, no conditional UI. The role is the feature flag. The server still enforces (Lambda@Edge rejects unauthorized `/fastevent/` requests) but the routing decision happens client-side.
 
 [journey]:
 prev: moderated-comments
