@@ -9,6 +9,8 @@ coffee: 0
 summary: Comments via batch events. You review, approve, they appear on next build. No spam, no real-time pressure. The log holds everything until you're ready.
 ---
 
+[comment]:
+
 The simple version of comments. No real-time. No pressure. Comments accumulate in the event log. You review them when you feel like it. Approve the ones worth keeping. They appear on the next build.
 
 ## The flow
