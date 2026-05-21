@@ -57,21 +57,23 @@ The authenticated tier can stay single-cloud. The public tier — the one in the
 
 ## What about writes?
 
-One URL: `/create`. `GET` returns the form — that's just a static file, served from cache like everything else. `POST` submits the write. The edge decides how to handle it.
+One URL: `GET /create/comment?post=my-post&body=hello`. Returns 202. Done.
+
+The write is a GET. The event is captured from the query string. CloudFront logs every request — the log *is* the event queue. No POST, no request body, no Lambda at the edge for the basic path. The CDN is the event bus.
 
 ```
-GET  /create → static HTML form (cached, CDN serves it)
-POST /create → edge function handles the write:
-  → try realtime write
-    → success? 201, done
-    → fail? append to event log, 202 ("accepted, will appear shortly")
+GET /create/comment?post=my-post&body=hello
+  → 202 Accepted (logged, processed later)
+
+GET /create/comment?post=my-post&body=hello
+  X-Priority: realtime
+  → 201 Created
+  → Location: /comments/my-post.txt
 ```
 
-The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the write is never lost. One URL, two methods, zero client complexity.
+Want realtime? Add a header. The edge function processes it immediately and returns a `Location` pointing at the comment file. Same URL, same parameters, different behavior based on the header.
 
-The failover might even hide the POST complexity — if the primary edge is down, the CDN can still serve the GET (the form). The POST fails, but the form itself stays up. And if you're multi-origin, the POST can route to whichever edge function is healthy.
-
-And the client never changes. Build against `/create` today, get 202s. Add the realtime path later, start getting 201s. The upgrade is invisible to the caller.
+The client never changes. Build against `GET /create` today, get 202s. Add the realtime edge path later, start sending the header, get 201s with a Location. The upgrade is invisible to callers that don't ask for it.
 
 The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
