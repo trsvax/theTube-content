@@ -90,7 +90,7 @@ No decrementing. No punishment. The numbers tell the story by diverging or conve
 
 Same data, different frame. Agile makes work feel like work. This makes work feel like coffee and champagne. The information content is identical — relative effort, progress, completion. The experience of tracking it is not.
 
+<small>Not an endorsement of drinking — it's a metaphor. But you knew that.</small>
+
 [journey]:
 Walk thought. Jab at agile story points. Can the same data (estimate, effort, done) live in frontmatter with units that are fun? Jolt = estimate, coffee = progress, prosecco = derived from the gap. The better things go, the more prosecco.
-
-<small>Not an endorsement of drinking — it's a metaphor. But you knew that.</small>
