@@ -65,5 +65,7 @@ At that point you're mostly on Cloudflare anyway — R2 for storage, Workers for
 
 Which is probably QED. The architecture that starts as "deploy files to multiple clouds" ends at "pick one good edge provider and trust it." The redundancy isn't in running two of everything — it's in the portability. The files are just files. If Cloudflare disappears tomorrow, you `sync` to S3 and update DNS. The architecture doesn't change. The address does.
 
+And the public read-only tier — the part that actually matters for uptime SLAs — costs basically nothing to run in two places. Cloudflare Pages is free. S3 + CloudFront at personal scale is pennies. Two origins, zero additional fixed cost. The multi-cloud story that enterprises pay consultants to architect is a one-line addition to a deploy script when the output is static files.
+
 [journey]:
 Conversation. Started from "how hard to run on Azure too?" Realized: for static public content, multi-cloud is just deploying to two places. The architecture already supports it. The only real question is DNS — who points the name at what. Uptime isn't a server problem or a cloud problem. It's a DNS problem.
