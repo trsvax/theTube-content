@@ -75,6 +75,8 @@ Want realtime? Add a header. The edge function processes it immediately and retu
 
 The client never changes. Build against `GET /create` today, get 202s. Add the realtime edge path later, start sending the header, get 201s with a Location. The upgrade is invisible to callers that don't ask for it.
 
+POST is only for data that won't fit in a URL (~2KB limit). A short comment fits in a query string. A long essay doesn't. GET unless you can't. The CDN handles GET for free — it's just a log entry. POST requires an edge function. The cost scales with the complexity of the data, not the number of writes.
+
 The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
 At that point you're mostly on Cloudflare anyway — R2 for storage, Workers for edge logic, their CDN for delivery. AWS and Azure become fallback origins you keep warm but rarely need. The multi-cloud story simplifies to: Cloudflare is primary, everything else is insurance.
