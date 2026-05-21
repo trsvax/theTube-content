@@ -1,0 +1,28 @@
+Session 2026-05-21 (continued):
+
+Key ideas:
+- /events should be /create — it's file creation, not event logging. creat needs an 'e'.
+- CGI was almost right — stateless, serverless, just needed 202 (async). Browser couldn't handle 202 until XHR (1999).
+- Logs are the test suite — the verification I did (grep logs for shortcut request) is literally a regression test. Two cron jobs make it automated.
+- AI is not the intern — it's the old guy with bad habits. Reads docs, follows selectively. Fix the architecture, not the process.
+- My own name — the domain is the identity, services are storage backends. Don't tie identity to a company.
+- Jolt/coffee/prosecco — same data as agile story points but fun. Frontmatter is the project management tool.
+- Apple Shortcuts verified working from Mac and phone (CloudFront logs confirmed)
+- Share Sheet on Mac is buggy (greyed out until Safari restart), works fine on phone
+
+Posts created:
+- creat-needs-an-e (vague-thought)
+- cgi-was-almost-right (vague-thought)
+- logs-are-the-test-suite (vague-thought)
+- ai-is-not-the-intern (vague-thought)
+- my-own-name (vague-thought)
+- jolt-coffee-prosecco (vague-thought)
+- travel-capture (vague-thought)
+- git-notes-as-memory (draft)
+
+Posts updated:
+- siri-thought-capture (added Verified section)
+
+Other:
+- Added CRISP microprocessor paper to links page
+- All walk thoughts from Reminders processed into posts
