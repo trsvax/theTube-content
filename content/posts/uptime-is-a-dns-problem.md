@@ -57,16 +57,19 @@ The authenticated tier can stay single-cloud. The public tier — the one in the
 
 ## What about writes?
 
-One endpoint: `POST /create`. The edge decides how to handle it.
+One URL: `/create`. `GET` returns the form — that's just a static file, served from cache like everything else. `POST` submits the write. The edge decides how to handle it.
 
 ```
-Client → POST /create
-  Edge → try realtime write
+GET  /create → static HTML form (cached, CDN serves it)
+POST /create → edge function handles the write:
+  → try realtime write
     → success? 201, done
     → fail? append to event log, 202 ("accepted, will appear shortly")
 ```
 
-The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the write is never lost. One request, one response, one URL. The client doesn't retry. The client doesn't fall back. The edge handles it.
+The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the write is never lost. One URL, two methods, zero client complexity.
+
+The failover might even hide the POST complexity — if the primary edge is down, the CDN can still serve the GET (the form). The POST fails, but the form itself stays up. And if you're multi-origin, the POST can route to whichever edge function is healthy.
 
 And the client never changes. Build against `/create` today, get 202s. Add the realtime path later, start getting 201s. The upgrade is invisible to the caller.
 
