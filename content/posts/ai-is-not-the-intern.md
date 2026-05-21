@@ -4,7 +4,7 @@ date: 2026-05-21
 tags: [tech]
 type: journal
 audience: public
-status: vague-thought
+status: published
 coffee: 0
 origin: walk
 summary: People build guardrails to keep AI from deleting the database. Wrong problem. The architecture should make deletion impossible, not the process around the actor.
@@ -17,7 +17,7 @@ Wrong model.
 ## Three actors
 
 - **Intern** — doesn't read the docs, breaks things by ignorance
-- **Old guy** — reads the docs, breaks rules by judgment ("just this once")
+- **Old guy** — wrote the docs, breaks rules by judgment ("just this once")
 - **AI** — reads the docs, breaks rules by habit (training data > your instructions)
 
 AI isn't the intern. It reads everything. It doesn't skip the README, doesn't forget the onboarding doc, doesn't skim. But it also doesn't follow the docs reliably — it pattern-matches against how everyone else does it and defaults to that, even when your docs say otherwise.
@@ -28,7 +28,7 @@ So it's the old guy with bad habits. Knows the rules. Has its own ideas.
 
 If you treat AI as the intern, you add process: review gates, approval workflows, restricted permissions per action. More structure, more friction, less speed. You're managing the actor instead of fixing the system.
 
-The intern isn't going to read the doc that says "don't delete the database." But the solution isn't a bigger doc. The solution is: don't have a database that can be deleted by a single command.
+The intern isn't going to read the doc that says "don't delete the database." But the solution isn't a bigger doc. The solution is: **don't have a database that can be deleted by the intern.**
 
 ## The right fix
 
@@ -42,7 +42,11 @@ The protection is in the system design:
 
 You don't need "AI guardrails" if the IAM role can only do what it should do. The permissions are the guardrails. They already exist. They work on everyone equally.
 
-## Architecture over process
+## Nobody gets an all-access badge
+
+Neither the intern nor the old guy have an all-access badge. Neither does AI. Neither do you.
+
+That's not a limitation — that's the design. The moment someone has an all-access badge, the system's integrity depends on that person's judgment. And judgment fails. The intern's fails by ignorance, the old guy's fails by overconfidence, AI's fails by habit. Yours fails on a Friday afternoon.
 
 People are building AI-specific permission systems when IAM already solves it. Give the AI a scoped role. Done. Same as you'd give a contractor or a CI pipeline. The problem isn't new — it's just a new actor in the same system.
 
