@@ -35,6 +35,8 @@ Same `out/` directory, multiple destinations. No replication protocol. No confli
 
 Each layer fails independently. The fix at each layer is a record change, not a rebuild.
 
+And realistically — if CloudFront's entire global edge is down, so is half the internet. Nobody's complaining about your blog because they can't load the site they'd complain on.
+
 ## Why this works
 
 No database to replicate. No session state to sync. No server to health-check. No persistent connection to maintain. The files are the same everywhere because they came from the same build. The only question is which name points at which edge.
