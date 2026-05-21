@@ -24,24 +24,24 @@ Story points mean nothing. "This is a 5." Five what? Five sadnesses? Five meetin
 Prosecco is derived from the gap between estimate and effort:
 
 ```
-prosecco = max(0, jolt - coffee + 1)
+prosecco = (jolt - coffee)² / coffee + 1
 ```
 
-Beat the estimate? More glasses. Hit it exactly? One glass. Went over? No prosecco. You shipped, but nobody's popping bottles.
+The curve is U-shaped. Beat the estimate by a lot? Popping bottles — celebration prosecco. Hit it exactly? One glass. Went way over? Also drinking — that's coping prosecco. The minimum is 1, right at the sweet spot where effort matches the estimate.
 
 ## In frontmatter
 
 ```yaml
 jolt: 5
-coffee: 3
-prosecco: 3
+coffee: 1
+prosecco: 17
 ```
 
-We thought this was hard. It wasn't. Three glasses.
+We thought this was hard. It wasn't even close. Seventeen glasses.
 
 ```yaml
-jolt: 3
-coffee: 3
+jolt: 5
+coffee: 5
 prosecco: 1
 ```
 
@@ -49,11 +49,11 @@ Estimate was right. One glass. Solid.
 
 ```yaml
 jolt: 3
-coffee: 5
-prosecco: 0
+coffee: 8
+prosecco: 4
 ```
 
-We thought this was easy. It wasn't. It shipped but ugh.
+We thought this was easy. It wasn't. Four glasses — but nobody's celebrating.
 
 ## The project view
 
@@ -74,7 +74,7 @@ The [spec](https://github.com/trsvax/theTube/blob/main/.kiro/specs/jolt-coffee-p
 - `vague-thought` — just captured. No estimate. `jolt: 0, coffee: 0, prosecco: 0`
 - `thought` — committed to finishing it. Set `jolt:` now. That's the estimate.
 - `draft` — working. `coffee` increments each session.
-- `published` — shipped. Set `prosecco: jolt - coffee + 1`.
+- `published` — shipped. Set `prosecco: (jolt - coffee)² / coffee + 1`.
 
 The jolt gets set at the moment you decide "this is worth finishing" — the transition from vague-thought to thought. Before that, estimating is premature. After that, you're already working.
 
@@ -82,7 +82,7 @@ The jolt gets set at the moment you decide "this is worth finishing" — the tra
 
 - ⚡ **Jolt** — set once, at the thought transition. Never changes. If it was wrong, the gap tells you.
 - ☕ **Coffee** — increments as you work. Honest count. The agent tracks it.
-- 🥂 **Prosecco** — derived at publish. The better it went, the more you're celebrating.
+- 🥂 **Prosecco** — derived at publish. The further from the estimate, the more you're drinking. Whether that's celebration or coping depends on which direction you missed.
 
 No decrementing. No punishment. The numbers tell the story by diverging or converging.
 
