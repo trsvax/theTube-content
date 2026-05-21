@@ -1,0 +1,18 @@
+Session 2026-05-21:
+
+Key ideas:
+- Apple Shortcuts as client for events endpoint — no app to build
+- Static JWT for auth: one key pair, claims identify user, JWKS at /.well-known/jwks.json
+- Asymmetric keys (RS256) for scalable version — CF function verifies with public key from S3 file
+- Share Sheet works on phone, buggy on Mac (greyed out until Safari restart)
+- Dictate Text works phone/watch only, Ask for Input for Mac
+- Bookmarklet is cleanest Mac option — one click, no Apple middleware
+- Verified shortcuts hit CloudFront: logs show 202s from both Mac (IAD) and phone (DFW)
+
+Files updated:
+- content/links.md (added CRISP microprocessor paper)
+- content/posts/siri-thought-capture.md (added Verified section with log evidence + GUI lessons)
+
+Shortcuts built:
+- Save to Tube (Mac/phone Share Sheet — bookmark capture)
+- Thought (phone/watch — voice dictation capture)
