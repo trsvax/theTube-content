@@ -55,6 +55,17 @@ Auth is the hard part. Edge functions, JWTs, role-based routing — that's cloud
 
 The authenticated tier can stay single-cloud. The public tier — the one in the SLA — is the easy one to make redundant.
 
+## Graceful degradation
+
+The layers peel off cleanly:
+
+1. **Everything up** — full experience, realtime comments, role-based content
+2. **Auth server down** — logged-in users still work (JWT is self-contained, validated locally). New logins fail.
+3. **JWT expires** — you're back to public. Which is still fully functional.
+4. **CDN edge down** — DNS failover to second origin. Public still works.
+
+At no point does the site go blank. You lose layers of enhancement, not the base. Static HTML and public content are the most resilient part — last to fail, first to recover. Each layer degrades cleanly to the one below.
+
 ## What about writes?
 
 One URL: `GET /create/comment?post=my-post&body=hello`. Returns 202. Done.
