@@ -53,5 +53,17 @@ Auth is the hard part. Edge functions, JWTs, role-based routing — that's cloud
 
 The authenticated tier can stay single-cloud. The public tier — the one in the SLA — is the easy one to make redundant.
 
+## What about writes?
+
+`/create` (async, build picks it up later) — easy. Write lands anywhere, doesn't matter which cloud. The build is the sync point.
+
+`/fastcreate` (realtime, instant visibility) — harder. The reader needs to see it immediately, which means writing to the origin the CDN is serving from. Multi-cloud means: which origin gets the write?
+
+The cleanest answer is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
+
+At that point you're mostly on Cloudflare anyway — R2 for storage, Workers for edge logic, their CDN for delivery. AWS and Azure become fallback origins you keep warm but rarely need. The multi-cloud story simplifies to: Cloudflare is primary, everything else is insurance.
+
+Which is probably QED. The architecture that starts as "deploy files to multiple clouds" ends at "pick one good edge provider and trust it." The redundancy isn't in running two of everything — it's in the portability. The files are just files. If Cloudflare disappears tomorrow, you `sync` to S3 and update DNS. The architecture doesn't change. The address does.
+
 [journey]:
 Conversation. Started from "how hard to run on Azure too?" Realized: for static public content, multi-cloud is just deploying to two places. The architecture already supports it. The only real question is DNS — who points the name at what. Uptime isn't a server problem or a cloud problem. It's a DNS problem.
