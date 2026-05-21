@@ -67,7 +67,7 @@ You already have:
 
 That's everything a PM needs. It's in frontmatter. It's version-controlled. It's greppable. And it's fun to fill in instead of soul-crushing.
 
-The [spec](https://github.com/trsvax/theTube/tree/main/.kiro/specs/jolt-coffee-prosecco) has the full requirements.
+The [spec](https://github.com/trsvax/theTube/blob/main/.kiro/specs/jolt-coffee-prosecco/requirements.md) has the full requirements.
 
 ## The lifecycle
 
