@@ -54,5 +54,25 @@ Each type maps to a different URL path: `/events/thought/capture`, `/events/book
 
 The Share Sheet is the input layer. The log is the storage. The MCP reader is the query layer. Same architecture, different entry point.
 
+## Verified
+
+Built the shortcuts. Fired them from Mac and phone. Checked the CloudFront logs:
+
+```
+14:12  DFW (phone)  type=thought&text=
+14:35  DFW (phone)  type=bookmark&url=https://thetube.today/posts/siri-thought-capture
+14:57  IAD (Mac)    type=bookmark&origin=mac&url=https://www.google.com/search?q=we...
+```
+
+All 202s. Both devices, both shortcut types, logged at the edge. The empty `text=` is from the Dictate action exiting immediately on Mac — it doesn't work well there. On the phone it works. The wiring is proven.
+
+Lessons from the GUI:
+- Shortcuts doesn't have a file format. No CLI, no import. The GUI is the only authoring surface.
+- "Show in Share Sheet" doesn't sync between Mac and phone — you toggle it on each device.
+- The Share Sheet on Mac was greyed out until Safari was quit and reopened.
+- Dictate Text works on phone/watch, not Mac. Use "Ask for Input" on Mac.
+- The variable pill has to be *inserted* from the suggestions bar, not typed as text.
+- One shortcut for phone/watch (Dictate), bookmarklet for Mac. Different input, same endpoint.
+
 [journey]:
 Walk thought (meta). Tried "Hey Siri, remind me when I get home" — works but the reminder is a dead end. A Siri Shortcut that hits a URL puts the thought in the same log as everything else. Same grep, same MCP, same namespace. Works from the watch too — crown action, dictate, done.

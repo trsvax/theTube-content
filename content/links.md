@@ -18,6 +18,7 @@ Sites I actually read and return to. A blogroll is an editorial act — these ar
 
 ## Interesting things
 
+- [The Hardware Architecture of the CRISP Microprocessor](https://dl.acm.org/doi/pdf/10.1145/30350.30385) — AT&T Bell Labs CRISP chip architecture paper
 - [Wayback Machine](https://web.archive.org) — the internet's memory
 - [If AI is so good at coding, where are the open source contributions?](https://pivot-to-ai.com/2025/05/13/if-ai-is-so-good-at-coding-where-are-the-open-source-contributions/) — the question that answers itself
 - [Ken Thompson on Plan 9](https://www.youtube.com/watch?v=EoYUZtZl02g) — "the best operating system out there" but will "never make it, ever, ever."
