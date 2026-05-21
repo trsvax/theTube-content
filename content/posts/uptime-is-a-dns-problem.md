@@ -57,11 +57,7 @@ The authenticated tier can stay single-cloud. The public tier — the one in the
 
 ## What about writes?
 
-`/create` (async, build picks it up later) — easy. Write lands anywhere, doesn't matter which cloud. The build is the sync point.
-
-`/fastcreate` (realtime, instant visibility) — harder. The reader needs to see it immediately, which means writing to the origin the CDN is serving from. Multi-cloud means: which origin gets the write?
-
-Or let the edge solve it. One endpoint, one request. The edge function tries the fast path — if it fails, falls back to the slow path internally. The client just does `POST /create`.
+One endpoint: `POST /create`. The edge decides how to handle it.
 
 ```
 Client → POST /create
@@ -70,7 +66,9 @@ Client → POST /create
     → fail? append to event log, 202 ("accepted, will appear shortly")
 ```
 
-The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the comment is never lost. One request, one response, one URL. The client doesn't retry. The client doesn't fall back. The edge handles it.
+The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the write is never lost. One request, one response, one URL. The client doesn't retry. The client doesn't fall back. The edge handles it.
+
+And the client never changes. Build against `/create` today, get 202s. Add the realtime path later, start getting 201s. The upgrade is invisible to the caller.
 
 The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
