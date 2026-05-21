@@ -68,25 +68,14 @@ At no point does the site go blank. You lose layers of enhancement, not the base
 
 ## What about writes?
 
-One URL: `GET /create/comment?post=my-post&body=hello`. Returns 202. Done.
+One endpoint: `/create`. The edge decides how to handle it.
 
-The write is a GET. The event is captured from the query string. CloudFront logs every request — the log *is* the event queue. No POST, no request body, no Lambda at the edge for the basic path. The CDN is the event bus.
+- **201** — processed immediately, content is live
+- **202** — accepted, will appear after the next build
 
-```
-GET /create/comment?post=my-post&body=hello
-  → 202 Accepted (logged, processed later)
+The client doesn't know or care which path ran. It gets a success either way. The status code tells it the visibility latency. The write is never lost.
 
-GET /create/comment?post=my-post&body=hello
-  X-Priority: realtime
-  → 201 Created
-  → Location: /comments/my-post.txt
-```
-
-Want realtime? Add a header. The edge function processes it immediately and returns a `Location` pointing at the comment file. Same URL, same parameters, different behavior based on the header.
-
-The client never changes. Build against `GET /create` today, get 202s. Add the realtime edge path later, start sending the header, get 201s with a Location. The upgrade is invisible to callers that don't ask for it.
-
-POST is only for data that won't fit in a URL (~2KB limit). A short comment fits in a query string. A long essay doesn't. GET unless you can't. The CDN handles GET for free — it's just a log entry. POST requires an edge function. The cost scales with the complexity of the data, not the number of writes.
+Build against `/create` today, get 202s. Add the realtime path later, start getting 201s. The upgrade is invisible to the caller. And if the fast path is down, the edge falls back to the slow path — still 202, still accepted, still no error.
 
 The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
