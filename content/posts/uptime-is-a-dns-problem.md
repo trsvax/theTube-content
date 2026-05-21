@@ -59,14 +59,16 @@ The authenticated tier can stay single-cloud. The public tier — the one in the
 
 `/fastcreate` (realtime, instant visibility) — harder. The reader needs to see it immediately, which means writing to the origin the CDN is serving from. Multi-cloud means: which origin gets the write?
 
-Or let the browser solve it. If `/fastcreate` returns a 5xx or times out, fall back to `/create`. The comment still gets submitted — it just shows up after the next build instead of instantly.
+Or let the edge solve it. One endpoint, one request. The edge function tries the fast path — if it fails, falls back to the slow path internally. The client just does `POST /create`.
 
-```js
-const res = await fetch('/fastcreate', { method: 'POST', body })
-if (!res.ok) await fetch('/create', { method: 'POST', body })
+```
+Client → POST /create
+  Edge → try realtime write
+    → success? 201, done
+    → fail? append to event log, 202 ("accepted, will appear shortly")
 ```
 
-The user never sees an error. The only variable is latency to visibility. Graceful degradation, no retry UI, no failover infrastructure. The browser *is* the failover logic.
+The client gets a success either way. The status code tells it the visibility latency — 201 means instant, 202 means eventual. But the comment is never lost. One request, one response, one URL. The client doesn't retry. The client doesn't fall back. The edge handles it.
 
 The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
