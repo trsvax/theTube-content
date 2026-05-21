@@ -59,7 +59,16 @@ The authenticated tier can stay single-cloud. The public tier — the one in the
 
 `/fastcreate` (realtime, instant visibility) — harder. The reader needs to see it immediately, which means writing to the origin the CDN is serving from. Multi-cloud means: which origin gets the write?
 
-The cleanest answer is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
+Or let the browser solve it. If `/fastcreate` returns a 5xx or times out, fall back to `/create`. The comment still gets submitted — it just shows up after the next build instead of instantly.
+
+```js
+const res = await fetch('/fastcreate', { method: 'POST', body })
+if (!res.ok) await fetch('/create', { method: 'POST', body })
+```
+
+The user never sees an error. The only variable is latency to visibility. Graceful degradation, no retry UI, no failover infrastructure. The browser *is* the failover logic.
+
+The cleanest answer for true realtime multi-cloud is probably Cloudflare R2 — their S3-compatible object storage, same API, no egress fees. R2 becomes the single origin. Both CDNs cache from it. Writes go to R2, invalidate both edges. One source of truth, two read paths.
 
 At that point you're mostly on Cloudflare anyway — R2 for storage, Workers for edge logic, their CDN for delivery. AWS and Azure become fallback origins you keep warm but rarely need. The multi-cloud story simplifies to: Cloudflare is primary, everything else is insurance.
 
