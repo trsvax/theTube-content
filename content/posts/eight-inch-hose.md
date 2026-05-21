@@ -33,9 +33,11 @@ Half the constraints in any spec are eight-inch hoses. They feel precise. They d
 
 ## The fix
 
+Journal-driven development. The conversation that just happened with the uptime post — we started with "how hard to run on Azure?" and ended up discovering that `/fastcreate` shouldn't exist. The spec had two endpoints because someone wrote it down early. The journal caught it before any code existed.
+
 Ask: "what happens if this number is wrong?" If the answer is "we'd have to redo a lot of work," then validate the number before building to it. If nobody can explain where it came from, it's probably made up.
 
-The B-58 didn't need an 8-inch hose. It needed adequate cooling. The diameter should have been derived from the thermal load, not invented in a meeting.
+The B-58 didn't need an 8-inch hose. It needed adequate cooling. The diameter should have been derived from the thermal load, not invented in a meeting. And `/fastcreate` didn't need to be a separate endpoint. It needed a way to prioritize writes. The journal found that. The spec alone wouldn't have.
 
 [journey]:
 Conversation. Grandfather's story about the B-58 Hustler ground cooling spec. The 8-inch hose requirement was made up but drove real engineering difficulty. Same pattern in software — arbitrary numbers in specs that nobody questions because they look precise.
