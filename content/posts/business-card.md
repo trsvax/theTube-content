@@ -11,9 +11,11 @@ summary: An SVG business card — the logo and a URL. That's all you need when t
 
 Got asked for my LinkedIn yesterday. Don't have one. Figured I'd just get a card printed — the logo and a URL. That's the whole pitch.
 
-![theTube business card](/images/business-card.svg)
+![theTube business card — stacked](/images/business-card.svg)
 
-White card, the logo, `theTube.today`. No phone number, no job title, no address. I'll manage my own identity — don't need help from LinkedIn. The URL is the interface to everything else.
+![theTube business card — horizontal](/images/business-card-horizontal.svg)
+
+White card, the logo, `theTube.today`. No phone number, no job title, no address. I'll manage my own identity — don't need help from LinkedIn. The URL is the interface to everything else. Two layouts — stacked and horizontal. Same content, different weight.
 
 ## The template
 
