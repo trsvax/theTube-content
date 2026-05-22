@@ -23,6 +23,12 @@ MOO MiniCards. Weird little format — 2.75" × 1.10" after trim. You design to 
 
 The grey dashed line is the trim — where the blade lands. The pink dashed line is the safe area — keep anything important inside it. The white extends past the trim to the bleed edge so there's no unprinted strip if the cut drifts.
 
+## The OG
+
+Same layout, different job. The OG image is what link cards show when you share a URL. Bigger canvas (1200×630), post URL below the logo instead of just the domain.
+
+![theTube OG image](/images/og.svg)
+
 ## How to print
 
 Upload the clean version (without crop marks) to MOO at 873 × 378px. That's the full bleed canvas. They handle the trimming. The template version is just a proof for you to verify nothing important gets cut.
