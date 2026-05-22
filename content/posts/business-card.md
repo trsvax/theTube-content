@@ -41,6 +41,10 @@ Upload the clean version (without crop marks) to MOO at 873 × 378px. That's the
 
 MiniCards because they have a [metal card holder](https://www.moo.com/us/accessories/business-card-holders/moo-minicard) that opens one-handed. Slide it open with your thumb, hand someone a card, snap it shut. No fumbling.
 
+Or the [square showcase](https://www.moo.com/us/accessories/business-card-holders/showcase-square) — clear window so the logo shows through while it's closed.
+
+![square showcase mockup](/images/showcase-square.svg)
+
 ## How we made it
 
 Asked Kiro to build it. Gave it the MOO design guidelines screenshot, said "logo and theTube.today, that's it." It pulled the logo mark SVG from the repo, grabbed the brand colors from `globals.css`, and produced the card as an SVG at the correct dimensions.
