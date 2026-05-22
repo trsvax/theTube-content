@@ -29,6 +29,12 @@ Same layout, different job. The OG image is what link cards show when you share 
 
 ![theTube OG image](/images/og.svg)
 
+## The avatar
+
+Square format for GitHub, Slack, anywhere that wants a profile image. Logo mark stacked with "The Tube" and the tagline.
+
+![theTube avatar](/images/avatar.svg)
+
 ## How to print
 
 Upload the clean version (without crop marks) to MOO at 873 × 378px. That's the full bleed canvas. They handle the trimming. The template version is just a proof for you to verify nothing important gets cut.
