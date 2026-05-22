@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 0
 summary: Each repo that deploys to S3 should have its own IAM credentials scoped to its path. Least privilege. If creds leak, blast radius is one prefix.
+workflow: published
 ---
 
 The tapestry-nocode-site build needs AWS credentials to deploy. Currently using the same creds as the main theTube deploy. That's wrong — if the book repo's secrets leak, the attacker has access to the entire bucket.

@@ -6,6 +6,7 @@ type: draft
 summary: Posts link to each other through the journey block. prev, next, forks. The build already has enough to draw the graph.
 issueNumber: 46
 discussionNumber: 48
+workflow: published
 ---
 
 Every post knows where it came from and where it went. `prev` and `next` in the `[journey]:` block. Forks when the thinking branched. All optional, all in the file.

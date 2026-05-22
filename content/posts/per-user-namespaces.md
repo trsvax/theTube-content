@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: Plan 9's per-process namespaces on a CDN. The edge picks the right site.json per role. Each user sees a different filesystem. Static files, fully cacheable.
+workflow: published
 ---
 
 Plan 9 gives each process its own namespace — a different view of the filesystem based on who you are. The edge can do the same thing.

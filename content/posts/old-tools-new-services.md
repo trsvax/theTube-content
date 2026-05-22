@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 type: draft
 summary: Unix pipes from 1969. Git from 2005. S3 from 2006. GitHub Actions from 2019. The stack is built from old ideas running on new infrastructure. The innovation is refusing to add a layer.
+workflow: published
 ---
 
 Unix pipes are from 1969. Git is from 2005. S3 launched in 2006. GitHub Actions in 2019. None of it was invented for a personal blog. All of it composes cleanly anyway, because the interfaces are simple: files, text streams, HTTP.

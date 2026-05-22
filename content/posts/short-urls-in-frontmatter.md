@@ -5,6 +5,7 @@ tags: [tech]
 audience: public
 shortSlug: su
 summary: A short URL in a post's frontmatter, a CloudFront function generated at build time. No third-party service, no database, no link rot.
+workflow: published
 ---
 
 For some reason before 2020 I thought I needed a business card. I made it an odd size so it stuck out in a stack. The front was a JSON object and my vismon on the back. Since it was a smaller card I could only fit `{ name, email, url }` and the URL had to be short. It pointed to a GitHub gist, and if someone could figure that out they could call me. Never got a call.

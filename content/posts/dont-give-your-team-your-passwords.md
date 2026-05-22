@@ -4,10 +4,10 @@ date: 2026-05-22
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 origin: conversation
 summary: The AI is a team member now. Treat it like a stranger with production access — because that's what it is.
+workflow: draft
 ---
 
 Someone at the meetup asked about MCP security. I said: don't give AI your passwords unless you'd give them to a stranger.

@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: A Python terminal multiplexer. Two panes — Kiro CLI and a live markdown preview. SSH in, jmux journal.md, resume where you left off. The state is in git.
+workflow: published
 ---
 
 tmux is powerful and complicated and needs brew. I just want two panes: a CLI on the left, a markdown preview on the right.

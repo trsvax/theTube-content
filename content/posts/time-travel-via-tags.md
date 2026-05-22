@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 0
 summary: Branch per journal entry, tag on merge. Every shipped feature has a snapshot. Click a journal entry, see the site as it was when that feature landed.
+workflow: published
 ---
 
 Branch per journal entry. Tag on merge. The git workflow maps to the journal lifecycle:

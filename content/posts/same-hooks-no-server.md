@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: bike
 summary: React hooks with the same API as Apollo or urql — but the backend is files and a CDN. No GraphQL server. The hook hides the implementation.
+workflow: published
 ---
 
 The hook API is identical to a sync GraphQL hook:

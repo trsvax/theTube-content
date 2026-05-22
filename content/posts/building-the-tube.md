@@ -4,6 +4,7 @@ date: 2026-05-11
 tags: [tech]
 audience: public
 summary: How I built this blog — static site, real auth, role-based content, no server.
+workflow: published
 ---
 
 A personal blog that does more than it looks like it should be able to. Public posts anyone can read. Members-only posts behind real authentication. Friends and family see content nobody else does. And there's no server — it's all static files on S3 with a CDN in front.

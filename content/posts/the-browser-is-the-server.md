@@ -4,6 +4,7 @@ date: 2026-05-11
 tags: [tech]
 audience: user
 summary: Role-based content, no server, no SaaS auth. What the architecture looks like and how I got there.
+workflow: published
 ---
 
 Everyone assumes you need a server the moment roles enter the picture. A database for sessions. An API to check permissions. A SaaS auth product. A bill that grows with traffic.

@@ -4,10 +4,10 @@ date: 2026-05-21
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 origin: conversation
 summary: One write endpoint. POST /w/{namespace}/{verb}. The ? is the switch — present means batch (always works), absent means Lambda (might 503).
+workflow: draft
 ---
 
 The platform had two write paths: `/events/` for batch (GET, logged by CloudFront, free) and `/fastevent/` for realtime (POST with body, Lambda processes immediately). Two endpoints, two verbs, two behaviors. The client had to know which one to use.

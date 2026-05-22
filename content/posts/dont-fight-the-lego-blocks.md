@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: Use the pieces the way they want to be used. The architecture that works is the one that fits the services, not the one that forces them into a shape they resist.
+workflow: published
 ---
 
 AWS is lego blocks. Each service does one thing. The architecture that works is the one that assembles them the way they fit — not the one that forces them into a shape they resist.

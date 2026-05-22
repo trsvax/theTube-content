@@ -8,6 +8,7 @@ status: qed
 coffee: 0
 origin: walk
 summary: Same pattern as comments. A form that hits /events/contact/submit. CloudFront logs it. You grep when you want. The log is the inbox.
+workflow: published
 ---
 
 Same pattern as comments. A form, a URL, a log entry.

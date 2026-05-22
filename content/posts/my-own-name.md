@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: Everyone wants to own my identity. LinkedIn, GitHub, Apple. I need a namespace that's mine — one domain that mounts all the services without being tied to any of them.
+workflow: published
 ---
 
 At a meetup everyone wants my LinkedIn. I don't have one. I give my GitHub but I don't want that either. I don't want to tie my identity to some random company that might pivot, paywall, or disappear.

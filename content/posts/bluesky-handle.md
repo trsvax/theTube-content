@@ -4,9 +4,9 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 summary: Setting up thetube.today as a Bluesky handle. Your domain is your identity — no platform namespace required.
+workflow: draft
 ---
 
 Got asked for my LinkedIn yesterday. Don't have one. But I do have a Bluesky account sitting empty at `trsvax.bsky.social`.

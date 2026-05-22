@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: draft
 summary: Markdown is nothing like HTML to a human writer. That's the point. The web's instruction set is the wrong level for writing.
+workflow: published
 ---
 
 To a human writer, markdown is nothing like HTML. That's not an accident — it's the whole design.

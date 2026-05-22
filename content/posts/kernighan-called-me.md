@@ -7,6 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: I emailed him a CRISP compiler bug. He picked up the phone. That's Bell Labs culture — the person who wrote it is the person who fixes it.
+workflow: published
 ---
 
 I was building a workstation around the AT&T CRISP chip. Writing software for it — OS bring-up, getting the toolchain working on custom hardware. Hit a compiler bug. The kind you only find when you're the first person running real code on a new machine.

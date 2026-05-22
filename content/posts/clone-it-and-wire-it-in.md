@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 type: draft
 summary: If someone builds a better tag taxonomy, a recipe callout set, a minimal design theme — you clone their repo and point your build at it. No npm. No negotiation. The format agreement is the interface.
+workflow: published
 ---
 
 If the pipe model is right, reuse looks like this: someone else builds a travel-optimized tag taxonomy. You clone their repo and point your build at it instead of yours. That's it. No npm install, no version negotiation, no peer dependency warnings. The format agreement is the interface.

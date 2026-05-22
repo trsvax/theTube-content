@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: CGI was stateless, serverless, one-request-one-process. The only thing wrong with it was blocking. 202 fixes that — but the browser couldn't handle 202 until 2004.
+workflow: published
 ---
 
 CGI was the first way to have dynamic content on the web. Request comes in, script runs, response goes out, process dies. No state, no server to manage, no connection pool. Stateless by design.

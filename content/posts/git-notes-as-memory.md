@@ -4,9 +4,9 @@ date: 2026-05-21
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 summary: Session context for AI lives in git notes — attached to commits, portable across tools, owned by you. No proprietary memory layer needed.
+workflow: draft
 ---
 
 Every AI coding tool has a memory problem. Copilot stores context in GitHub's servers. Cursor keeps it in app state. ChatGPT locks it in your account. Switch tools and the context is gone. The AI forgets everything.

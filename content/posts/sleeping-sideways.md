@@ -7,6 +7,7 @@ summary: Ordered a Radica Rover for the F-150. The lower 48 national parks don't
 bsky: false
 issueNumber: 71
 discussionNumber: 73
+workflow: published
 ---
 
 > [!TLDR]

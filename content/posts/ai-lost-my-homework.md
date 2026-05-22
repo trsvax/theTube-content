@@ -4,10 +4,10 @@ date: 2026-05-22
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 origin: conversation
 summary: Multi-agent coordination doesn't need an orchestration layer. It needs a convention file and git notes.
+workflow: draft
 ---
 
 I asked one AI to code review a repo and write notes. It said it did. I asked another AI to read the notes. They weren't there.

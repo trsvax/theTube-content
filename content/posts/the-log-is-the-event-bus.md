@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: The log path isn't just for logging — it's a write API. Different paths have different readers. Some index. Some produce artifacts. Comments without a server.
+workflow: published
 ---
 
 The URL-as-log-entry pattern does more than logging. The log path is a write API disguised as a URL. Different paths have different readers:

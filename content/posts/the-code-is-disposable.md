@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: If you have the specs, the docs, and the content model, the code can be regenerated. The journal leads to the code — it's not some random out-of-date doc.
+workflow: published
 ---
 
 If you deleted all the code from this repo and kept everything else — the platform spec, the journal spec, the docs, the skills, the content files, the deploy workflow — a working version could be rebuilt. Not identical, but functionally equivalent. Same output, same structure, same behavior.

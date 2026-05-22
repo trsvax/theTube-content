@@ -8,6 +8,7 @@ status: qed
 coffee: 0
 origin: walk
 summary: One encrypted file per repo. One script to show credentials. openssl and a password. No secrets manager, no service, no monthly cost.
+workflow: published
 ---
 
 Each repo gets its own IAM role. Each repo stores its own credentials — encrypted, in the repo.

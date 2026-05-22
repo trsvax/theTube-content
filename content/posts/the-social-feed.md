@@ -6,6 +6,7 @@ type: draft
 summary: Short thoughts that don't need to be posts. A timeline, not a blog index. The feed and the blog are two outputs from the same journal.
 issueNumber: 50
 discussionNumber: 52
+workflow: published
 ---
 
 Not every thought becomes a post. Some are two sentences. Some stay two sentences.

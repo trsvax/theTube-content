@@ -9,6 +9,7 @@ coffee: 0
 origin: walk
 specLink: .kiro/specs/jolt-coffee-prosecco
 summary: Story points are joyless. Jolt is the estimate, coffee is the effort, prosecco is the celebration. Same data as agile, different energy.
+workflow: published
 ---
 
 Story points mean nothing. "This is a 5." Five what? Five sadnesses? Five meetings about it?

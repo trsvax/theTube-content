@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: draft
 summary: The [] callout notation is already a content protocol. The post declares slots. Other sources fill them. You don't have to implement all the slots upfront — empty ones are invisible.
+workflow: published
 ---
 
 The `[design]:` block is a slot. The author declares it, a designer fills it with an image. The post doesn't care when the image arrives or who put it there. The slot is the contract.

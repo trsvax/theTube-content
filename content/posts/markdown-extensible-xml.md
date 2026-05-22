@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 summary: XML was designed to be extensible and made it hard. Markdown wasn't designed to be extensible and made it easy.
 type: draft
+workflow: published
 ---
 
 XML promised extensibility. Namespaces, schemas, DTDs — all the machinery for defining new vocabularies on top of an existing format. The promise was that any tool could understand any XML dialect as long as you declared your schema upfront.

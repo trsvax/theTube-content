@@ -6,6 +6,7 @@ type: draft
 summary: npm's trust model is broken. You're one transitive dependency away from trusting everyone who has ever published a package.
 issueNumber: 37
 discussionNumber: 39
+workflow: published
 ---
 
 The trust model is completely broken.

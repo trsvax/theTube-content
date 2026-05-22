@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 0
 summary: CloudFront logs timestamp, IP, user-agent, referer, edge location on every request. You get dimensions of data you didn't design — they're just there.
+workflow: published
 ---
 
 Every event logged to `/events/...` comes with metadata you didn't ask for:

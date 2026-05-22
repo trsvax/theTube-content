@@ -6,6 +6,7 @@ type: draft
 summary: Unix got it right in 1969. Small tools, text streams, compose at the shell. The web spent 50 years building walls around that idea. Markdown files and git repos are building it back.
 issueNumber: 68
 discussionNumber: 70
+workflow: published
 ---
 
 Unix got it right in 1969 and the industry spent 50 years building walls around it.

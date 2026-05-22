@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: Multi-zone, multi-region, globally distributed — without configuring anything. That's what you get for free by using the CDN as the serving layer instead of a server.
+workflow: published
 ---
 
 CloudFront has 450+ edge locations across 90+ cities. Every request is served from the nearest edge. S3 replicates within a region across multiple availability zones automatically. The site is already globally distributed without configuring anything.

@@ -4,6 +4,7 @@ date: 2026-05-12
 tags: [tech]
 audience: user
 summary: Map /admin to a server, /api to Lambda, /auth to Cognito — all on one domain, no nginx required.
+workflow: published
 ---
 
 A static site has one problem: it can't run code. The standard fix is "add a server." But the server doesn't have to be behind the whole site — it just has to be behind the paths that need it.

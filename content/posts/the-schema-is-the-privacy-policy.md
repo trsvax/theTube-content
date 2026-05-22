@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: meetup
 summary: "@PII on the GraphQL schema marks what's sensitive. A JS Proxy hides it by default. grep pii returns all the touch points. The schema is the privacy policy."
+workflow: published
 ---
 
 Everyone at the Elastic meetup is concerned about AI and PII. Fair — if your logs have names and emails and you feed them to AI, you've shared PII with a third party.

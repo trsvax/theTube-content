@@ -6,6 +6,7 @@ type: draft
 summary: The Actions are the compiler. The markdown is the source. The syntax you define is the language.
 issueNumber: 34
 discussionNumber: 36
+workflow: published
 ---
 
 Every format that humans write and machines read eventually gets execution semantics pushed into it.

@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: Route 53 pings the URL. The browser reports errors to the log. Lambda@Edge failures show up in CloudFront access logs. No Datadog, no Prometheus. Just config.
+workflow: published
 ---
 
 No monitoring right now. Need some. But not a monitoring system — just the lego blocks doing one more thing.

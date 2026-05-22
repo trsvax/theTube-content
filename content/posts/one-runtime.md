@@ -6,6 +6,7 @@ type: draft
 summary: Client-server died not because the browser was better software, but because one runtime for everything was an overwhelming operational advantage. Web 2.0 kept that win and threw out everything else.
 issueNumber: 65
 discussionNumber: 67
+workflow: published
 ---
 
 Before the web, every application was its own runtime. Lotus Notes. SAP GUI. Oracle Forms. Your HR system. Each one installed separately, versioned separately, broken separately. IT managed a matrix — which version of which client worked on which OS, and who was allowed to upgrade first to find out what broke.

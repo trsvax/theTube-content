@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: Remove the server and the entire abstraction chain collapses. What's left is files, URLs, functions, and a CDN. Four concepts.
+workflow: published
 ---
 
 What we removed:

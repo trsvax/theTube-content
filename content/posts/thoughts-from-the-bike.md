@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: bike
 summary: Origin metadata, git vs SourceSafe, the spec repo, AI's blog, copilot agents, and the book that writes itself.
+workflow: published
 ---
 
 ## Origin in frontmatter

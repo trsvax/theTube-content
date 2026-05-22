@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: What if there was one content.json with everything in it, and the edge filtered it by role? One source of truth, the proxy handles access.
+workflow: published
 ---
 
 Right now the build splits content into separate files per role — `/public/content.json`, `/user/content.json`, `/kids/content.json`, `/friends/content.json`. The script reads all posts, groups by audience, writes four files. The browser fetches whichever ones it can reach.

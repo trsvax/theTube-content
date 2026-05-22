@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: draft
 summary: The blit was Bell Labs' smart terminal — its own processor, local compute, fetches from the network, renders locally. The browser inherited the design without inheriting the name. And theTube is a Plan 9 cluster.
+workflow: published
 ---
 
 Plan 9's core idea: everything is a file, namespaces are composable, any client speaks the same protocol. You mount different file servers into one namespace and the client doesn't know or care.

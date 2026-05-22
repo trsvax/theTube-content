@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: conversation
 summary: The B-58 ground cooling spec said 8 inches. Nobody knew why. The number was made up, but the difficulty was real.
+workflow: published
 ---
 
 My grandfather was a rocket scientist. He told me this story about the B-58 Hustler — the first operational supersonic bomber.

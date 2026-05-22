@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: draft
 summary: Invest upfront in infrastructure — structured logs, schema annotations, operation capture — and you never have to plan a test, a report, or a query again. The planning happens once. The flexibility is permanent.
+workflow: published
 ---
 
 I gave up writing tests before I got around to turning off the linter. Both decisions were correct.

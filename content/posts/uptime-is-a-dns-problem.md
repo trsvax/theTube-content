@@ -4,10 +4,10 @@ date: 2026-05-21
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 origin: conversation
 summary: One dev built a multi-provider blog for $0 a month. Multi-cloud failover for static sites isn't an architecture problem. It's a DNS record change.
+workflow: draft
 ---
 
 Everyone overcomplicates multi-cloud. Replicate the database. Sync the sessions. Health-check the servers. Coordinate the failover. Hire an SRE team to watch the dashboard.

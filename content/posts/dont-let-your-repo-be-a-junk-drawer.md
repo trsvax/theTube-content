@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: post
 summary: The private repo started with fonts and ended up with Lambda code and CDK stacks. "Private" is not a concern — it's an access control label. The fork isn't a fix — it's an upgrade, and upgrades are cheap.
+workflow: published
 ---
 
 I wanted the repo public. Open source, forkable, the whole thing. But the fonts blocked it — licensed typefaces can't live in a public repo. So I split them out into a private repo and made the main repo public.

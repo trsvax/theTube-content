@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 type: draft
 summary: GitHub already generates an Atom feed of commits. The raw file URL is always current. The API lists all posts. Any service that can read GitHub can subscribe — no RSS generation, no separate feed file, no build artifact.
+workflow: published
 ---
 
 GitHub already generates an Atom feed for every repo: `github.com/trsvax/theTube-content/commits/main.atom`. New post, new commit, new feed entry. No RSS file to generate, no separate build step, no feed reader plugin.

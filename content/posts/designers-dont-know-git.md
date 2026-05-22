@@ -7,6 +7,7 @@ summary: So the post is the spec. What you write in the markdown file determines
 issueNumber: 27
 discussionNumber: 29
 redirectFrom: /posts/the-post-is-the-spec
+workflow: published
 ---
 
 [design]: og-image.png — 1200×630, brand colors, title prominent

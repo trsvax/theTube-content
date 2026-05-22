@@ -6,6 +6,7 @@ audience: user
 summary: A plain-English comparison of this blog's stack versus the commercial products that do the same things.
 issueNumber: 13
 discussionNumber: 15
+workflow: published
 ---
 
 This blog does a lot. Public posts anyone can read. Posts behind a login. Posts only certain people can see. A newsletter. Comments. A workflow for writing and publishing. A CDN that serves the whole thing fast, from anywhere in the world.

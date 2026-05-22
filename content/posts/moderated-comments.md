@@ -7,6 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Comments via batch events. You review, approve, they appear on next build. No spam, no real-time pressure. The log holds everything until you're ready.
+workflow: published
 ---
 
 [comment]:

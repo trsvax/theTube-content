@@ -4,6 +4,7 @@ date: 2026-05-12
 tags: [tech]
 audience: user
 summary: Static sites can't have comments. GitHub Issues can. Here's how to wire them together without giving up editorial control.
+workflow: published
 ---
 
 Static sites don't have comments. That's usually listed as a limitation. I've started thinking of it as a clarifying constraint.

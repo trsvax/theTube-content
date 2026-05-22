@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 type: draft
 summary: Content got one. Design is next. The question isn't "should this be a repo" — it's "does this evolve independently." Tags, callouts, auth roles. The pipe has more joints than it looks.
+workflow: published
 ---
 
 The test is simple: does this thing change for reasons independent of everything else? If yes, it earns a repo.

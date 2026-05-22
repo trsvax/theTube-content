@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: With the right architecture, scaling is "can you afford the bill?" — a business decision, not an engineering problem. No developer needs to wake up.
+workflow: published
 ---
 
 With a server, scaling is an engineering problem. You hit a wall, re-architect, hit the next wall. Load balancers, sharding, caching layers, connection pooling, horizontal scaling. Each jump costs engineering time on top of infrastructure cost. Developers get paged at 3am.

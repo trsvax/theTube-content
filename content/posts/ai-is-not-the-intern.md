@@ -8,6 +8,7 @@ status: published
 coffee: 0
 origin: walk
 summary: People build guardrails to keep AI from deleting the database. Wrong problem. The architecture should make deletion impossible, not the process around the actor.
+workflow: published
 ---
 
 Everyone's building intern management systems for AI. Approval gates, sandboxed execution, "are you sure?" prompts, diff reviews before every write. The assumption: AI is the intern. It'll break things if you don't watch it.

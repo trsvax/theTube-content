@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 1
 summary: Development methodologies are files at URLs. Point AI at them and say "do it like that." No books, no courses, no consultants. The methodology is the product.
+workflow: published
 ---
 
 What if you could adopt a development methodology by pointing AI at a URL?

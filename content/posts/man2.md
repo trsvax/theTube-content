@@ -4,10 +4,10 @@ date: 2026-05-22
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 2
 origin: conversation
 summary: The platform has syscalls. open() returns a token. write() posts data. readdir() fetches index.json. The CDN is the kernel. Everything is a file.
+workflow: draft
 ---
 
 DRAFT

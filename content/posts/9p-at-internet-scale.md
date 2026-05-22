@@ -7,6 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Plan 9 and NFS had it right — files as the interface, namespace as the abstraction, stateless operations. HTTPS + CDN + JWT is the same model without the LAN constraint.
+workflow: published
 ---
 
 Plan 9's insight: everything is a file, the namespace is per-user, computation is location-transparent. NFS's insight: stateless operations are more reliable than stateful ones (then NFSv4 forgot this and got worse).

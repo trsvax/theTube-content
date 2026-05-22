@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: The old engineering joke says pick two. Turns out you just had to stop using servers.
+workflow: published
 ---
 
 The old engineering joke: fast, good, cheap — pick two. The assumption is that you're always trading one for another. That's true when you're choosing between implementations of the same architecture. It's not true when you change the architecture.

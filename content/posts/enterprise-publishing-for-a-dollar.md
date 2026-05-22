@@ -4,6 +4,7 @@ date: 2026-05-12
 tags: [tech]
 audience: user
 summary: Every feature on the enterprise CMS checklist, no server, no managed hosting. $1 a month.
+workflow: published
 ---
 
 The standard knock on static sites is that they can't do what "real" publishing platforms do. CMS vendors have a long list: editorial workflow, comments, analytics, multi-language, email newsletters, subscriber management, audit logs, A/B testing. The implication is that you need a managed platform to get any of it.

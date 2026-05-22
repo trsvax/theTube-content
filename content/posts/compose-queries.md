@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: GraphQL fragments compose into one query. @defer means they don't have to come back at the same time. Parallel fetches to different files, progressive rendering. No server.
+workflow: published
 ---
 
 We'll have a bunch of GraphQL fragments — meta, markdown, comments, thoughts. Each backed by a different file at a different URL. Compose them into one query:

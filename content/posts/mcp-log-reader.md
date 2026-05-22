@@ -4,9 +4,9 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 summary: An MCP server that reads CloudFront logs from S3. Query events, verify deploys, check comments — all from the chat without running CLI commands.
+workflow: draft
 ---
 
 DRAFT

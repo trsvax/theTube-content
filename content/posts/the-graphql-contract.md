@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 1
 summary: Client sends operationName + data. The query lives in the repo. The repo is the schema. Leverage existing specs instead of inventing new ones.
+workflow: published
 ---
 
 The client sends two things: `operationName` and `data`. That's it. The client doesn't know the query. The client doesn't know the schema. It just says what it wants to do and provides the data.

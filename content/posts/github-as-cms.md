@@ -7,6 +7,7 @@ audience: public
 status: qed
 coffee: 0
 summary: A custom GUI that commits to the repo. GitHub is the backend. No CMS server, no database. The WordPress experience without WordPress.
+workflow: published
 ---
 
 Could this platform have a WordPress-like editing GUI? Yes. Here's the proof.

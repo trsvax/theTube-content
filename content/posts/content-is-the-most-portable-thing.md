@@ -6,6 +6,7 @@ type: draft
 summary: The site is static files on S3 behind CloudFront. Moving to Azure is two hours of workflow changes. Moving to a different git host is workflow syntax. The markdown doesn't move at all.
 issueNumber: 43
 discussionNumber: 45
+workflow: published
 ---
 
 I worked on POSIX and X/Open. The lesson was the same then: own the spec, rent the implementation. Thirty years later I'm applying it to a blog.

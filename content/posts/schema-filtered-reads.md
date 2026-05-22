@@ -4,10 +4,10 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: draft
 coffee: 0
 origin: meetup
 summary: The schema declares @pii. The reader applies the filter. Same file, different view per consumer. Access control lives in the reader, not the storage.
+workflow: draft
 ---
 
 DRAFT

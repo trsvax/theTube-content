@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: bike
 summary: When the architecture is append-only and stateless, testing against prod is safe, fast, and free. No staging, no UAT, no raspberry pi.
+workflow: published
 ---
 
 The test environment is production.

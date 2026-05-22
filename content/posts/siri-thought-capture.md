@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: "Hey Siri, thought" — dictate, hit a URL, it's in the logs. Grep later, turn into journal entries. Works from the watch with a crown action.
+workflow: published
 ---
 
 On a walk. Have a thought. Don't want to stop and type. Don't want to lose it.

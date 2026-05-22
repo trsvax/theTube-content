@@ -7,6 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Share a photo while traveling, blog about it later. The log is the intent — "I saw something worth writing about." The photo stays in iCloud. The event stays in CloudFront.
+workflow: published
 ---
 
 The problem with travel blogging: you're busy traveling. You see something, take a photo, think "I should write about this." Then you don't, because you're on a train or in a bar or walking somewhere new. By the time you're back at the machine, you've forgotten which photos mattered and why.

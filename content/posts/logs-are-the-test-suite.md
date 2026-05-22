@@ -8,6 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: The system already records everything that happens. The test is just — did the expected thing show up in the record? No framework, no mock, no staging. Test in prod because prod is append-only.
+workflow: published
 ---
 
 This morning I shared a URL from Safari using a Shortcut. Then I asked AI to verify it worked. It grepped the CloudFront logs, found the request, confirmed 202. That was a test. I just didn't call it one.

@@ -3,7 +3,7 @@ title: A $1 RSS Reader You Actually Own
 date: 2026-05-16
 tags: [tech]
 summary: No ads, no tracking, no algorithm. Your reading history in S3, queryable forever, with an MCP server for free.
-draft: true
+workflow: draft
 ---
 
 Feedly costs $8/month and knows everything you read. Google killed Reader. Twitter killed third-party clients. The pattern is always the same: give us your attention graph, we'll give you convenience.

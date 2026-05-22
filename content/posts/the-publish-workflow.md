@@ -7,6 +7,7 @@ audience: user
 status: vague-thought
 coffee: 1
 summary: Tried to publish a journal entry and discovered there's no workflow for it. type: journal entries don't show anywhere. Need a spec.
+workflow: published
 ---
 
 Tried to publish "The URL Is the Log Entry" and it didn't show up. Turns out:

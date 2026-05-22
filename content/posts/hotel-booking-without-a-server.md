@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: A hotel booking system built on files at URLs. The only transaction is a DynamoDB conditional write. Everything else is static files and events.
+workflow: published
 ---
 
 Can the files-at-URLs architecture handle something that actually needs state? Hotel booking is the classic example — availability changes, bookings are atomic, payments need confirmation. Let's see.

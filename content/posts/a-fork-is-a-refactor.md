@@ -4,6 +4,7 @@ date: 2026-05-16
 tags: [tech]
 type: draft
 summary: The private repo started with fonts and ended up with Lambda code and CDK stacks. "Private" is not a concern — it's an access control label. The fix is a fork, and forks are cheap.
+workflow: published
 ---
 
 Everything started in one repo because what else would you do. One push deployed everything. Simple.

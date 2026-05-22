@@ -6,6 +6,7 @@ type: journal
 audience: user
 status: vague-thought
 summary: There's nothing to back up because nothing is primary in only one place. Git has the source. Logs have the user input. Replay either one and you reconstruct the state.
+workflow: published
 ---
 
 There's nothing to back up.

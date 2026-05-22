@@ -4,6 +4,7 @@ date: 2026-05-15
 tags: [tech]
 type: draft
 summary: Content got its own repo. Design is next. Every concern that evolves independently gets its own repo — that's the pattern, not the exception.
+workflow: published
 ---
 
 Forking content out of the app repo was the first move. The post about it is already up. The short version: content and renderer don't share a concern, so they don't share a repo.
