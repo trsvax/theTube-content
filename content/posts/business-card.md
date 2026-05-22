@@ -25,7 +25,7 @@ The grey dashed line is the trim — where the blade lands. The pink dashed line
 
 ## The OG
 
-Same layout, different job. The OG image is what link cards show when you share a URL. Bigger canvas (1200×630), post URL below the logo instead of just the domain.
+Same layout, different job. The OG image is what link cards show when you share a URL. Bigger canvas (1200×630), just the logo — the platform adds the title and domain below it.
 
 ![theTube OG image](/images/og.svg)
 
