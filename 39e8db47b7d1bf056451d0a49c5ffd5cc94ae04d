@@ -1,0 +1,1 @@
+Post: dont-give-your-team-your-passwords. Trust model for AI-assisted dev — don't give AI database access, architecture is the trust boundary, the stranger heuristic. Also fixed README in theTube-comments to match current design (JSON files, /w/ protocol, open+add flow).
