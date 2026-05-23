@@ -7,7 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Small things skipped in the flow. Batch them later.
-workflow: published
+workflow: draft
 ---
 
 Running list of small things to come back to.

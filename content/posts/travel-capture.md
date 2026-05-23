@@ -17,7 +17,7 @@ The problem with travel blogging: you're busy traveling. You see something, take
 Share Sheet → "Save to Tube" → done. One tap while you're still looking at the thing.
 
 ```
-/events/capture?type=image&description=temple+gate+at+sunset&origin=phone
+/w/capture/image?description=temple+gate+at+sunset&origin=phone
 ```
 
 The photo stays in iCloud Photos. It's already backed up, already synced, already organized by date and location. You don't upload it anywhere. You just log the intent: "this one matters."
@@ -27,7 +27,7 @@ The photo stays in iCloud Photos. It's already backed up, already synced, alread
 Grep the logs:
 
 ```bash
-grep "type=image" logs/*.gz | gunzip
+grep "capture/image" logs/*.gz | gunzip
 ```
 
 A list of everything you flagged. Timestamps, descriptions, origin. Cross-reference with your photo library by date. Pull the ones you want into the post. Write.
@@ -53,7 +53,7 @@ What you need is a *pointer* — "this photo, at this time, mattered." The event
 A smarter shortcut could extract EXIF metadata before logging:
 
 ```
-/events/capture?type=image&lat=35.6762&lng=139.6503&ts=2026-05-21T09:30:00Z&description=temple+gate
+/w/capture/image?lat=35.6762&lng=139.6503&ts=2026-05-21T09:30:00Z&description=temple+gate
 ```
 
 Now the log entry has precise location and time. "Show me everything I flagged in Tokyo" becomes a query, not a memory exercise.

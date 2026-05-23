@@ -31,9 +31,12 @@ Each service wants to be the canonical location. Each one is a silo. None of the
 The domain is the namespace. Everything mounts under it:
 
 ```
-thetube.today/posts/...        → S3
+thetube.today/                 → homepage (UI)
+thetube.today/a/...            → aliases/redirects
+thetube.today/w/...            → writes (CloudFront Function)
+thetube.today/public/posts/... → public content (S3)
+thetube.today/user/posts/...   → user content (S3, auth required)
 thetube.today/books/...        → S3
-thetube.today/create/...       → CloudFront Function
 thetube.today/.well-known/...  → S3 (identity, keys)
 ```
 

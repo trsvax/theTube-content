@@ -7,7 +7,7 @@ audience: public
 status: qed
 coffee: 0
 origin: walk
-summary: Same pattern as comments. A form that hits /events/contact/submit. CloudFront logs it. You grep when you want. The log is the inbox.
+summary: Same pattern as comments. A form that hits /w/contact/submit. CloudFront logs it. You grep when you want. The log is the inbox.
 workflow: published
 ---
 
@@ -15,7 +15,7 @@ Same pattern as comments. A form, a URL, a log entry.
 
 ## The flow
 
-1. Visitor fills out contact form → `GET /events/contact/submit?name=...&email=...&message=...`
+1. Visitor fills out contact form → `POST /w/contact/submit?name=...&email=...&message=...`
 2. CloudFront logs it. Returns 202. Done.
 3. You check when you want: `grep contact/submit` in the logs.
 

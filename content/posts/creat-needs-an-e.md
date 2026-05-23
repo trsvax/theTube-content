@@ -8,7 +8,7 @@ status: vague-thought
 coffee: 0
 origin: walk
 summary: The path was /log, then /events, now /create. The name catches up to what the system actually does — it creates files. Ken Thompson's one regret, fixed.
-workflow: published
+workflow: draft
 ---
 
 Ken Thompson said if he could change one thing about Unix, he'd spell `creat` with an 'e'. Forty years later I'm adding it.

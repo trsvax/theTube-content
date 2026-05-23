@@ -43,9 +43,9 @@ fragment comments on Query {
 
 | Fragment | Source | Speed |
 |---|---|---|
-| `meta` | `content.json` (CDN cached) | instant |
-| `markdown` | `/posts/<slug>.md` (CDN) | fast |
-| `comments` | `/comments/<slug>.txt` (S3) | variable |
+| `meta` | `/public/index.json` (CDN cached) | instant |
+| `markdown` | `/public/posts/<slug>.html` (CDN) | fast |
+| `comments` | `/comments/<uuid>/index.json` (S3) | variable |
 
 No GraphQL server resolving these. The hook reads the schema, knows which URL backs each fragment, fires parallel fetches. `@defer` is just "this fetch might be slower — don't block on it."
 

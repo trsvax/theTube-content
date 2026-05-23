@@ -7,7 +7,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Probably the first person to burn Unix into ROM. A diskless CRISP workstation that boots straight into the kernel. Power on, you're there.
-workflow: published
+workflow: draft
 ---
 
 Built a workstation around the AT&T CRISP chip — the processor that became the Hobbit. The machine had no disk. Unix lived in ROM. Power on, you're in the kernel. No boot loader, no BIOS handoff, no disk seek. Just voltage and then a shell prompt.

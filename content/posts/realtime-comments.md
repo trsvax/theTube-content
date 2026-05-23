@@ -8,7 +8,7 @@ audience: public
 status: vague-thought
 coffee: 0
 summary: Same as moderated. Add a Lambda. That's it. The architecture doesn't change. The form doesn't change. The logging doesn't change.
-workflow: published
+workflow: draft
 ---
 
 Same form. Same hook. Same event logged to CloudFront. The only difference: a Lambda that also writes the file immediately.
