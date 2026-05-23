@@ -5,14 +5,14 @@ tags: [tech]
 type: journal
 audience: user
 status: journaling
-coffee: 1
-summary: An Apple Share action that POSTs to theTube. Field capture from any app, two trust tiers, no upload required.
+coffee: 2
+summary: An Apple Share action that POSTs to theTube. Field capture from any app, minted JWTs with time-based hashes, no upload required.
 workflow: draft
 ---
 
-The problem: you're out walking, you see something worth writing about, you take a photo. By the time you're back at the machine the moment is gone. You remember the photo. You don't remember why it mattered.
+In [Travel Capture](./travel-capture.md) I described the problem: you take a photo while traveling, you forget why it mattered by the time you're back at the machine. The prototype was a URL and a log entry — share the intent, grep the logs later.
 
-The solution is already in your pocket. Every Apple app has a share button. You just need something to share *to*.
+That proved the concept. Now here's the real system.
 
 ## The design
 
@@ -39,44 +39,147 @@ src: /shares/2026-05-23-abc123.jpg
 
 Placeholder until `src:` is populated. Real image once it lands. Same pattern as `[design]:`.
 
-## Two trust tiers
+## The auth model
 
-The field capture Shortcut needs auth but not strong auth — you're just taking notes. A long-lived JWT stored in Keychain, sent as `Authorization: Bearer <token>`. Simple. The log processor checks it before acting.
+Started thinking about key pairs — private key on Mac, public key in the repo, openssl signing. That works, but it's two different auth paths (asymmetric for Mac, bearer token for phone). Complicated Lambda verification. Two code paths to maintain.
 
-The publish Shortcut earns compute, so it needs to earn the trust. On Mac: a public/private key pair. The private key lives in the Mac Keychain. The shell script reads it (Touch ID prompt), signs the payload with openssl, attaches the signature. The public key lives in the repo — anyone can verify, only you can sign.
+Landed somewhere simpler: **minted JWTs with embedded secrets and time-based hashes.** One model for everything.
+
+### How it works
+
+On my Mac I mint a token. The token is a JWT with a random secret baked into the claims. The secret also goes in Keychain. At request time, the device computes `SHA256(secret + unix_timestamp)` and sends it as a header. Lambda decodes the JWT, extracts the secret, computes the same hash, compares.
 
 ```
-scripts/share-public-key.pem  ← in the repo
-~/.keychain (private key)     ← never leaves the Mac
+Device:  SHA256(secret + timestamp) → X-Pass header
+Lambda:  decode JWT → get secret → SHA256(secret + timestamp) → compare
 ```
 
-Lambda verifies the signature before processing. Same model as Cognito JWT verification — public keys hardcoded, no network call at verify time.
+The time-hash proves the device has the secret *right now*. Can't replay an old request — the timestamp drifts out of the ±30 second window.
 
-The `?` is the routing signal. Capture uses `?` (batch, logged, 202). Publish omits `?` (Lambda, verified, compute).
+### What's in the JWT
 
-## The roadmap
+```json
+{
+  "iss": "share-mac",
+  "sub": "mac",
+  "scope": "publish",
+  "secret": "ybVkb0ee8lQKswRvmMe5iwgmrsTIfJiGat_Y_jF9buc",
+  "iat": 1716480000,
+  "exp": 1748016000
+}
+```
 
-The Shortcuts + shell script approach is the prototype. It works today. The iOS Shortcut has less trust than the Mac — no shell script, no openssl. A long-lived JWT is good enough for field capture.
+The `scope` controls what you can do. The `sub` identifies the device. The `secret` is what makes the time-hash work. The JWT itself is HMAC-signed with the secret — can't tamper with the claims without invalidating the signature.
 
-The next step is a native iOS app. SwiftUI, share extension, Secure Enclave key. Device-bound signing, Touch ID to authorize each upload, proper OAuth. Same backend, same verification, better UX. Could ship to the App Store — the trust model scales to other users.
+### One model, every device
 
-The Mac shell script and the iOS app converge on the same design: asymmetric key, signature in the header, public key in the repo.
+Mint a token on the Mac for each device. Different scope, different expiry, same verification:
 
-## What the `/w/` path gives you for free
+```bash
+mint-token.sh --device mac --scope publish --days 365
+mint-token.sh --device iphone --scope capture --days 90
+mint-token.sh --device kid-emma --scope capture --days 30
+```
 
-CloudFront logs timestamp, IP, user-agent, and edge location on every request. The field capture log entry tells you when (timestamp), where (edge location is a rough geo), and what device (user-agent). You didn't design any of that. It's just there.
+Mac stores the secret in Keychain (Touch ID to access). Phone stores it in the Shortcut (synced via iCloud). Kids get short-lived capture-only tokens. Lambda doesn't care which device — same verification path for all of them.
 
-The `[share]:` block is the glue between the log entry and the post. The block starts with the metadata from the capture. The `src:` fills in when the image publishes. The post builds when the block is complete.
+### The phone can hash
+
+iOS Shortcuts has a native "Generate Hash" action. SHA256 is built in. So the Shortcut computes the time-hash itself — no crypto library, no shell script, no third-party app. Just: concatenate secret + timestamp, hash it, send it in the header.
+
+### What an attacker needs
+
+- Token alone → fails (can't compute hash without secret)
+- Secret alone → fails (no valid token to present)
+- Both, but later → fails (timestamp outside ±30s window)
+- Both, right now → succeeds, but requires my unlocked device
+
+If they have my unlocked device, I've got bigger problems. Remote wipe, mint a new token.
+
+## Trust levels
+
+The same mechanism, different storage:
+
+| Client | Secret stored in | Trust |
+|--------|-----------------|-------|
+| Mac | Keychain + Touch ID | High |
+| Phone (Shortcut) | Shortcut text field | Medium |
+| Kid's device | Shortcut, short expiry | Medium, time-bounded |
+| Browser (future) | Cognito + hashme service | Medium |
+
+The Mac is the highest trust because Keychain + biometric. The phone is medium — the secret is in the Shortcut, protected by the phone's lock screen. Kids get short expiry as a natural re-authorization.
+
+## Identity and escalation
+
+The JWT is identity — it's always there, even on public pages. The site knows who's looking. But identity alone doesn't authorize writes.
+
+For reads: the JWT claims gate access. `role: kids` → can see `/kids/`. Same as edge-auth does today with Cognito groups.
+
+For writes: the time-hash is the escalation. It proves physical presence — you have the secret, you computed the hash, you're here right now. On the Mac that means Touch ID. On the phone it means the phone is unlocked and the Shortcut is running.
+
+Future: passkeys for the browser. Same principle — biometric confirmation before writing. The JWT says who you are, the passkey says "yes, right now, I intend this."
+
+## Multi-user
+
+For family: mint tokens on my Mac, hand them out. Each person gets their own `sub` and `scope`. Revoke = don't re-mint.
+
+For the public: Cognito. Self-service signup, groups, the standard OAuth flow. Lambda checks `iss` to decide which verification path — minted JWT or Cognito JWT.
+
+Both paths converge at the same endpoint. Same Lambda, same S3 bucket, same result.
+
+## The `/w/` foundation
+
+This isn't specific to share. The pattern is generic:
+
+```
+/w/share/add?...     → capture intent
+/w/comments/add?...  → add a comment
+/w/react/add?...     → like/bookmark
+```
+
+`?` present → log and 202 (batch, no compute). No `?` → Lambda processes it. Same auth, same CF function, same log processing. Build it once, every write operation uses it.
+
+CloudFront logs give you timestamp, IP, user-agent, and edge location on every request for free. The field capture log entry tells you when, roughly where, and what device. You didn't design any of that. It's just there.
+
+## Closing the loop
+
+The captures are breadcrumbs. You drop them in the field without thinking. The interesting part is what happens when you come back.
+
+"What photos did I take on my walk?" That's a log query. CloudFront logs from the last two hours, path `/w/share/add`, device `iphone` — three images, two with captions, timestamps that tell you the order. The walk is reconstructed from the breadcrumbs.
+
+An MCP server with read-only AWS access makes this conversational. The AI reads the logs, tells you what you captured, helps you build the post. No CloudWatch console, no grep, no manual cross-referencing. Just: "what did I see today?" → here's the list, want me to draft the `[share]:` blocks?
+
+The same read access answers infrastructure questions. "Why did this get a 403?" — pull the CloudFront log, find the request ID, check the edge-auth Lambda log, find the rejection reason. "Is `/w/` wired up?" — check the distribution config. One question, one answer.
+
+All reads. The AI doesn't need write access to AWS. It reads logs, reads config, reads state. The writes happen from your devices through the auth chain, or from your editor through git. The AI connects the dots.
+
+## The `[share]:` block
+
+The block is the glue between the log entry and the post. The block starts with the metadata from the capture. The `src:` fills in when the image publishes. The post builds when the block is complete.
+
+```markdown
+[share]:
+type: image
+file: IMG_4521.HEIC
+captured: 2026-05-23T12:15:00
+caption: creek trail
+src:
+```
+
+Placeholder until published. The AI can generate these from the capture logs — "here are your three captures from today, I've drafted the blocks, which ones go in this post?"
+
+[kiro]:
+spec: [share](../../.kiro/specs/share/README.md)
 
 [claude]:
 session: 2026-05-23
 plan: .claude/plans/tender-bubbling-crystal.md
 
-Phase 1 — [share]: block renderer in lib/posts.ts (follows [design]: pattern), CSS placeholder, blocks.md entry, iOS Shortcut (JWT from Keychain, query string POST to /w/share/add?).
-Phase 2 — Mac Shortcut with openssl signing (private key in Keychain, Touch ID), public key in scripts/share-public-key.pem, Lambda for /w/share/upload (no ?), stores to S3 /shares/.
-Phase 3 — native iOS/macOS SwiftUI app, Secure Enclave, replaces Shortcuts.
-CF function already handles /w/*?* → 202. No changes needed for Phase 1.
+Phase 1 — [share]: block renderer in lib/posts.ts (follows [design]: pattern), CSS placeholder, blocks.md entry, iOS Shortcut (minted JWT + time-hash, query string POST to /w/share/add?). CF function for /w/*?* → 202.
+Phase 2 — Mac script with Keychain secret + Touch ID. Lambda for /w/share/upload (no ?), stores to S3 /shares/. Edge-auth updated to verify minted JWTs alongside Cognito.
+Phase 3 — Passkeys for browser writes. Native iOS/macOS app with Secure Enclave. hashme service for web clients.
+Phase 4 — MCP server (read-only AWS + GitHub, Touch ID on startup). Query captures, trace 403s, check infra state. The AI reads, you write.
 
 [journey]:
 prev: travel-capture
-This is the evolution of travel-capture.md — that post was the vague-thought, this is the design session. The key shift: two trust tiers mapped to the two /w/ paths (?=batch=low trust, no ?=Lambda=high trust). The field capture and publish flows are the same distinction. The Mac openssl signing with a public key in the repo came out of discussing what "real auth" looks like without writing an app. The iOS app is the long-term destination, the Shortcut is the prototype.
+This is the evolution of travel-capture.md — that post was the vague-thought, this is the design session. The key shift from the original: dropped the asymmetric key pair approach in favor of minted JWTs with embedded secrets and time-based hashes. Same verification path for all devices. The two trust tiers remain (?=batch=log only, no ?=Lambda=compute) but the auth is unified. The passkey insight: identity (JWT) is always present, writes require escalation (biometric/time-hash). The /w/ path is a generic write endpoint — share, comments, reactions all use the same pattern. The MCP insight: the AI only needs reads to be useful — logs, config, state. Writes stay on your devices through the auth chain.

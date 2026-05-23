@@ -60,6 +60,35 @@ A capability list at a known URL — like `/mcp/capabilities` — that declares 
 
 Same idea as Plan 9's `/proc` — the filesystem declares what's possible. The namespace *is* the permission model. If it's not in the namespace, it doesn't exist.
 
+## SQLite in the repo
+
+State tracking without infrastructure. A single `state.db` file in the private repo:
+
+```sql
+-- Captures waiting to be published
+CREATE TABLE captures (
+  file TEXT, type TEXT, date TEXT, caption TEXT,
+  logged_at INTEGER, published_at INTEGER, src TEXT
+);
+
+-- Minted tokens (who has access)
+CREATE TABLE tokens (
+  id TEXT, device TEXT, scope TEXT, role TEXT,
+  minted_at INTEGER, expires_at INTEGER, revoked INTEGER DEFAULT 0
+);
+
+-- Deploys
+CREATE TABLE deploys (
+  id TEXT, timestamp INTEGER, commit TEXT, status TEXT
+);
+```
+
+The MCP reads it. The scripts write to it. `mint-token.sh` inserts a row. `share-request.sh` logs the capture. The build step marks captures as published.
+
+Since it's in git — you have history. "When did I revoke Emma's token?" → `git log state.db`. "What captures came in last week?" → query the db. No CloudWatch, no DynamoDB, no running service. Just a file.
+
+The AI queries it directly. `SELECT * FROM captures WHERE published_at IS NULL` — pending captures. `SELECT * FROM tokens WHERE revoked = 0` — active tokens. Standard SQL, no custom tools needed.
+
 [journey]:
 prev: the-url-is-the-log-entry
-While verifying the comment form worked, had to run aws CLI to check the logs. An MCP server would let AI read them directly. Same data, better interface for the conversation workflow.
+While verifying the comment form worked, had to run aws CLI to check the logs. An MCP server would let AI read them directly. Same data, better interface for the conversation workflow. The SQLite idea came from the share system session — track state (captures, tokens, deploys) in a file that git versions and the MCP can query.
