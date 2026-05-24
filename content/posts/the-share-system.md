@@ -16,13 +16,13 @@ That proved the concept. Now here's how the platform works.
 
 ## The tube
 
-`/tube` — input. Data goes in. Anyone with a valid JWT can write. Low consequence.
+`/tube` — input. Data goes in. Anyone can write. Can't stop them.
 
 `/fs` — the filesystem. Everything lives here. Posts, content, requests, results. The tube writes into it. Git writes into it. WebDAV writes into it. `/fs` doesn't care how the files got there.
 
 How much of `/fs` you can see depends on how much I trust you.
 
-POST to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No promises other than I got it. Just a pipe into the filesystem — which might be `/dev/null`.
+POST to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 Noted and a receipt. No promises other than I got it. Just a pipe into the filesystem — which might be `/dev/null`.
 
 The compute happens on the read. GET the receipt location with strong auth triggers processing — and only when someone asks for the result. If nobody checks the receipt, no compute happens. You only pay for processing when it matters.
 
@@ -55,7 +55,7 @@ Out in the world, hit share, tap "Send Tube." The Shortcut sends:
 POST /tube/share/add?type=image&file=IMG_1234.HEIC&date=2026-05-23&caption=temple+gate
 ```
 
-Data is in the URL. CloudFront logs it. Lambda writes the request to S3. 202, receipt. No body, no upload. The photo stays in iCloud. The log is the breadcrumb: "this one mattered, at this time." Result is in `/fs`.
+Data is in the URL. CloudFront logs it. Lambda writes the request to S3. 202 Noted. No body, no upload. The photo stays in iCloud. The log is the breadcrumb: "this one mattered, at this time." Result is in `/fs`.
 
 ## The example: publish
 
@@ -82,7 +82,7 @@ Same tube. Same contract. The body is the only difference.
 
 One tube. The path after `/tube/` is a tag, not a route. Same contract for everything:
 
-- POST data in → get receipt → 202
+- POST data in → 202 Noted, receipt
 - 503 + receipt → "not sure what happened, but here's your receipt — check it"
 - 503, no receipt → retry
 - No body + 503 → don't care, data is in the URL, it's logged
@@ -129,7 +129,7 @@ Give a man a JWT and I'll call Lambda. The JWT gates compute. The time-hash gate
 
 ## The auth model
 
-Assume every layer is broken. I wrote the code — it will break. If your goal is to keep them out, you will fail. The goal is to make it matter less when it breaks. You can't trust any crypto layer — that's why the architecture doesn't depend on it. The auth classifies the request. The forks beyond it decide what that classification can do.
+Assume every layer is broken. I wrote the code — it will break. If your goal is to keep them out, you will fail. The goal is to make it matter less when it breaks. I can't trust any crypto layer — I wrote that too. The auth classifies the request. The forks beyond it decide what that classification can do.
 
 This is a personal site. We just need pretty good auth, not perfect auth. No token server, no refresh flow, no session database.
 
@@ -153,8 +153,8 @@ The time-hash proves the device has the secret *right now*. Can't replay an old 
 The more you have, the more I trust you:
 
 - No JWT → 404, logged only
-- Valid JWT (plain) → request to S3, no body, 202
-- Encrypted JWT (mine) → request + body to S3, 202
+- Valid JWT (plain) → request to S3, no body, 202 Noted
+- Encrypted JWT (mine) → request + body to S3, 202 Noted
 - Encrypted JWT + time-hash → triggers processing, output end opens
 
 ### Forks in the road
