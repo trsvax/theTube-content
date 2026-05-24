@@ -22,7 +22,7 @@ That proved the concept. Now here's how the platform works.
 
 How much of `/fs` you can see depends on how much I trust you.
 
-PUT to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No processing, no validation, no opinions about what you sent. Just a pipe into the filesystem.
+POST to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No processing, no validation, no opinions about what you sent. Just a pipe into the filesystem.
 
 The compute happens on the read. GET the receipt location with strong auth triggers processing — and only when someone asks for the result. If nobody checks the receipt, no compute happens. You only pay for processing when it matters.
 
@@ -82,7 +82,7 @@ Same tube. Same contract. The body is the only difference.
 
 One pipe. The path after `/tube/` is a tag, not a route. Same contract for everything:
 
-- PUT data in → get receipt → 202
+- POST data in → get receipt → 202
 - 503 + receipt → "not sure what happened, ball is in your court"
 - No body + 503 → don't care, data is in the URL, it's logged
 - Body + 503 → retry, the body might be lost
