@@ -10,7 +10,7 @@ summary: How theTube works — /tube is input, /fs is output, auth gates the out
 workflow: draft
 ---
 
-In [Travel Capture](./travel-capture.md) I described the problem: you take a photo while traveling, you forget why it mattered by the time you're back at the machine. The prototype was a URL and a log entry — share the intent, grep the logs later.
+In [Travel Capture](./travel-capture.md) I described the problem: take a photo while traveling, forget why it mattered by the time I'm back at the machine. The prototype was a URL and a log entry — share the intent, grep the logs later.
 
 That proved the concept. Now here's how the platform works.
 
@@ -59,7 +59,7 @@ Data is in the URL. CloudFront logs it. Lambda writes the request to S3. 202 Not
 
 ## The example: publish
 
-Back at the machine. Edited the photo. Share the finished version — this time with a body. Lambda writes request + body to S3. The body landing triggers the next Lambda, which stores the image at its final URL. The `[share]:` block gets a `src:`.
+Back at the machine. Edit the photo. Share the finished version — this time with a body. Lambda writes request + body to S3. The body landing triggers the next Lambda, which stores the image at its final URL. The `[share]:` block gets a `src:`.
 
 ```markdown
 [share]:
@@ -88,7 +88,7 @@ One tube. The path after `/tube/` is a tag, not a route. Same contract for every
 - No body + 503 → don't care, data is in the URL, it's logged
 - Body + 503 → check the receipt location to know for sure, retry if it's not there
 
-The 202 includes `Location: /fs/{path}/{requestId}` — where to find the result when it's ready.
+The 202 Noted includes `Location: /fs/{path}/{requestId}` — where to find the result when it's ready.
 
 Don't like this contract? Use `/fs` directly. Full WebDAV. Read, write, list. You know where things are, you control the structure. The tube is just one way data gets into the filesystem.
 
@@ -111,7 +111,7 @@ CloudFront logs give you timestamp, IP, user-agent, and edge location on every r
 The whole system is four pieces:
 
 1. CF function at `/tube/*` — checks JWT, routes to Lambda or returns 404
-2. Lambda (the tube) — writes request + body to S3, returns 202 + receipt
+2. Lambda (the tube) — writes request + body to S3, returns 202 Noted
 3. iOS Shortcut with JWT — "Send Tube"
 4. MCP server reads `/fs` — "what did I capture?"
 
