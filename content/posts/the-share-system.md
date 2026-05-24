@@ -16,16 +16,15 @@ That proved the concept. Now here's how the platform works.
 
 ## The tube
 
-The tube has two ends:
+`/tube` — input. Data goes in. Anyone with a valid JWT can write. Low consequence.
 
-- `/tube` — input. Data goes in. Anyone with a valid JWT can write. Low consequence.
-- `/fs` — output. Data comes out. Strong auth. That's where compute and results live.
+`/fs` — the filesystem. Everything lives here. Posts, content, requests, results. The tube writes into it. Git writes into it. WebDAV writes into it. `/fs` doesn't care how the files got there.
 
-How much you can see at the output end depends on how much I trust you.
+How much of `/fs` you can see depends on how much I trust you.
 
-PUT to `/tube` is always dumb. It stores what you sent — request metadata to S3, body to S3 if there is one. Returns 202 and a receipt (the request ID). No processing, no validation, no opinions about what you sent. Just a pipe.
+PUT to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No processing, no validation, no opinions about what you sent. Just a pipe into the filesystem.
 
-The compute happens on the read. GET `/request/{requestId}` with strong auth triggers processing — and only when someone asks for the result. If nobody checks the receipt, no compute happens. You only pay for processing when it matters.
+The compute happens on the read. GET the receipt location with strong auth triggers processing — and only when someone asks for the result. If nobody checks the receipt, no compute happens. You only pay for processing when it matters.
 
 The name was always the architecture.
 
@@ -90,7 +89,7 @@ One pipe. The path after `/tube/` is a tag, not a route. Same contract for every
 
 The 202 includes `Location: /fs/{path}/{requestId}` — where to find the result when it's ready.
 
-Don't like this contract? Use `/fs`. Full WebDAV. Read, write, list. You know where things are, you control the structure.
+Don't like this contract? Use `/fs` directly. Full WebDAV. Read, write, list. You know where things are, you control the structure. The tube is just one way data gets into the filesystem.
 
 ## App isolation
 
