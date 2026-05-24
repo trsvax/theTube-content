@@ -22,7 +22,7 @@ That proved the concept. Now here's how the platform works.
 
 How much of `/fs` you can see depends on how much I trust you.
 
-POST to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No processing, no validation, no opinions about what you sent. Just a pipe into the filesystem.
+POST to `/tube` is always dumb. It stores what you sent — request metadata to `/fs`, body to `/fs` if there is one. Returns 202 and a receipt (the request ID). No promises other than I got it. Just a pipe into the filesystem — which might be `/dev/null`.
 
 The compute happens on the read. GET the receipt location with strong auth triggers processing — and only when someone asks for the result. If nobody checks the receipt, no compute happens. You only pay for processing when it matters.
 
@@ -55,7 +55,7 @@ Out in the world, hit share, tap "Send Tube." The Shortcut sends:
 POST /tube/share/add?type=image&file=IMG_1234.HEIC&date=2026-05-23&caption=temple+gate
 ```
 
-Data is in the URL. CloudFront logs it. Lambda writes the request to S3. 202, receipt. No body, no upload. The photo stays in iCloud. The log is the breadcrumb: "this one mattered, at this time."
+Data is in the URL. CloudFront logs it. Lambda writes the request to S3. 202, receipt. No body, no upload. The photo stays in iCloud. The log is the breadcrumb: "this one mattered, at this time." Result is in `/fs`.
 
 ## The example: publish
 
@@ -80,12 +80,13 @@ Same tube. Same contract. The body is the only difference.
 /tube/react/add?...     → like/bookmark
 ```
 
-One pipe. The path after `/tube/` is a tag, not a route. Same contract for everything:
+One tube. The path after `/tube/` is a tag, not a route. Same contract for everything:
 
 - POST data in → get receipt → 202
-- 503 + receipt → "not sure what happened, ball is in your court"
+- 503 + receipt → "not sure what happened, but here's your receipt — check it"
+- 503, no receipt → retry
 - No body + 503 → don't care, data is in the URL, it's logged
-- Body + 503 → retry, the body might be lost
+- Body + 503 → check the receipt location to know for sure, retry if it's not there
 
 The 202 includes `Location: /fs/{path}/{requestId}` — where to find the result when it's ready.
 
@@ -95,7 +96,7 @@ Don't like this contract? Use `/fs` directly. Full WebDAV. Read, write, list. Yo
 
 The path is the namespace. `/tube/share/add` writes to `share/add/{requestId}` in S3. `/tube/comments/add` writes to `comments/add/{requestId}`. Each prefix has its own S3 event notification, its own processor Lambda.
 
-The pipe Lambda is shared — and so dumb it can't be exploited. It just writes `{path}/{requestId}` and walks away.
+The pipe Lambda is shared — dumb as `cat`. It just writes `{path}/{requestId}` and walks away.
 
 Each processor Lambda is scoped to its own prefix. The share processor can't touch comments data. The comments processor can't touch share data. They don't know each other exists. If one crashes, the others keep working.
 
@@ -107,10 +108,10 @@ CloudFront logs give you timestamp, IP, user-agent, and edge location on every r
 
 ## The MVP
 
-This is why you think before coding. The whole system is four pieces:
+The whole system is four pieces:
 
 1. CF function at `/tube/*` — checks JWT, routes to Lambda or returns 404
-2. Lambda (the pipe) — writes request + body to S3, returns 202 + receipt
+2. Lambda (the tube) — writes request + body to S3, returns 202 + receipt
 3. iOS Shortcut with JWT — "Send Tube"
 4. MCP server reads `/fs` — "what did I capture?"
 
@@ -128,7 +129,7 @@ Give a man a JWT and I'll call Lambda. The JWT gates compute. The time-hash gate
 
 ## The auth model
 
-Assume every layer is broken. I wrote the code — it will fail. If your goal is to keep them out, you will fail. The goal is to make it matter less when it breaks. You can't trust any crypto layer — that's why the architecture doesn't depend on it. The auth classifies the request. The forks beyond it decide what that classification can do.
+Assume every layer is broken. I wrote the code — it will break. If your goal is to keep them out, you will fail. The goal is to make it matter less when it breaks. You can't trust any crypto layer — that's why the architecture doesn't depend on it. The auth classifies the request. The forks beyond it decide what that classification can do.
 
 This is a personal site. We just need pretty good auth, not perfect auth. No token server, no refresh flow, no session database.
 
