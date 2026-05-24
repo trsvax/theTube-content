@@ -88,7 +88,21 @@ One pipe. The path after `/tube/` is a tag, not a route. Same contract for every
 - No body + 503 → don't care, data is in the URL, it's logged
 - Body + 503 → retry, the body might be lost
 
+The 202 includes `Location: /fs/{path}/{requestId}` — where to find the result when it's ready.
+
 Don't like this contract? Use `/fs`. Full WebDAV. Read, write, list. You know where things are, you control the structure.
+
+## App isolation
+
+The path is the namespace. `/tube/share/add` writes to `share/add/{requestId}` in S3. `/tube/comments/add` writes to `comments/add/{requestId}`. Each prefix has its own S3 event notification, its own processor Lambda.
+
+The pipe Lambda is shared — and so dumb it can't be exploited. It just writes `{path}/{requestId}` and walks away.
+
+Each processor Lambda is scoped to its own prefix. The share processor can't touch comments data. The comments processor can't touch share data. They don't know each other exists. If one crashes, the others keep working.
+
+And each processor can do whatever it needs. The share processor just writes `{requestId}.result` — a file. The comments processor could talk to a database if you wanted real-time. The reactions processor could be a single counter increment. The platform doesn't have opinions about what processors do. It just delivers the request and lets each app handle it however it wants.
+
+The tube is the contract. What happens at the end of the tube is up to you.
 
 CloudFront logs give you timestamp, IP, user-agent, and edge location on every request for free. I didn't design any of that. It's just there.
 
