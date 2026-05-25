@@ -31,11 +31,11 @@ CloudFront logs the URL — path and query string. Not the body. That's the whol
 | `?` present | Query string | CloudFront logs it automatically |
 | No `?` | Body | Lambda saves it to S3 |
 
-The `?` decides where the data lands, not whether compute happens. Compute is gated by the JWT — present JWT triggers Lambda regardless of `?`. The `?` is secondary: data in the URL means CloudFront logs it for free; data in the body means Lambda saves it.
+Trust model: JWT present → Lambda spins up to verify and decide. No JWT → endpoint doesn't exist. The `?` is about data format only — it doesn't determine whether compute runs.
 
-**Use `?` (fire and forget)** when the data is safe to log and there's no body. Metadata, events, captures. CloudFront logs the full URL, returns 202, done.
+**Use `?`** when the data is safe to log and there's no body. The URL is the record. Lambda verifies the JWT and reads intent from what CloudFront already logged.
 
-**Use body** when data shouldn't be in the logs (PII, sensitive content), when you have a file to store, or when you need JWT verification — CF Functions can check header presence but can't verify signatures.
+**Use body** when you have a file to store, or when the data shouldn't be in the logs (PII, sensitive content). Lambda verifies the JWT and saves the body to S3.
 
 ```
 POST /tube/share/add?type=image&file=IMG_1234.HEIC   → CloudFront logs URL, 202

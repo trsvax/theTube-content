@@ -42,9 +42,9 @@ The token is a file descriptor. It carries: which namespace, what permissions, h
 POST /tube/comment/add?page={uuid}&body=hello&token={token}
 ```
 
-The `?` means the data is self-contained in the URL. The cheapest handler (log and 202) is sufficient. No compute required. Data never lost.
+The `?` means the data is in the URL. CloudFront logs it. Lambda verifies the JWT and reads intent from what was logged.
 
-No `?` means the data is in the body. Requires Lambda. Might 503. You opted into compute — you accept the failure mode.
+No `?` means the data is in the body. Lambda verifies the JWT and saves the body to S3. Either way: JWT present → Lambda runs. The `?` decides data format, not whether compute happens.
 
 POST because CloudFront must not cache writes. Every request hits the function. Every request gets logged.
 
