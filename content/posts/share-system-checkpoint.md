@@ -17,7 +17,7 @@ The share system has a working capture path. Time to stop and look at the whole 
 **Capture from Mac:**
 ```
 share-request.sh capture --type image --file IMG_TEST_001.HEIC --date 2026-05-24 --caption "testing"
-→ POST /w/share/add?type=image&file=IMG_TEST_001.HEIC&date=2026-05-24&caption=testing
+→ POST /tube/share/add?type=image&file=IMG_TEST_001.HEIC&date=2026-05-24&caption=testing
 → 202
 ```
 
@@ -29,7 +29,7 @@ sync_captures(date: "2026-05-24")
 → Scanned 47 log files, found 1 share entry, added 1 new capture
 ```
 
-Reads S3 logs, extracts `/w/share/` entries, stores to SQLite. Tracks which log files have been processed. Idempotent — re-run skips already-synced files.
+Reads S3 logs, extracts `/tube/share/` entries, stores to SQLite. Tracks which log files have been processed. Idempotent — re-run skips already-synced files.
 
 **Query:**
 ```
@@ -41,7 +41,7 @@ The AI reads SQLite, tells you what you captured. That's the UI.
 
 ## Design decisions (locked in)
 
-**Per-app CF functions.** `/w/` is the mount point. Each app owns its namespace and routing. Share has `cf-share.js` on a `/w/share/*` behavior. The default (`cf-short-urls.js`) catches anything without its own behavior — query string → 202.
+**Per-app CF functions.** `/tube/` is the mount point. Each app owns its namespace and routing. Share has `cf-share.js` on a `/tube/share/*` behavior. The default (`cf-short-urls.js`) catches anything without its own behavior — query string → 202.
 
 **Auth is part of the path contract.** No Authorization header → 404. The path doesn't exist without auth. Not security (can't verify at the edge), but the endpoint is invisible to anything that doesn't know the protocol.
 
@@ -56,7 +56,7 @@ The AI reads SQLite, tells you what you captured. That's the UI.
 ```
 Phone/Mac                    CloudFront                     S3
     │                            │                          │
-    ├─ POST /w/share/add?...  ──→│                          │
+    ├─ POST /tube/share/add?...  ──→│                          │
     │   (Authorization: Bearer)  │                          │
     │                            ├─ cf-share.js             │
     │                            │   auth header? → 202     │
@@ -65,7 +65,7 @@ Phone/Mac                    CloudFront                     S3
     │                            ├─ logs request ──────────→│ thetube-today-logs/
     │                            │                          │
     │                            │                          │
-    ├─ POST /w/share/upload  ───→│                          │
+    ├─ POST /tube/share/upload  ──→│                          │
     │   (body: image)            ├─ cf-share.js             │
     │                            │   no qs → pass through   │
     │                            │         → Lambda ───────→│ /shares/{date}-{hash}.jpg
@@ -85,7 +85,7 @@ MCP proxy (local)                                           │
 
 ## What's decided but not built
 
-**Lambda for `/w/share/upload`:**
+**Lambda for `/tube/share/upload`:**
 - CF function passes through (no query string → origin)
 - Lambda reads Authorization + X-Pass + X-Timestamp headers
 - Verifies: decode JWT → get secret → SHA256(secret + timestamp) → compare → ±30s window → check scope
@@ -98,7 +98,7 @@ The verification logic is proven in `verify-local.sh`. The Lambda is that script
 - Same auth: JWT in a text field, secret in a text field
 - Shortcuts has native "Generate Hash" (SHA256)
 - Concatenate secret + timestamp → hash → X-Pass header
-- POST to `/w/share/add?type=...&file=...&date=...&caption=...`
+- POST to `/tube/share/add?type=...&file=...&date=...&caption=...`
 - Same endpoint, same 202, same log entry
 
 **`[share]:` block renderer:**
@@ -125,9 +125,9 @@ Probably: images at `/shares/` are public (they're just images). Access control 
 
 **3. CloudFront behavior for Lambda origin?**
 
-The `/w/share/*` behavior currently points to the S3 origin. When the Lambda exists, requests without a query string need to route to a Lambda origin instead. Options:
-- Change the `/w/share/*` behavior to point to a Lambda function URL origin
-- Add a separate `/w/share/upload` behavior pointing to Lambda
+The `/tube/share/*` behavior currently points to the S3 origin. When the Lambda exists, requests without a query string need to route to a Lambda origin instead. Options:
+- Change the `/tube/share/*` behavior to point to a Lambda function URL origin
+- Add a separate `/tube/share/upload` behavior pointing to Lambda
 - Use Lambda@Edge on the existing behavior
 
 Lambda function URL as origin is simplest. One behavior, CF function decides what gets through, Lambda handles what arrives.

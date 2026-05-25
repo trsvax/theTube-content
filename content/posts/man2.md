@@ -18,13 +18,13 @@ The platform has a POSIX surface. Not because someone planned it — because fil
 
 | Syscall | Platform | What happens |
 |---|---|---|
-| `open()` | `POST /w/open?ns={ns}` | Get a token. Checks permissions. Returns a scoped handle. |
-| `write()` | `POST /w/{ns}/{verb}?...` | Write data. Token required. 202 = accepted. |
+| `open()` | `POST /tube/open?ns={ns}` | Get a token. Checks permissions. Returns a scoped handle. |
+| `write()` | `POST /tube/{ns}/{verb}?...` | Write data. Token required. 202 = accepted. |
 | `read()` | `GET /{path}` | Fetch a file. Cached at the edge. |
 | `readdir()` | `GET /{path}/index.json` | List a directory. Static file or Lambda-generated. |
 | `stat()` | `HEAD /{path}` | Metadata. Last-Modified, Content-Length, ETag. |
 | `close()` | Token expires | Implicit. No explicit close. |
-| `unlink()` | `POST /w/{ns}/delete?...` | Soft delete. Writes a tombstone. Log has history. |
+| `unlink()` | `POST /tube/{ns}/delete?...` | Soft delete. Writes a tombstone. Log has history. |
 | `chmod()` | IAM + CloudFront behaviors | Change who can access a path. |
 | `fork()` | New repo | Isolated process. Own namespace, own Lambda, own permissions. |
 
@@ -39,7 +39,7 @@ The token is a file descriptor. It carries: which namespace, what permissions, h
 ## write() is POST
 
 ```
-POST /w/comment/add?page={uuid}&body=hello&token={token}
+POST /tube/comment/add?page={uuid}&body=hello&token={token}
 ```
 
 The `?` means the data is self-contained in the URL. The cheapest handler (log and 202) is sufficient. No compute required. Data never lost.
@@ -102,8 +102,8 @@ The upgrade path is always: same URL, smarter backend. No client changes. No API
 Each namespace is a process. Own repo, own Lambda, own IAM, own S3 prefix. Can't touch other namespaces.
 
 ```
-/w/comment/*  → comment repo → comment Lambda → s3://bucket/comments/*
-/w/contact/*  → contact repo → contact Lambda → s3://bucket/contact/*
+/tube/comment/*  → comment repo → comment Lambda → s3://bucket/comments/*
+/tube/contact/*  → contact repo → contact Lambda → s3://bucket/contact/*
 ```
 
 A bad deploy breaks one namespace. Everything else keeps working. Blast radius = repo scope. That's `fork()` — isolated address spaces with no shared memory.

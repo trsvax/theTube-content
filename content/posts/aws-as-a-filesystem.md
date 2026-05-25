@@ -55,10 +55,10 @@ WebDAV verbs map to filesystem operations:
 
 ## The auth
 
-Same as everything else on `/w/`. Minted JWT in the header, edge-auth verifies, Lambda serves. The IAM role on the Lambda is read-only — even if something goes wrong, it can't mutate anything.
+Same as everything else on `/tube/`. Minted JWT in the header, edge-auth verifies, Lambda serves. The IAM role on the Lambda is read-only — even if something goes wrong, it can't mutate anything.
 
 ```
-/w/share/add?...  → write (log and 202)
+/tube/share/add?...  → write (log and 202)
 /proc/lambda/     → read (list functions)
 /proc/cf/         → read (distribution config)
 /proc/logs/       → read (recent events)
@@ -90,7 +90,7 @@ Each layer builds on the same foundation: read-only AWS access, IAM-gated, auth'
 
 With `/proc` mounted, the AI doesn't need custom MCP tools. It reads files. It already knows how to do that.
 
-"Is `/w/` wired up?" → `cat /proc/cf/E2DMNPNLN0VAQM/behaviors`
+"Is `/tube/` wired up?" → `cat /proc/cf/E2DMNPNLN0VAQM/behaviors`
 "Why did this get a 403?" → `grep 403 /proc/cf/logs/2026-05-23`
 "What Lambda functions exist?" → `ls /proc/lambda/`
 

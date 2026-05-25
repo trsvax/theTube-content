@@ -33,7 +33,7 @@ The domain is the namespace. Everything mounts under it:
 ```
 thetube.today/                 → homepage (UI)
 thetube.today/a/...            → aliases/redirects
-thetube.today/w/...            → writes (CloudFront Function)
+thetube.today/tube/...         → writes (CloudFront Function)
 thetube.today/public/posts/... → public content (S3)
 thetube.today/user/posts/...   → user content (S3, auth required)
 thetube.today/books/...        → S3

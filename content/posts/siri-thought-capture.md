@@ -16,7 +16,7 @@ On a walk. Have a thought. Don't want to stop and type. Don't want to lose it.
 ## The flow
 
 1. "Hey Siri, thought: contact form is just comments without the post"
-2. Siri Shortcut fires: `POST /w/thought/capture?text=contact+form+is+just+comments+without+the+post&origin=walk`
+2. Siri Shortcut fires: `POST /tube/thought/capture?text=contact+form+is+just+comments+without+the+post&origin=walk`
 3. CloudFront logs it. 202. Done.
 4. Back at the machine: grep the logs for `thought/capture`. Turn the good ones into journal entries.
 
@@ -30,7 +30,7 @@ Apple Watch Ultra — the Action Button maps directly to a Siri Shortcut. Press 
 
 1. Shortcuts app → new shortcut named "thought"
 2. Action: Dictate Text (or take Siri input)
-3. Action: Get Contents of URL → `https://thetube.today/w/thought/capture?text=[dictated text]&origin=watch`
+3. Action: Get Contents of URL → `https://thetube.today/tube/thought/capture?text=[dictated text]&origin=watch`
 4. Done. No app to build. No backend. The shortcut is the app.
 
 ## Why not Apple Notes
@@ -51,7 +51,7 @@ The same shortcut appears in the iOS Share Sheet. Any app that can share text or
 - **Maps** → share a location. `type=place&name=...&lat=...&lng=...`
 - **Voice Memos** → share a recording. `type=audio&title=...` (same — log the event, not the file)
 
-Each type maps to a different URL path: `/w/thought/capture`, `/w/bookmark/capture`, `/w/place/capture`. Or one path with a `type` parameter. Either way — it's a POST, it's logged, grep later.
+Each type maps to a different URL path: `/tube/thought/capture`, `/tube/bookmark/capture`, `/tube/place/capture`. Or one path with a `type` parameter. Either way — it's a POST, it's logged, grep later.
 
 The Share Sheet is the input layer. The log is the storage. The MCP reader is the query layer. Same architecture, different entry point.
 

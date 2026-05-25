@@ -16,7 +16,7 @@ The simple version of comments. No real-time. No pressure. Comments accumulate i
 
 ## The flow
 
-1. Visitor submits comment → `POST /w/comment/add?post=my-post&body=...&name=...`
+1. Visitor submits comment → `POST /tube/comment/add?post=my-post&body=...&name=...`
 2. CloudFront logs it. Returns 202. Done from the visitor's perspective.
 3. You check the logs when you want: `aws s3 cp s3://bucket/logs/latest.gz - | gunzip | grep comment/add` — or ask AI to do it.
 4. Review. Approve the good ones.
@@ -47,4 +47,4 @@ Zero beyond what already exists. The events endpoint is live. CloudFront logs th
 prev: the-log-is-the-event-bus
 The batch processing path applied to comments. The log holds submissions. You review when ready. Approve = write a file. Simple, no spam, no pressure.
 
-2026-05-20: Built it. Comment form submits to `/w/comment/add`, returns 202 in 1ms. Verified in the CloudFront logs — post, body, authenticated user, all captured. Grepped the logs like the 90s. Works.
+2026-05-20: Built it. Comment form submits to `/tube/comment/add`, returns 202 in 1ms. Verified in the CloudFront logs — post, body, authenticated user, all captured. Grepped the logs like the 90s. Works.

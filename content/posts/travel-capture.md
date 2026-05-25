@@ -17,7 +17,7 @@ The problem with travel blogging: you're busy traveling. You see something, take
 Share Sheet → "Save to Tube" → done. One tap while you're still looking at the thing.
 
 ```
-/w/capture/image?description=temple+gate+at+sunset&origin=phone
+/tube/capture/image?description=temple+gate+at+sunset&origin=phone
 ```
 
 The photo stays in iCloud Photos. It's already backed up, already synced, already organized by date and location. You don't upload it anywhere. You just log the intent: "this one matters."
@@ -53,7 +53,7 @@ What you need is a *pointer* — "this photo, at this time, mattered." The event
 A smarter shortcut could extract EXIF metadata before logging:
 
 ```
-/w/capture/image?lat=35.6762&lng=139.6503&ts=2026-05-21T09:30:00Z&description=temple+gate
+/tube/capture/image?lat=35.6762&lng=139.6503&ts=2026-05-21T09:30:00Z&description=temple+gate
 ```
 
 Now the log entry has precise location and time. "Show me everything I flagged in Tokyo" becomes a query, not a memory exercise.
