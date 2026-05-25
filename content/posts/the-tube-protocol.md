@@ -26,16 +26,19 @@ That's the whole protocol. One URL pattern. One verb.
 
 CloudFront logs the URL — path and query string. Not the body. That's the whole driver.
 
-| Request | Where data lands | Who saves it |
-|---|---|---|
-| `?` present | Query string | CloudFront logs it automatically |
-| No `?` | Body | Lambda saves it to S3 |
+| Request     | Where data lands | Who saves it                           |
+| ----------- | ---------------- | -------------------------------------- |
+| `?` present | Query string     | CloudFront logs it automatically       |
+| No `?`      | Body only        | Lambda saves it to S3                  |
+| `?` + body  | Both             | CF logs the URL; Lambda saves the body |
 
-Trust model: JWT present → Lambda spins up to verify and decide. No JWT → endpoint doesn't exist. The `?` is about data format only — it doesn't determine whether compute runs.
+Trust model: JWT present → Lambda spins up to verify and decide. No JWT → endpoint doesn't exist. The `?` is about data format — it signals that data is also in the URL, not that there's no body.
 
-**Use `?`** when the data is safe to log and there's no body. The URL is the record. Lambda verifies the JWT and reads intent from what CloudFront already logged.
+**Use `?`** when you want the data in CloudFront logs. The URL is the record. Lambda verifies the JWT and reads intent from what was logged.
 
 **Use body** when you have a file to store, or when the data shouldn't be in the logs (PII, sensitive content). Lambda verifies the JWT and saves the body to S3.
+
+**Use both** when you want metadata logged and a file saved in one request.
 
 ```
 POST /tube/share/add?type=image&file=IMG_1234.HEIC   → CloudFront logs URL, 202
@@ -96,7 +99,7 @@ The namespace is the security boundary. Each namespace maps to a repo, a Lambda,
 /tube/contact/*  → contact repo          → contact Lambda → can only write s3://bucket/contact/*
 ```
 
-The contract repo declares what the plugin *can* do (the schema). IAM enforces the ceiling. A team with write access to `thetube-comments` can break comments. They can't break contact forms, can't break the main site, can't touch other namespaces.
+The contract repo declares what the plugin _can_ do (the schema). IAM enforces the ceiling. A team with write access to `thetube-comments` can break comments. They can't break contact forms, can't break the main site, can't touch other namespaces.
 
 Blast radius = repo scope. A bad deploy means one namespace returns 503 until they fix it. Everything else keeps working. And the `?` path still captures data even when the Lambda is broken — nothing is lost, it's just slow until the fix ships.
 

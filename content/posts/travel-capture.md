@@ -46,7 +46,7 @@ You didn't design any of that. It's just there because CloudFront logs everythin
 
 This is the key insight. The photo is already in the best photo storage system ever built (iCloud Photos, or Google Photos, or whatever). It's backed up, searchable, organized. You don't need to move it to S3 to write about it.
 
-What you need is a *pointer* — "this photo, at this time, mattered." The event log is that pointer. The photo stays where it is. The blog post references it by URL once you've exported and placed it.
+What you need is a _pointer_ — "this photo, at this time, mattered." The event log is that pointer. The photo stays where it is. The blog post references it by URL once you've exported and placed it.
 
 ## Future: EXIF in the query string
 

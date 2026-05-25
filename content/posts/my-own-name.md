@@ -18,6 +18,7 @@ What I want: one URL. Mine. `thetube.today`. That's the identity. What's behind 
 ## The problem
 
 My stuff is everywhere:
+
 - Code on GitHub
 - Photos in iCloud
 - Posts in S3
@@ -40,7 +41,7 @@ thetube.today/books/...        → S3
 thetube.today/.well-known/...  → S3 (identity, keys)
 ```
 
-The data lives wherever makes sense. Apple can build the photo infrastructure. GitHub can host the repos. AWS can store the files. But the *address* is mine. The namespace is mine. The services are storage backends, not identities.
+The data lives wherever makes sense. Apple can build the photo infrastructure. GitHub can host the repos. AWS can store the files. But the _address_ is mine. The namespace is mine. The services are storage backends, not identities.
 
 ## Plan 9
 

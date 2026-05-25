@@ -146,7 +146,7 @@ Device:  SHA256(secret + timestamp) → X-Pass header
 Lambda:  decode JWT → get secret → SHA256(secret + timestamp) → compare
 ```
 
-The time-hash proves the device has the secret *right now*. Can't replay an old request — the timestamp drifts out of the ±30 second window. The JWT itself is encrypted (JWE) — can't read the claims without the decryption key, so the secret stays hidden even if the token leaks.
+The time-hash proves the device has the secret _right now_. Can't replay an old request — the timestamp drifts out of the ±30 second window. The JWT itself is encrypted (JWE) — can't read the claims without the decryption key, so the secret stays hidden even if the token leaks.
 
 ### What anyone needs
 
@@ -173,12 +173,12 @@ Most roads end in a log file. The only path that reaches "something changed on t
 
 How well-protected is the secret on each device:
 
-| Client | Secret stored in | Protection |
-|--------|-----------------|-------|
-| Mac | Keychain + Touch ID | High — biometric to access |
-| Phone (Shortcut) | Shortcut text field | Medium — phone lock screen |
-| Kid's device | Shortcut, short expiry | Medium, time-bounded |
-| Browser (future) | Cognito + hashme service | Medium |
+| Client           | Secret stored in         | Protection                 |
+| ---------------- | ------------------------ | -------------------------- |
+| Mac              | Keychain + Touch ID      | High — biometric to access |
+| Phone (Shortcut) | Shortcut text field      | Medium — phone lock screen |
+| Kid's device     | Shortcut, short expiry   | Medium, time-bounded       |
+| Browser (future) | Cognito + hashme service | Medium                     |
 
 The phone stores thoughts. The Mac publishes. Touch ID on the Mac isn't friction — it's a finger tap, you're already at the keyboard. Face ID on the phone would add a step to a workflow where the consequence is a log entry. Biometric goes where it's free, not where it hurts.
 

@@ -15,6 +15,7 @@ The share system has a working capture path. Time to stop and look at the whole 
 ## What's proven (working today)
 
 **Capture from Mac:**
+
 ```
 share-request.sh capture --type image --file IMG_TEST_001.HEIC --date 2026-05-24 --caption "testing"
 → POST /tube/share/add?type=image&file=IMG_TEST_001.HEIC&date=2026-05-24&caption=testing
@@ -24,6 +25,7 @@ share-request.sh capture --type image --file IMG_TEST_001.HEIC --date 2026-05-24
 The request hits CloudFront, the CF function returns 202, CloudFront logs the full URL with timestamp, edge location, user-agent. The breadcrumb is dropped.
 
 **Log sync:**
+
 ```
 sync_captures(date: "2026-05-24")
 → Scanned 47 log files, found 1 share entry, added 1 new capture
@@ -32,6 +34,7 @@ sync_captures(date: "2026-05-24")
 Reads S3 logs, extracts `/tube/share/` entries, stores to SQLite. Tracks which log files have been processed. Idempotent — re-run skips already-synced files.
 
 **Query:**
+
 ```
 query_captures(date: "2026-05-24")
 → [{file: "IMG_TEST_001.HEIC", type: "image", date: "2026-05-24", caption: "testing share endpoint"}]
@@ -86,6 +89,7 @@ MCP proxy (local)                                           │
 ## What's decided but not built
 
 **Lambda for `/tube/share/upload`:**
+
 - CF function passes through (no query string → origin)
 - Lambda reads Authorization + X-Pass + X-Timestamp headers
 - Verifies: decode JWT → get secret → SHA256(secret + timestamp) → compare → ±30s window → check scope
@@ -95,6 +99,7 @@ MCP proxy (local)                                           │
 The verification logic is proven in `verify-local.sh`. The Lambda is that script in Node with an S3 put.
 
 **iOS Shortcut ("Save to Tube"):**
+
 - Same auth: JWT in a text field, secret in a text field
 - Shortcuts has native "Generate Hash" (SHA256)
 - Concatenate secret + timestamp → hash → X-Pass header
@@ -102,6 +107,7 @@ The verification logic is proven in `verify-local.sh`. The Lambda is that script
 - Same endpoint, same 202, same log entry
 
 **`[share]:` block renderer:**
+
 - In `lib/posts.ts`, follows the `[design]:` pattern
 - Parses the block, renders placeholder if no `src:`, renders image if `src:` present
 - CSS for the placeholder state
@@ -111,6 +117,7 @@ The verification logic is proven in `verify-local.sh`. The Lambda is that script
 **1. How does `src:` get populated?**
 
 After publish, the Lambda returns a URL. But who writes it back into the markdown? Options:
+
 - The AI does it — you say "publish this" and it runs the upload, gets the URL, edits the post
 - A script does it — `share-request.sh publish` returns the URL, a post-publish hook writes it into the file
 - Manual — you paste it
@@ -126,6 +133,7 @@ Probably: images at `/shares/` are public (they're just images). Access control 
 **3. CloudFront behavior for Lambda origin?**
 
 The `/tube/share/*` behavior currently points to the S3 origin. When the Lambda exists, requests without a query string need to route to a Lambda origin instead. Options:
+
 - Change the `/tube/share/*` behavior to point to a Lambda function URL origin
 - Add a separate `/tube/share/upload` behavior pointing to Lambda
 - Use Lambda@Edge on the existing behavior
@@ -145,6 +153,7 @@ Not needed for the system to work. It's a convenience: Finder mount via WebDAV, 
 ## What's next
 
 Build order, roughly:
+
 1. iOS Shortcut — unlocks capture from the phone, which is the primary use case
 2. `[share]:` block renderer — so captures are visible in posts
 3. Lambda for publish — so images actually land

@@ -31,9 +31,9 @@ Mount it on your Mac. `ls` lists your Lambdas. `cat` reads their config. `grep` 
 
 ## Why Lambda
 
-A local server on your Mac could do this — make SDK calls with your credentials, expose results as files. But Lambda is already *inside* AWS. It doesn't need credentials over the internet. The IAM role is attached directly. It's reading its own system.
+A local server on your Mac could do this — make SDK calls with your credentials, expose results as files. But Lambda is already _inside_ AWS. It doesn't need credentials over the internet. The IAM role is attached directly. It's reading its own system.
 
-Lambda *is* the `/proc`. It's not querying AWS from outside — it's reporting on its own environment.
+Lambda _is_ the `/proc`. It's not querying AWS from outside — it's reporting on its own environment.
 
 ## The protocol
 
@@ -47,11 +47,11 @@ No FUSE, no kernel extensions, no third-party software. Just `mount` and go.
 
 WebDAV verbs map to filesystem operations:
 
-| WebDAV | Filesystem | AWS SDK |
-|--------|-----------|---------|
-| PROPFIND | ls / stat | List* calls |
-| GET | cat / read | Get* calls |
-| PUT | write | (blocked — read-only) |
+| WebDAV   | Filesystem | AWS SDK               |
+| -------- | ---------- | --------------------- |
+| PROPFIND | ls / stat  | List\* calls          |
+| GET      | cat / read | Get\* calls           |
+| PUT      | write      | (blocked — read-only) |
 
 ## The auth
 

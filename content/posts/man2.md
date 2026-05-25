@@ -16,17 +16,17 @@ The platform has a POSIX surface. Not because someone planned it — because fil
 
 ## The syscalls
 
-| Syscall | Platform | What happens |
-|---|---|---|
-| `open()` | `POST /tube/open?ns={ns}` | Get a token. Checks permissions. Returns a scoped handle. |
-| `write()` | `POST /tube/{ns}/{verb}?...` | Write data. Token required. 202 = accepted. |
-| `read()` | `GET /{path}` | Fetch a file. Cached at the edge. |
-| `readdir()` | `GET /{path}/index.json` | List a directory. Static file or Lambda-generated. |
-| `stat()` | `HEAD /{path}` | Metadata. Last-Modified, Content-Length, ETag. |
-| `close()` | Token expires | Implicit. No explicit close. |
-| `unlink()` | `POST /tube/{ns}/delete?...` | Soft delete. Writes a tombstone. Log has history. |
-| `chmod()` | IAM + CloudFront behaviors | Change who can access a path. |
-| `fork()` | New repo | Isolated process. Own namespace, own Lambda, own permissions. |
+| Syscall     | Platform                     | What happens                                                  |
+| ----------- | ---------------------------- | ------------------------------------------------------------- |
+| `open()`    | `POST /tube/open?ns={ns}`    | Get a token. Checks permissions. Returns a scoped handle.     |
+| `write()`   | `POST /tube/{ns}/{verb}?...` | Write data. Token required. 202 = accepted.                   |
+| `read()`    | `GET /{path}`                | Fetch a file. Cached at the edge.                             |
+| `readdir()` | `GET /{path}/index.json`     | List a directory. Static file or Lambda-generated.            |
+| `stat()`    | `HEAD /{path}`               | Metadata. Last-Modified, Content-Length, ETag.                |
+| `close()`   | Token expires                | Implicit. No explicit close.                                  |
+| `unlink()`  | `POST /tube/{ns}/delete?...` | Soft delete. Writes a tombstone. Log has history.             |
+| `chmod()`   | IAM + CloudFront behaviors   | Change who can access a path.                                 |
+| `fork()`    | New repo                     | Isolated process. Own namespace, own Lambda, own permissions. |
 
 ## open() is sudo
 
@@ -42,9 +42,11 @@ The token is a file descriptor. It carries: which namespace, what permissions, h
 POST /tube/comment/add?page={uuid}&body=hello&token={token}
 ```
 
-The `?` means the data is in the URL. CloudFront logs it. Lambda verifies the JWT and reads intent from what was logged.
+The `?` means the data is also in the URL. CloudFront logs it. Lambda verifies the JWT and reads intent from what was logged.
 
-No `?` means the data is in the body. Lambda verifies the JWT and saves the body to S3. Either way: JWT present → Lambda runs. The `?` decides data format, not whether compute happens.
+No `?` means the data is only in the body. Lambda verifies the JWT and saves the body to S3.
+
+Both can coexist — metadata in the query string, file in the body. JWT present → Lambda runs either way.
 
 POST because CloudFront must not cache writes. Every request hits the function. Every request gets logged.
 
@@ -116,7 +118,7 @@ This is a journaling filesystem. The journal (CloudFront access logs) records ev
 
 ## What this means
 
-The platform isn't *like* an operating system. It *is* one. The abstractions map because the problems are the same: naming, permissions, isolation, persistence, caching. The web solved them with URLs, cookies, repos, S3, and CDNs. Same solutions, different names.
+The platform isn't _like_ an operating system. It _is_ one. The abstractions map because the problems are the same: naming, permissions, isolation, persistence, caching. The web solved them with URLs, cookies, repos, S3, and CDNs. Same solutions, different names.
 
 `man 2 open` — get a capability.
 `man 2 write` — use it.

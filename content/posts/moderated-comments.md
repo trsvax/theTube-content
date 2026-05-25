@@ -26,6 +26,7 @@ The simple version of comments. No real-time. No pressure. Comments accumulate i
 ## What "approve" means
 
 Could be:
+
 - A manual step: you run a script that writes approved comments to S3
 - A GitHub issue: the log processor creates an issue per comment, you close it to approve
 - A simple admin page: list pending comments, click to approve
