@@ -35,7 +35,7 @@ Two questions drive the choice: do you want the data in the logs, and do you nee
 
 **Use `?` (fire and forget)** when the data is safe to log and you don't need an immediate result. Metadata, events, captures. CloudFront logs the full URL, returns 202, done. The data is already saved — in the log.
 
-**Use body** when you don't want the data in CloudFront logs (PII, private content), or when you need the body saved to S3 (file uploads). Lambda receives the body and writes it to S3. That's the only "compute" — `s3.putObject`. The pipe Lambda is dumb as `cat`.
+**Use body** when you don't want the data in CloudFront logs (PII, private content), when you need the body saved to S3 (file uploads), or when you need to verify a JWT. CF Functions can check for the presence of an auth header but can't verify the signature — that requires Lambda. The pipe Lambda is dumb as `cat` plus a signature check.
 
 ```
 POST /tube/share/add?type=image&file=IMG_1234.HEIC   → CloudFront logs URL, 202
