@@ -45,7 +45,7 @@ The AI reads SQLite, tells you what you captured. That's the UI.
 
 **Auth is part of the path contract.** No Authorization header → 404. The path doesn't exist without auth. Not security (can't verify at the edge), but the endpoint is invisible to anything that doesn't know the protocol.
 
-**The `?` convention.** Query string = data is self-contained in the URL = log only, no compute. No query string = body needs processing = Lambda. This is a technical constraint (CF Functions can't read bodies) elevated to a design rule. But per-app functions can override it — if share ever needs compute on a `?` request, `cf-share.js` decides that.
+**The `?` convention.** Query string = data lands in the URL, CloudFront logs it automatically. No query string = body, Lambda saves it to S3. JWT gates access either way — without auth, the endpoint doesn't exist. The `?` decides where data lands, not whether compute runs.
 
 **SQLite as working memory.** The MCP proxy owns a SQLite file. Captures, tokens, session notes, synced log tracking. Any AI that connects gets the same state. The source of truth is S3 (logs, files). SQLite is the cache — lose it, re-sync.
 
