@@ -22,25 +22,25 @@ POST /tube/{namespace}/{verb}
 
 That's the whole protocol. One URL pattern. One verb.
 
-## The `?` is the switch
+## The `?` is an app decision
 
-| Request | Guarantee | Default handler | Reliability |
-|---|---|---|---|
-| `?` present | Data is in the URL. Always captured in logs. | CloudFront Function, 202 | Data never lost |
-| No `?` | Data is in the body. Requires compute. | Lambda | Might 503 |
+CloudFront logs the URL — path and query string. Not the body. That's the whole driver.
 
-The `?` means "the data is self-contained in the URL." The cheapest possible handler (log and 202) is sufficient. But nothing stops Lambda from also handling it — the `?` doesn't exclude compute, it just doesn't *require* it.
+| Request | Where data lands | Who saves it |
+|---|---|---|
+| `?` present | Query string | CloudFront logs it automatically |
+| No `?` | Body | Lambda saves it to S3 |
+
+Two questions drive the choice: do you want the data in the logs, and do you need compute?
+
+**Use `?` (fire and forget)** when the data is safe to log and you don't need an immediate result. Metadata, events, captures. CloudFront logs the full URL, returns 202, done. The data is already saved — in the log.
+
+**Use body** when you don't want the data in CloudFront logs (PII, private content), or when you need the body saved to S3 (file uploads). Lambda receives the body and writes it to S3. That's the only "compute" — `s3.putObject`. The pipe Lambda is dumb as `cat`.
 
 ```
-POST /tube/comment/add?post=x&body=hello   → data captured regardless
-POST /tube/comment/add                      → needs Lambda, might fail
+POST /tube/share/add?type=image&file=IMG_1234.HEIC   → CloudFront logs URL, 202
+POST /tube/share/upload                               → Lambda saves body to S3
 ```
-
-The `?` is a data-capture guarantee, not a routing constraint. The server can do whatever it wants with either path. But with a `?`, the data is in the log no matter what — even if Lambda is down, even if nothing processes it yet.
-
-## Why this works at the CDN
-
-CloudFront Functions can see the query string but can't read request bodies. The `?` is the natural boundary between what the function can handle alone and what needs Lambda. If there's a `?`, the function has all the data — it can return 202 without help. No `?` means the data is elsewhere, so it passes through to Lambda@Edge.
 
 ## Why POST
 
