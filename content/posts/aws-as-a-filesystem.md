@@ -22,7 +22,7 @@ What if AWS worked the same way?
 /proc/lambda/thetube-edge-auth/logs/2026-05-23
 /proc/cf/E2DMNPNLN0VAQM/behaviors
 /proc/cf/E2DMNPNLN0VAQM/logs/
-/proc/s3/thetube-shares/2026-05-23-abc123.jpg
+/proc/s3/thetube-shares/K1jaBcDeFgH.jpg
 /proc/cognito/thetube-users/groups
 /proc/route53/thetube.today/records
 ```
