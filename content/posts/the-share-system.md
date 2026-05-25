@@ -157,11 +157,13 @@ The more you have, the more I trust you:
 - Encrypted JWT (mine) → request + body to S3, 202 Noted
 - Encrypted JWT + time-hash → triggers processing, output end opens
 
+For example: `POST /tube/contact` with a plain JWT and a body introducing yourself. Lambda sees a valid but unencrypted token — low trust, no time-hash — stores the body and moves on. No special registration, no form, no contact page. You just need to know the protocol.
+
 ### Forks in the road
 
 And even if auth fails completely — the result is the same: a line in a log file, and there are plenty of those. I'd need AI to even find it. Anyone can write to CloudFront logs — that's true for any site that logs. Every HTTP request is a log entry. The difference is I'm actually reading mine — the AI reads the logs, that's the UI — which means I'd notice the noise. The auth on the input end isn't a security boundary — it's a signal-to-noise optimization.
 
-No compute on the input end means no injection, no escalation, no stored XSS. The data doesn't touch a database, doesn't render anywhere automatically, doesn't trigger a function unless you have strong auth. That's the real security of the capture path — it's a journey with obstacles.
+Lambda runs, but it's isolated — it verifies the JWT and writes to S3. That's all it does. No injection, no escalation, no stored XSS. The data doesn't touch a database, doesn't render anywhere automatically. The blast radius of the input end is: a line in S3. That's the real security of the capture path — it's a journey with obstacles.
 
 And if they reach the compute layer — Lambda is isolated. It writes the body to S3 as `{requestId}`. That's all it does. If you can exploit that, everyone has a problem. The site content flows through git. Different process, different credentials, different blast radius. And there's no database to drop. Can't SQL inject S3. The attack surface that keeps enterprises awake doesn't exist here — it's files at URLs, all the way down.
 
