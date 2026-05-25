@@ -32,11 +32,13 @@ CloudFront logs the URL — path and query string. Not the body. That's the whol
 | No `?`      | Body only        | Lambda saves it to S3                  |
 | `?` + body  | Both             | CF logs the URL; Lambda saves the body |
 
-Trust model: JWT present → Lambda spins up to verify and decide. No JWT → endpoint doesn't exist. The `?` is about data format — it signals that data is also in the URL, not that there's no body.
+Trust model: no JWT → 404, always. JWT present → Lambda verifies and decides. Use an anonymous JWT for public-style captures — valid token, no user identity.
 
-**Use `?`** when you want the data in CloudFront logs. The URL is the record. Lambda verifies the JWT and reads intent from what was logged.
+The 404 is still in the CF logs — CloudFront logs everything. But 202 is the signal that a capture was accepted and is worth processing. 404 is noise: misconfiguration, a probe, a stale client. The anonymous JWT is how you get a 202 without a real user.
 
-**Use body** when you have a file to store, or when the data shouldn't be in the logs (PII, sensitive content). Lambda verifies the JWT and saves the body to S3.
+**Use `?`** when you want the data in CloudFront logs. CF logs the URL, Lambda verifies the JWT and returns 202.
+
+**Use body** when you have a file to store, or when the data shouldn't be in the logs. Lambda verifies JWT and saves to S3.
 
 **Use both** when you want metadata logged and a file saved in one request.
 
