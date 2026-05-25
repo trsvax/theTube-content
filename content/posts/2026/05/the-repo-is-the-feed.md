@@ -2,7 +2,8 @@
 title: The Repo Is the Feed
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: GitHub already generates an Atom feed of commits. The raw file URL is always current. The API lists all posts. Any service that can read GitHub can subscribe — no RSS generation, no separate feed file, no build artifact.
 workflow: published
 ---

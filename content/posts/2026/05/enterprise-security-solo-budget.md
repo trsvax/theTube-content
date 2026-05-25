@@ -2,7 +2,8 @@
 title: Enterprise Security on a Solo Developer Budget
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Dependabot, Copilot Autofix, scheduled scans, and supply chain protection — zero ongoing manual work.
 issueNumber: 6
 workflow: published

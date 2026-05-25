@@ -2,7 +2,8 @@
 title: Doug McIlroy Would Recognize It
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Unix got it right in 1969. Small tools, text streams, compose at the shell. The web spent 50 years building walls around that idea. Markdown files and git repos are building it back.
 issueNumber: 68
 discussionNumber: 70

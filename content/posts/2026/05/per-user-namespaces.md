@@ -3,7 +3,7 @@ title: Per-User Namespaces
 date: 2026-05-18
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: Plan 9's per-process namespaces on a CDN. The edge picks the right site.json per role. Each user sees a different filesystem. Static files, fully cacheable.
 workflow: published

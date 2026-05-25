@@ -2,7 +2,8 @@
 title: What Earns a Repo
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Content got one. Design is next. The question isn't "should this be a repo" — it's "does this evolve independently." Tags, callouts, auth roles. The pipe has more joints than it looks.
 workflow: published
 ---

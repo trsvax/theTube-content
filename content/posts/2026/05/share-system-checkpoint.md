@@ -3,7 +3,7 @@ title: "Share System: Checkpoint"
 date: 2026-05-24
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: journaling
 coffee: 1
 summary: Design review checkpoint. The capture path works end-to-end. Documenting what's proven, what's decided, and what's still open before building the rest.

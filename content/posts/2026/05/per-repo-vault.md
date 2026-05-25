@@ -4,7 +4,6 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: qed
 coffee: 0
 origin: walk
 summary: One encrypted file per repo. One script to show credentials. openssl and a password. No secrets manager, no service, no monthly cost.

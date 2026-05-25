@@ -3,7 +3,7 @@ title: Per-Repo IAM
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: Each repo that deploys to S3 should have its own IAM credentials scoped to its path. Least privilege. If creds leak, blast radius is one prefix.

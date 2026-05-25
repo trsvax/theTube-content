@@ -2,7 +2,8 @@
 title: HTML Is Assembly
 date: 2026-05-16
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Markdown is nothing like HTML to a human writer. That's the point. The web's instruction set is the wrong level for writing.
 workflow: published
 ---

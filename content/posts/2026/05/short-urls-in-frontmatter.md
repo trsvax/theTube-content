@@ -3,6 +3,7 @@ title: Short URLs in the Frontmatter
 date: 2026-05-12
 tags: [tech]
 audience: public
+type: post
 shortSlug: su
 summary: A short URL in a post's frontmatter, a CloudFront function generated at build time. No third-party service, no database, no link rot.
 workflow: published

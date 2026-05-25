@@ -2,8 +2,9 @@
 title: Markdown Is More Extensible Than XML
 date: 2026-05-15
 tags: [tech]
+audience: public
 summary: XML was designed to be extensible and made it hard. Markdown wasn't designed to be extensible and made it easy.
-type: draft
+type: journal
 workflow: published
 ---
 

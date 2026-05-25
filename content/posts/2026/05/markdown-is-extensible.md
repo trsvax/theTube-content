@@ -2,7 +2,8 @@
 title: Markdown Is Extensible
 date: 2026-05-16
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: The [] callout notation is already a content protocol. The post declares slots. Other sources fill them. You don't have to implement all the slots upfront — empty ones are invisible.
 workflow: published
 ---

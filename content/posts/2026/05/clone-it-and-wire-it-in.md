@@ -2,7 +2,8 @@
 title: Clone It and Wire It In
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: If someone builds a better tag taxonomy, a recipe callout set, a minimal design theme — you clone their repo and point your build at it. No npm. No negotiation. The format agreement is the interface.
 workflow: published
 ---

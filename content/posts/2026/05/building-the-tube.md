@@ -3,6 +3,7 @@ title: Building theTube
 date: 2026-05-11
 tags: [tech]
 audience: public
+type: post
 summary: How I built this blog — static site, real auth, role-based content, no server.
 workflow: published
 ---

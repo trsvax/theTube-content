@@ -3,7 +3,7 @@ title: Hotel Booking Without a Server
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: A hotel booking system built on files at URLs. The only transaction is a DynamoDB conditional write. Everything else is static files and events.
 workflow: published

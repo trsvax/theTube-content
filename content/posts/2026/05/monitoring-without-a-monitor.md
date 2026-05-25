@@ -3,7 +3,7 @@ title: Monitoring Without a Monitor
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: Route 53 pings the URL. The browser reports errors to the log. Lambda@Edge failures show up in CloudFront access logs. No Datadog, no Prometheus. Just config.
 workflow: published

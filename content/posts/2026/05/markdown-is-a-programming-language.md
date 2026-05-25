@@ -2,7 +2,8 @@
 title: Markdown Is a Programming Language
 date: 2026-05-14
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: The Actions are the compiler. The markdown is the source. The syntax you define is the language.
 issueNumber: 34
 discussionNumber: 36

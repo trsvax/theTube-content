@@ -3,7 +3,7 @@ title: The GraphQL Contract
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 1
 summary: Client sends operationName + data. The query lives in the repo. The repo is the schema. Leverage existing specs instead of inventing new ones.

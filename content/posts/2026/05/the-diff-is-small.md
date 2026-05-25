@@ -2,7 +2,8 @@
 title: The Diff Is Small
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: When concerns are separated into repos, the pull request is small. A tag color change is one line in one file in the tags repo. Not a PR against a monorepo where the reviewer has to figure out what changed and why.
 workflow: published
 ---

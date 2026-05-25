@@ -3,7 +3,7 @@ title: Don't Fight the Lego Blocks
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: Use the pieces the way they want to be used. The architecture that works is the one that fits the services, not the one that forces them into a shape they resist.
 workflow: published

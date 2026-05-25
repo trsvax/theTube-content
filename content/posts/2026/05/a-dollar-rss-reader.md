@@ -2,6 +2,8 @@
 title: A $1 RSS Reader You Actually Own
 date: 2026-05-16
 tags: [tech]
+audience: public
+type: journal
 summary: No ads, no tracking, no algorithm. Your reading history in S3, queryable forever, with an MCP server for free.
 workflow: draft
 ---

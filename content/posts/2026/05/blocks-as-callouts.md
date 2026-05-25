@@ -3,7 +3,7 @@ title: Blocks as Callouts
 date: 2026-05-23
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: journaling
 coffee: 1
 summary: A block isn't just a rendering hint. It's a work assignment. [design]: briefs a designer. [kiro]: briefs Kiro. [claude]: briefs Claude.

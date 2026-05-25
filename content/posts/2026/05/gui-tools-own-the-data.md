@@ -2,7 +2,8 @@
 title: GUI Tools Own the Data
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Squarespace owns your content. Substack owns your subscribers. Notion owns your notes. The GUI is the lock-in mechanism. The pipe doesn't own anything — it's just files, and files predate every tool in the stack.
 workflow: published
 ---

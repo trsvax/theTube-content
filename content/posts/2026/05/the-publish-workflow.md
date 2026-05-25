@@ -3,7 +3,7 @@ title: The Publish Workflow
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 1
 summary: Tried to publish a journal entry and discovered there's no workflow for it. type: journal entries don't show anywhere. Need a spec.

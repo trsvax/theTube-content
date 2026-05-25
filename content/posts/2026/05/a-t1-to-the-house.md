@@ -2,7 +2,8 @@
 title: A T1 to the House
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Running a web business in the late 90s meant a SPARC box, a T1 line, and a prayer that traffic stayed flat.
 issueNumber: 5
 workflow: published

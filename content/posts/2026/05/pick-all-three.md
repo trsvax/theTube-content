@@ -3,7 +3,7 @@ title: Pick All Three
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: The old engineering joke says pick two. Turns out you just had to stop using servers.
 workflow: published

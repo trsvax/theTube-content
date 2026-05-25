@@ -3,7 +3,7 @@ title: The Code Is Disposable
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: If you have the specs, the docs, and the content model, the code can be regenerated. The journal leads to the code — it's not some random out-of-date doc.
 workflow: published

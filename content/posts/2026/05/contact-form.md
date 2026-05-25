@@ -4,7 +4,6 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: qed
 coffee: 0
 origin: walk
 summary: Same pattern as comments. A form that hits /tube/contact/submit. CloudFront logs it. You grep when you want. The log is the inbox.

@@ -2,6 +2,7 @@
 title: Don't Let Your Repo Be a Junk Drawer
 date: 2026-05-16
 tags: [tech]
+audience: public
 type: post
 summary: The private repo started with fonts and ended up with Lambda code and CDK stacks. "Private" is not a concern — it's an access control label. The fork isn't a fix — it's an upgrade, and upgrades are cheap.
 workflow: published

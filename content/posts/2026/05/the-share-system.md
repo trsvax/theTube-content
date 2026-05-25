@@ -3,7 +3,7 @@ title: The Share System
 date: 2026-05-23
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: journaling
 coffee: 2
 summary: How theTube works — /tube is input, /fs is output, auth gates the output end. Share is the first example.

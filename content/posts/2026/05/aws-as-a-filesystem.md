@@ -3,11 +3,11 @@ title: AWS as a Filesystem
 date: 2026-05-23
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: journaling
 coffee: 2
 summary: What if your AWS infrastructure was a mounted filesystem? /proc for the cloud. WebDAV over Lambda, read-only, auth-gated.
-workflow: idea
+workflow: draft
 ---
 
 ## The idea

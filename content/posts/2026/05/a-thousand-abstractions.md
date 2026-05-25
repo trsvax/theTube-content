@@ -3,7 +3,7 @@ title: A Thousand Abstractions
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: Remove the server and the entire abstraction chain collapses. What's left is files, URLs, functions, and a CDN. Four concepts.
 workflow: published

@@ -3,7 +3,7 @@ title: content.json at the Edge
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: What if there was one content.json with everything in it, and the edge filtered it by role? One source of truth, the proxy handles access.
 workflow: published

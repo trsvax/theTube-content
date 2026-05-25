@@ -2,7 +2,8 @@
 title: The Social Feed
 date: 2026-05-14
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Short thoughts that don't need to be posts. A timeline, not a blog index. The feed and the blog are two outputs from the same journal.
 issueNumber: 50
 discussionNumber: 52

@@ -3,7 +3,7 @@ title: The Log Is the Event Bus
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: The log path isn't just for logging — it's a write API. Different paths have different readers. Some index. Some produce artifacts. Comments without a server.
 workflow: published

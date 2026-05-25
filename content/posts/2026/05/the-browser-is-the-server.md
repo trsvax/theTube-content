@@ -2,7 +2,8 @@
 title: The Browser Is the Server
 date: 2026-05-11
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Role-based content, no server, no SaaS auth. What the architecture looks like and how I got there.
 workflow: published
 ---

@@ -3,7 +3,7 @@ title: Already Distributed
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: Multi-zone, multi-region, globally distributed — without configuring anything. That's what you get for free by using the CDN as the serving layer instead of a server.
 workflow: published

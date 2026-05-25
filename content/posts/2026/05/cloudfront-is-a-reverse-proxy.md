@@ -2,7 +2,8 @@
 title: CloudFront Is a Reverse Proxy
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Map /admin to a server, /api to Lambda, /auth to Cognito — all on one domain, no nginx required.
 workflow: published
 ---

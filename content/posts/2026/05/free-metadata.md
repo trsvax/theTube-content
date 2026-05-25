@@ -3,7 +3,7 @@ title: Free Metadata
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: CloudFront logs timestamp, IP, user-agent, referer, edge location on every request. You get dimensions of data you didn't design — they're just there.

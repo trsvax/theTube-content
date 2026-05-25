@@ -2,7 +2,8 @@
 title: GitHub Issues as a Comment System
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Static sites can't have comments. GitHub Issues can. Here's how to wire them together without giving up editorial control.
 workflow: published
 ---

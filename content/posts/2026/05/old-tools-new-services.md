@@ -2,7 +2,8 @@
 title: Old Tools, New Services
 date: 2026-05-15
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: Unix pipes from 1969. Git from 2005. S3 from 2006. GitHub Actions from 2019. The stack is built from old ideas running on new infrastructure. The innovation is refusing to add a layer.
 workflow: published
 ---

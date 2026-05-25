@@ -3,7 +3,7 @@ title: Architecture Diagram
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: An SVG architecture diagram for the about page. Shows the flow from conversation to deployed site, the event bus, and the plugin model.

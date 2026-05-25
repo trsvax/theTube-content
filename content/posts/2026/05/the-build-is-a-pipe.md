@@ -2,8 +2,9 @@
 title: The Build Is a Pipe
 date: 2026-05-15
 tags: [tech, architecture]
+audience: public
 summary: The deploy pipeline is just another Unix pipe. Each repo owns one stage.
-type: draft
+type: journal
 workflow: published
 ---
 

@@ -4,7 +4,6 @@ date: 2026-05-21
 tags: [tech]
 type: journal
 audience: public
-status: published
 coffee: 0
 origin: walk
 summary: People build guardrails to keep AI from deleting the database. Wrong problem. The architecture should make deletion impossible, not the process around the actor.

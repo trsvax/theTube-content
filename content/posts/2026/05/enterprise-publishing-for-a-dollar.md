@@ -2,7 +2,8 @@
 title: Replacing Enterprise Publishing and Full-Service Hosting for $1 a Month
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Every feature on the enterprise CMS checklist, no server, no managed hosting. $1 a month.
 workflow: published
 ---

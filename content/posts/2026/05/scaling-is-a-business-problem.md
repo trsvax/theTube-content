@@ -3,7 +3,7 @@ title: Scaling Is a Business Problem
 date: 2026-05-17
 tags: [tt:tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 summary: With the right architecture, scaling is "can you afford the bill?" — a business decision, not an engineering problem. No developer needs to wake up.
 workflow: published

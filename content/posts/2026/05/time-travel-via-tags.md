@@ -3,7 +3,7 @@ title: Time Travel via Tags
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 0
 summary: Branch per journal entry, tag on merge. Every shipped feature has a snapshot. Click a journal entry, see the site as it was when that feature landed.

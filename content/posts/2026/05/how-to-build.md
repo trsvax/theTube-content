@@ -2,7 +2,8 @@
 title: How to Build
 date: 2026-05-16
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: The infrastructure build and the content build are different things with different costs and different triggers. Separating them means a new post doesn't require a full Next.js rebuild.
 workflow: published
 ---

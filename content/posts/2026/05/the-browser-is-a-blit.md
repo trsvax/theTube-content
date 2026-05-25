@@ -2,7 +2,8 @@
 title: The Browser Is a Blit
 date: 2026-05-16
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: The blit was Bell Labs' smart terminal — its own processor, local compute, fetches from the network, renders locally. The browser inherited the design without inheriting the name. And theTube is a Plan 9 cluster.
 workflow: published
 ---

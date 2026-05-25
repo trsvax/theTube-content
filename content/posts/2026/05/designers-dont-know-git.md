@@ -2,7 +2,8 @@
 title: Designers Don't Know Git
 date: 2026-05-14
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: So the post is the spec. What you write in the markdown file determines what gets built around it — including the brief for the designer.
 issueNumber: 27
 discussionNumber: 29

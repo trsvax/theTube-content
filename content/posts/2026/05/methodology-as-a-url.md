@@ -3,7 +3,7 @@ title: Methodology as a URL
 date: 2026-05-18
 tags: [tech]
 type: journal
-audience: user
+audience: public
 status: vague-thought
 coffee: 1
 summary: Development methodologies are files at URLs. Point AI at them and say "do it like that." No books, no courses, no consultants. The methodology is the product.

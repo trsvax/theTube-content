@@ -2,7 +2,8 @@
 title: What You'd Pay to Buy This Off the Shelf
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: A plain-English comparison of this blog's stack versus the commercial products that do the same things.
 issueNumber: 13
 discussionNumber: 15

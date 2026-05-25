@@ -2,7 +2,8 @@
 title: TCP/IP Was the First Social Spec
 date: 2026-05-12
 tags: [tech]
-audience: user
+audience: public
+type: post
 summary: Before TCP/IP, you asked to join a network. After it, speaking the protocol was enough.
 issueNumber: 16
 discussionNumber: 18

@@ -4,7 +4,6 @@ date: 2026-05-20
 tags: [tech]
 type: journal
 audience: public
-status: qed
 coffee: 0
 summary: A custom GUI that commits to the repo. GitHub is the backend. No CMS server, no database. The WordPress experience without WordPress.
 workflow: published

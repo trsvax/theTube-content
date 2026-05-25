@@ -2,7 +2,8 @@
 title: Chaos Development
 date: 2026-05-14
 tags: [tech]
-type: draft
+audience: public
+type: journal
 summary: The methodology nobody writes about because it doesn't make for a clean conference talk. Real development is continuous reconciliation, not plan execution.
 issueNumber: 53
 discussionNumber: 55
