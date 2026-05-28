@@ -11,7 +11,7 @@ summary: The PC made us forget multi-user computing. Now AI is dragging us back 
 workflow: draft
 ---
 
-The PC was a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? You are the only user. Everything is yours.
+The PC was a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? Only you, naked on your own island. As far as you can see, everything is yours.
 
 That assumption baked into DOS, then Windows, then macOS. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
 
@@ -29,7 +29,11 @@ The industry is reinventing mount points, one acronym at a time.
 
 ## The filesystem was the equalizer
 
-Anyone could `ls`. Anyone could `cat`. The data was right there, in a format humans and programs could both read. No special client, no SDK, no API key dance. Just files.
+In Plan 9, `/net` was the network stack. `/proc` was running processes. `/mnt/remote` was another machine's files. All in the same namespace, all browsable the same way. The filesystem was the world.
+
+Finder made it "Documents, Downloads, Desktop." The network became a separate thing you access through apps. The remote machine became SSH or a web browser. The filesystem stopped being the universal namespace and became just the local storage layer. `ls` used to show you the world. Now it shows you your disk.
+
+Anyone could `ls`. Anyone could `grep`. The data was right there, in a format humans and programs could both read. No special client, no SDK, no API key dance. Just files.
 
 The protocol proliferation creates a priesthood. The AI is the priest — it intercedes between you and your data. You ask it questions because you can't look yourself. That's not augmentation. That's dependency.
 
@@ -39,11 +43,13 @@ The protocol proliferation creates a priesthood. The AI is the priest — it int
 
 The OS already has the primitives — users, groups, capabilities, sandboxes. Nobody's using them for AI. The AI agent should be `_ai` with its own uid, its own home directory, its own permission set. You grant it access to specific paths. `chmod` is the policy engine.
 
-Instead we get hooks, approval dialogs, and "are you sure?" prompts. Reimplementing `sudo` in userspace, badly.
+Instead we get hooks, approval dialogs, and "are you sure?" prompts. Reimplementing `sudo` in userspace, badly. Do you trust the app to be the sandbox?
 
 ## The workaround
 
-WebDAV. Not as elegant as 9P, but it works over the infrastructure that already exists. Mount a synthetic filesystem — computed on read, routed on write. The client doesn't know if it's reading a static file or the output of a function. Same as `/proc`. Same as Plan 9.
+WebDAV. Might be more elegant than 9P — it's stateless, and it works over the infrastructure that already exists. Mount a synthetic filesystem — computed on read, routed on write. The client doesn't know what's behind the path — and it never did. Every `read()` is a function call. "Static" just means the function is so well-hidden you forgot it's there.
+
+The main difference is state. 9P keeps it on the server — file handles, position, walk context. WebDAV is stateless. Every request is self-contained. And stateless is what you want when the server is a CDN, the client might disappear, and the whole thing needs to scale without coordination. State is the enemy of resilience. Server crashes? 9P connections are gone. WebDAV? Client just retries.
 
 The server is the boundary. It decides what each path exposes. Different entry points, different views. Same data, scoped by who's asking. Not per-process like 9P, but per-credential — which maps better to the network world.
 
