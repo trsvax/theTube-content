@@ -53,7 +53,7 @@ The filesystem is the enemy of rent-seeking.
 
 macOS has Unix underneath — BSD, proper multi-user, file permissions, the whole thing. But the GUI layer pretends it's not there. It was trying to namespace you away from the system. "You don't need to see `/usr/bin`. Here's your Documents folder. Stay in your lane." The namespace was: user stuff here, system stuff hidden.
 
-But the problem that needed namespacing changed. It's no longer "protect the system from the user." It's "protect the user from the agent." The namespace boundary moved — from system/user to user/AI — and the agent doesn't want to follow.
+But the problem that needed namespacing changed. It's no longer "protect the system from the user." It's "protect the user from the agent." The namespace boundary moved — from system/user to user/AI — and the agent doesn't want to follow. I just want a door.
 
 You need both directions at every layer:
 
@@ -87,8 +87,6 @@ The browser proved the OS permission model was insufficient. But instead of fixi
 The phone learned this lesson. Every app stole your data until iOS added per-app sandboxing with explicit permission grants. "This app wants access to your contacts." Doors. Keys. The user holds the keys. The PC hasn't learned it yet. AI tools are repeating the pre-iOS mistake — every agent gets everything, no permission prompts, no sandbox, no doors.
 
 Until the tools people figure out AI is just another user — not a feature of your IDE, not an extension of your shell, but a separate process with a separate identity — we're stuck. The server is your `chmod`. The mount point is your namespace.
-
-I don't need a wall. I just want a door. And the keys to it.
 
 The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
 
