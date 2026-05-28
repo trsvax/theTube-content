@@ -11,7 +11,7 @@ summary: The PC made us forget multi-user computing. Now AI is dragging us back 
 workflow: draft
 ---
 
-The PC is a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? Only you, naked on your own island. As far as you can see, everything is yours.
+The PC was a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? Only you, naked on your own island. As far as you can see, everything is yours.
 
 That assumption baked into DOS, then Windows, then macOS. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
 
