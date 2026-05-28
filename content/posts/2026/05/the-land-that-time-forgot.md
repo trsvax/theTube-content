@@ -15,7 +15,9 @@ The PC was a single-user machine. One person, one keyboard, no network. Why woul
 
 That assumption baked into DOS, then Windows, then macOS. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
 
-Now AI shows up and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing.
+Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're about to rediscover.
+
+Now AI shows up and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing. And AI is just another user, really. It's not special. It's not magic. It just needs its own uid, its own home directory, its own permissions. The OS already knows how to do this. We just refuse to treat AI that way because it's more convenient to run it as you.
 
 ## The protocols
 
@@ -29,7 +31,7 @@ The industry is reinventing mount points, one acronym at a time.
 
 ## The filesystem was the equalizer
 
-In Plan 9, `/net` was the network stack. `/proc` was running processes. `/mnt/remote` was another machine's files. All in the same namespace, all browsable the same way. The filesystem was the world.
+In Plan 9, `/net` was the network stack. `/proc` was running processes. `/mnt/remote` was another machine's files. All in the same namespace, all browsable the same way. The filesystem was the world. You could `ls -R /net/foo` and see the network the same way you see your disk.
 
 Finder made it "Documents, Downloads, Desktop." The network became a separate thing you access through apps. The remote machine became SSH or a web browser. The filesystem stopped being the universal namespace and became just the local storage layer. `ls` used to show you the world. Now it shows you your disk.
 
@@ -41,7 +43,16 @@ The protocol proliferation creates a priesthood. The AI is the priest — it int
 
 9P gave each process its own namespace. You could `bind` different servers to the same path per-process. Process A sees `/net` as the real network. Process B sees `/net` as a filtered proxy. Same path, different backing, per-process. The kernel enforced the boundary.
 
-The OS already has the primitives — users, groups, capabilities, sandboxes. Nobody's using them for AI. The AI agent should be `_ai` with its own uid, its own home directory, its own permission set. You grant it access to specific paths. `chmod` is the policy engine.
+macOS has Unix underneath — BSD, proper multi-user, file permissions, the whole thing. But the GUI layer pretends it's not there. It was trying to namespace you away from the system. "You don't need to see `/usr/bin`. Here's your Documents folder. Stay in your lane." The namespace was: user stuff here, system stuff hidden.
+
+But the problem that needed namespacing changed. It's no longer "protect the system from the user." It's "protect the user from the agent." The namespace boundary moved — from system/user to user/AI — and the OS didn't follow.
+
+You need both directions at every layer:
+
+- System ↔ User (SIP protects system from user, Finder protects user from system complexity)
+- User ↔ AI (nothing protects user from AI, nothing protects AI from user interference)
+
+The first pair exists. The second pair doesn't. The OS already has the primitives — users, groups, capabilities, sandboxes. Nobody's using them for AI. The AI agent should be `_ai` with its own uid. You grant it access to specific paths. `chmod` is the policy engine.
 
 Instead we get hooks, approval dialogs, and "are you sure?" prompts. Reimplementing `sudo` in userspace, badly. Do you trust the app to be the sandbox?
 
@@ -67,8 +78,6 @@ The progression:
 
 The browser proved the OS permission model was insufficient. But instead of fixing the OS, we fixed the app. Now AI sidesteps the app and we're back to the original problem. The OS only knows "you."
 
-The AI IDE runs as you. Same user, same permissions, same filesystem access. There's no process isolation between "you doing things" and "AI doing things on your behalf." It's all your uid.
+Until the tools people figure out AI is just another user — not a feature of your IDE, not an extension of your shell, but a separate process with a separate identity — we're stuck. The server is your `chmod`. The mount point is your namespace.
 
-Until the tools people figure out AI should be a separate process with a different user, we're stuck. The server is your `chmod`. The mount point is your namespace. It's not the right answer. It's the answer that works given that everyone forgot how multi-user computing works.
-
-The dinosaurs are still alive in the valley. We just stopped visiting.
+The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
