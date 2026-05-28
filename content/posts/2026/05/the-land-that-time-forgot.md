@@ -70,7 +70,7 @@ WebDAV. Might be more elegant than 9P — it's stateless, and it works over the 
 
 The main difference is state. 9P keeps it on the server — file handles, position, walk context. WebDAV is stateless. Every request is self-contained. And stateless is what you want when the server is a CDN, the client might disappear, and the whole thing needs to scale without coordination. State is the enemy of resilience. Server crashes? 9P connections are gone. WebDAV? Client just retries.
 
-The server is the boundary. It does what I tell it. I control what each path exposes. Different entry points, different views. Same data, scoped by who's asking. Not per-process like 9P, but per-key — which maps better to the network world.
+The server is the boundary. It does what I tell it. I control what each path exposes. Different entry points, different views. Same data, scoped by who's asking. Not per-process like 9P, but per-key — which maps better to the real world.
 
 ## The real problem
 
