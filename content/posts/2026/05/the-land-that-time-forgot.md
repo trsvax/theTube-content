@@ -84,6 +84,8 @@ Until the tools people figure out AI is just another user — not a feature of y
 
 The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
 
+We should demand our filesystem back.
+
 [journey]:
 prev: the-share-system
 Written in one chat session. Started from "why are there six AI protocols when `ls` exists?" and followed the thread: 9P vs WebDAV, stateful vs stateless, Finder hiding the namespace, the browser as the first sandbox, AI running outside it. The git history of this file is the editing process — every word choice revision is a commit. The journey is in `git log`.
