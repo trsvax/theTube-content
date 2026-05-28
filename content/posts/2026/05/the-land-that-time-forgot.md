@@ -8,7 +8,7 @@ status: vague-thought
 coffee: 0
 origin: chat
 summary: The PC made us forget multi-user computing. Now AI is dragging us back — and we've lost the tools.
-workflow: draft
+workflow: published
 ---
 
 The PC was a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? Only you, naked on your own island. As far as you can see, everything is yours.
@@ -81,3 +81,7 @@ The browser proved the OS permission model was insufficient. But instead of fixi
 Until the tools people figure out AI is just another user — not a feature of your IDE, not an extension of your shell, but a separate process with a separate identity — we're stuck. The server is your `chmod`. The mount point is your namespace.
 
 The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
+
+[journey]:
+prev: the-share-system
+Written in one chat session. Started from "why are there six AI protocols when `ls` exists?" and followed the thread: 9P vs WebDAV, stateful vs stateless, Finder hiding the namespace, the browser as the first sandbox, AI running outside it. The git history of this file is the editing process — every word choice revision is a commit. The journey is in `git log`.
