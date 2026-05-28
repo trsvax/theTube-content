@@ -49,6 +49,18 @@ The server is the boundary. It decides what each path exposes. Different entry p
 
 ## The real problem
 
+The browser was the first crack. Untrusted code from the internet, running on your machine, as you. The OS couldn't scope permissions per-origin, so the browser built its own sandbox — same-origin policy, CORS, CSP, iframe isolation. A little operating system inside the application, because the actual OS only knew "you" and "not you."
+
+But the sandbox only works inside the browser. AI runs outside it — in the terminal, in the IDE, as a shell process. It sidesteps the app sandbox entirely and we're back to raw OS permissions. Which are just "you."
+
+The progression:
+
+1. **PC** — one user, everything accessible, no problem
+2. **Browser** — untrusted code arrives, OS can't help, app builds its own sandbox
+3. **AI** — untrusted code arrives, runs outside the app sandbox, OS still can't help
+
+The browser proved the OS permission model was insufficient. But instead of fixing the OS, we fixed the app. Now AI sidesteps the app and we're back to the original problem. The OS only knows "you."
+
 The AI IDE runs as you. Same user, same permissions, same filesystem access. There's no process isolation between "you doing things" and "AI doing things on your behalf." It's all your uid.
 
 Until the tools people figure out AI should be a separate process with a different user, we're stuck. The server is your `chmod`. The mount point is your namespace. It's not the right answer. It's the answer that works given that everyone forgot how multi-user computing works.
