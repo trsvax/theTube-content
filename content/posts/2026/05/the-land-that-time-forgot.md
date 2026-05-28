@@ -27,7 +27,7 @@ Now AI shows up looking friendly and suddenly there is another actor on the same
 
 Six AI agent protocols in 2026. MCP, A2A, ACP, AG-UI, UCP, AuthMD. Each one solving: how does an agent discover what's available, authenticate, and exchange data.
 
-Which is `ls`, `chmod`, and `read`/`write`.
+Which is `ls`, `grep`, `chmod`, and `read`/`write`.
 
 Plan 9 had one protocol for all of this. 9P. Fourteen messages. Every resource in the system — network, devices, processes, remote machines — spoke those fourteen messages. One interface. Everything composes.
 
