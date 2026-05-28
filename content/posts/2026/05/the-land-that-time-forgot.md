@@ -43,6 +43,10 @@ Anyone could `ls`. Anyone could `grep`. The data was right there, in a format hu
 
 The protocol proliferation creates a priesthood. The AI is the priest — it intercedes between you and your data. You ask it questions because you can't look yourself. That's not augmentation. That's dependency. That leads to dystopia.
 
+And it's not accidental. Everyone wants in the data flow. MCP servers, API gateways, OAuth providers, SaaS dashboards — they exist in the path because being in the path is where the money is. A file on disk doesn't have a billing meter. A mounted filesystem doesn't report usage. The protocol complexity isn't a design failure — it's a business model. Every intermediary is a toll booth.
+
+The filesystem is the enemy of rent-seeking.
+
 ## What we lost
 
 9P gave each process its own namespace. You could `bind` different servers to the same path per-process. Process A sees `/net` as the real network. Process B sees `/net` as a filtered proxy. Same path, different backing, per-process. The kernel enforced the boundary.
