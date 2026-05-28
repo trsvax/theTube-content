@@ -84,6 +84,8 @@ The progression:
 
 The browser proved the OS permission model was insufficient. But instead of fixing the OS, we fixed the app. Now AI sidesteps the app and we're back to the original problem. The OS only knows "you."
 
+The phone learned this lesson. Every app stole your data until iOS added per-app sandboxing with explicit permission grants. "This app wants access to your contacts." Doors. Keys. The user holds the keys. The PC hasn't learned it yet. AI tools are repeating the pre-iOS mistake — every agent gets everything, no permission prompts, no sandbox, no doors.
+
 Until the tools people figure out AI is just another user — not a feature of your IDE, not an extension of your shell, but a separate process with a separate identity — we're stuck. The server is your `chmod`. The mount point is your namespace.
 
 I don't need a wall. I just want a door. And the keys to it.
