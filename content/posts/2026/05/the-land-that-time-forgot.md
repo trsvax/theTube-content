@@ -92,7 +92,7 @@ I don't need a wall. I just want a door. And the keys to it.
 
 The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
 
-We should demand our filesystem back.
+We demand our filesystem back.
 
 [journey]:
 prev: the-share-system
