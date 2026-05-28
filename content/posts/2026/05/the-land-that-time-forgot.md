@@ -21,7 +21,7 @@ Then the internet showed up and wanted to run code on my machine. The browser bu
 
 Safari is 36MB. The macOS kernel is 17MB. The sandbox is bigger than the thing it's sandboxing. Greenspun's Tenth Rule: any sufficiently complicated application contains an ad hoc, informally-specified, bug-ridden, slow implementation of half an operating system. JavaScript. The kernel's permission model has been hardened for 50 years. The browser's sandbox gets a new CVE every week.
 
-Now AI shows up looking friendly and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing. And we're building browser 2.0 — another ad hoc, bug-ridden reimplementation of what the kernel already does. Hooks, approval gates, tool restrictions. Another 36MB of reimplemented `chmod`. The solution was in the 17MB kernel the whole time.
+Now AI shows up looking friendly and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing. And we're building browser 2.0 — another ad hoc, bug-ridden reimplementation of what the kernel already does. Hooks, approval gates, tool restrictions. Less spec'd than JavaScript. Another 36MB of reimplemented `chmod`. The solution was in the 17MB kernel the whole time.
 
 ## The protocols
 
