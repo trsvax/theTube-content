@@ -15,7 +15,7 @@ The PC was a single-user machine. One person, one keyboard, no network. Why woul
 
 That assumption baked into DOS, then Windows. macOS evolved — it put BSD underneath, real multi-user, real permissions — but the GUI layer kept the single-user illusion alive. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
 
-Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're about to rediscover.
+Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're rediscovering.
 
 Now AI shows up and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing. And AI is just another user, really. It's not special. It's not magic. It just needs its own uid, its own home directory, its own permissions. The OS already knows how to do this. We just refuse to treat AI that way because it's more convenient to run it as you.
 
