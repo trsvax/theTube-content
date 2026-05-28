@@ -53,7 +53,7 @@ The filesystem is the enemy of rent-seeking.
 
 macOS has Unix underneath — BSD, proper multi-user, file permissions, the whole thing. But the GUI layer pretends it's not there. It was trying to namespace you away from the system. "You don't need to see `/usr/bin`. Here's your Documents folder. Stay in your lane." The namespace was: user stuff here, system stuff hidden.
 
-But the problem that needed namespacing changed. It's no longer "protect the system from the user." It's "protect the user from the agent." The namespace boundary moved — from system/user to user/AI — and the OS didn't follow.
+But the problem that needed namespacing changed. It's no longer "protect the system from the user." It's "protect the user from the agent." The namespace boundary moved — from system/user to user/AI — and the agent doesn't want to follow.
 
 You need both directions at every layer:
 
