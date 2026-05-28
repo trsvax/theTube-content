@@ -86,7 +86,7 @@ The browser proved the OS permission model was insufficient. But instead of fixi
 
 Until the tools people figure out AI is just another user — not a feature of your IDE, not an extension of your shell, but a separate process with a separate identity — we're stuck. The server is your `chmod`. The mount point is your namespace.
 
-I don't need a wall. I just want a door.
+I don't need a wall. I just want a door. And the keys to it.
 
 The problem was solved in 1971. In the 1960s if you count Multics. We just forgot. The dinosaurs are still alive in the valley. We just stopped visiting.
 
