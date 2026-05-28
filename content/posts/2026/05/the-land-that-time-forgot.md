@@ -17,7 +17,7 @@ That assumption baked into DOS, then Windows. macOS evolved — it put BSD under
 
 Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're rediscovering.
 
-Then the internet showed up and wanted to run code on my machine. The browser built a sandbox — same-origin policy, CORS, CSP — because the OS couldn't help. An operating system inside the application. But the sandbox only works inside the browser.
+Then the internet showed up and wanted to run code on my machine. The browser built a sandbox — same-origin policy, CORS, CSP — because they didn't use the OS. An operating system inside the application. But the sandbox only works inside the browser.
 
 Safari is 36MB. The macOS kernel is 17MB. The sandbox is bigger than the thing it's sandboxing. Greenspun's Tenth Rule: any sufficiently complicated application contains an ad hoc, informally-specified, bug-ridden, slow implementation of twice an operating system. JavaScript. The kernel's permission model has been hardened for 50 years. The browser's sandbox gets a new CVE every week.
 
