@@ -41,7 +41,7 @@ Finder made it "Documents, Downloads, Desktop." The network became a separate th
 
 Anyone could `ls`. Anyone could `grep`. The data was right there, in a format humans and programs could both read. No special client, no SDK, no API key dance. Just files.
 
-The protocol proliferation creates a priesthood. The AI is the priest — it intercedes between you and your data. You ask it questions because you can't look yourself. That's not augmentation. That's dependency.
+The protocol proliferation creates a priesthood. The AI is the priest — it intercedes between you and your data. You ask it questions because you can't look yourself. That's not augmentation. That's dependency. That leads to dystopia.
 
 ## What we lost
 
