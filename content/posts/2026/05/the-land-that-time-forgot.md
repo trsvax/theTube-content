@@ -13,7 +13,7 @@ workflow: draft
 
 The PC was a single-user machine. One person, one keyboard, no network. Why would you need per-process namespaces? Why would you need file permissions? Why would you need a protocol for remote resources? Only you, naked on your own island. As far as you can see, everything is yours.
 
-That assumption baked into DOS, then Windows. macOS tried to evolve — it put BSD underneath, real multi-user, real permissions — but the GUI layer kept the single-user illusion alive. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
+That assumption baked into DOS, then Windows. macOS evolved — it put BSD underneath, real multi-user, real permissions — but the GUI layer kept the single-user illusion alive. The whole industry optimized for one human, one machine, everything accessible. Multi-user was a server thing. An enterprise thing. Not a personal computer thing.
 
 Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're about to rediscover.
 
