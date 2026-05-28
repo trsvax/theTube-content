@@ -74,7 +74,7 @@ The server is the boundary. It does what I tell it. I control what each path exp
 
 ## The real problem
 
-AI runs outside the browser sandbox — in the terminal, in the IDE, as a shell process. Back to raw OS permissions. Which are just "you."
+AI runs outside the browser sandbox — in the terminal, in the IDE, as a shell process. Back to raw OS permissions. Which are just "you." I just shared my password.
 
 The progression:
 
