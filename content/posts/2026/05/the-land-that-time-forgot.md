@@ -17,6 +17,8 @@ That assumption baked into DOS, then Windows. macOS evolved — it put BSD under
 
 Multics had rings of protection, per-process access control, hardware-enforced memory segments. All in the 1960s. It was "too complex" so they built Unix as the simple version — and then spent 50 years adding the complexity back. A friend of mine used Multics in college. That system already solved the problem we're rediscovering.
 
+Then the internet showed up and wanted to run code on my machine. The browser built a sandbox — same-origin policy, CORS, CSP — because the OS couldn't help. A little operating system inside the application. But the sandbox only works inside the browser.
+
 Now AI shows up and suddenly there are two actors on the same machine. You and the agent. The PC is multi-user for the first time since timesharing. And AI is just another user, really. It's not special. It's not magic. It just needs its own uid, its own home directory, its own permissions. The OS already knows how to do this. We just refuse to treat AI that way because it's more convenient to run it as you.
 
 ## The protocols
@@ -66,9 +68,7 @@ The server is the boundary. It decides what each path exposes. Different entry p
 
 ## The real problem
 
-The browser was the first crack. Untrusted code from the internet, running on your machine, as you. The OS couldn't scope permissions per-origin, so the browser built its own sandbox — same-origin policy, CORS, CSP, iframe isolation. A little operating system inside the application, because the actual OS only knew "you" and "not you."
-
-But the sandbox only works inside the browser. AI runs outside it — in the terminal, in the IDE, as a shell process. It sidesteps the app sandbox entirely and we're back to raw OS permissions. Which are just "you."
+AI runs outside the browser sandbox — in the terminal, in the IDE, as a shell process. Back to raw OS permissions. Which are just "you."
 
 The progression:
 
