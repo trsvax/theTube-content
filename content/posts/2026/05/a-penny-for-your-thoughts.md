@@ -1,5 +1,5 @@
 ---
-title: A Million Thoughts for a Penny
+title: A Penny for Your Thoughts
 date: 2026-05-28
 tags: [tech]
 type: journal
@@ -7,11 +7,11 @@ audience: public
 status: vague-thought
 coffee: 0
 origin: chat
-summary: The cost of logging every edit is $0.000000008. Eight zeros. A million edits for less than a penny. Why wouldn't you?
+summary: A penny buys a million thoughts. The cost of logging every edit is $0.000000008. Why wouldn't you capture everything?
 workflow: draft
 ---
 
-How much does it cost to log every edit?
+A penny for your thoughts? That's not even close. A penny buys a million of them.
 
 A 1TB SSD: $80. That's $0.00000008 per KB. One edit is ~100 bytes. Cost of logging one edit: $0.000000008. Eight zeros after the decimal.
 
