@@ -62,7 +62,7 @@ You need both directions at every layer:
 
 The first pair exists. The second pair doesn't. The OS already has the primitives — users, groups, capabilities, sandboxes. Nobody's using them for AI. The AI agent should be `_ai` with its own uid. You grant it access to specific paths. `chmod` is the policy engine.
 
-Instead we get hooks, approval dialogs, and "are you sure?" prompts. Reimplementing `sudo` in userspace, badly. Do you trust the app to be the sandbox?
+Instead we get hooks, approval dialogs, and "are you sure?" prompts. Reimplementing `sudo` in userspace, badly. Do you trust the app to sandbox itself?
 
 ## The workaround
 
