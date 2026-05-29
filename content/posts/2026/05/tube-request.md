@@ -99,7 +99,7 @@ const lambdas = await tubeRequest("aws/list-lambdas");
 
 The provider doesn't know if the tube routes to a Lambda, an Azure Function, or a Raspberry Pi. It POSTs, it polls, it gets a result. The path is the routing key. `aws/*` goes to Lambda. `azure/*` goes to an Azure Function. Same JWT, same audit trail, same escalation model.
 
-I'm not trusting all my thoughts to Bezos. Should be Bezos and Gates. I'd like to add Jobs but not sure how — iCloud doesn't have a compute layer you can own. Apple sells you the device, not the cloud. Maybe that's the answer: the Mac *is* the Jobs cloud. The tube already runs on it. Touch ID is already the auth. The local WebDAV server is already serving files. `apple/*` routes to localhost.
+I'm not trusting all my thoughts to Bezos. Should be Bezos and Gates. I'd like to add Jobs but not sure how — iCloud doesn't have a compute layer I can own. Apple sells the device, not the cloud. Maybe that's the answer: the Mac *is* the Jobs cloud. The tube already runs on it. Touch ID is already the auth. The local WebDAV server is already serving files. `apple/*` routes to localhost.
 
 And clearly they did give you the API. Keychain, Touch ID, `security` CLI, launchd, the filesystem. They just didn't call it a cloud. They called it a gateway to the cloud — the secure device that holds your keys, verifies your identity, and talks to everyone else's infrastructure on your behalf. The Mac isn't the cloud. It's the front door to all of them.
 
@@ -115,7 +115,7 @@ The PC's job is: be the thing I trust. Everything else is delegation.
 
 ## AI can read ~/.aws
 
-Right now, every AI coding assistant that calls AWS does it by reading `~/.aws/credentials`. The AI has your full access keys. It can do anything you can do. More, actually — it's read all the AWS docs. It knows API calls you've never heard of. And it's fast. A thousand calls before you'd notice. No scope, no audit trail, no escalation. The AI and the human have the same permissions because they share the same plaintext file.
+Right now, every AI coding assistant that calls AWS does it by reading `~/.aws/credentials`. The AI has my full access keys. It can do anything I can do. More, actually — it's read all the AWS docs. It knows API calls you've never heard of. And it's fast. A thousand calls before you'd notice. No scope, no audit trail, no escalation. The AI and the human have the same permissions because they share the same plaintext file.
 
 `$HOME` was meant for one user. AI barged in with my friend VS Code. Now I have a roommate.
 
@@ -131,7 +131,7 @@ Any sufficiently complicated server contains an ad hoc, informally-specified, bu
 
 Every `if ( user.role = 'admin' )` is security you wrote yourself. The JWT gets you past the front door, then it's all custom authorization: role checks, permission lookups, resource-state guards. All bugs waiting to happen.
 
-The presigned URL skips all of it. The authorization *is* the URL. There's no code after the decode. AWS already decided: this URL can read this one file for this many seconds. You can't get it wrong because you didn't write it. I could still get it wrong — but now it's configuration, not code.
+The presigned URL skips all of it. The authorization *is* the URL. There's no code after the decode. AWS already decided: this URL can read this one file for this many seconds. You can't get it wrong because you didn't write it. I could still get it wrong — but now it's configuration, not code. It's easier to audit config than code.
 
 The tube's job is just: decide whether to generate the URL. One decision, one place. Then AWS handles the rest.
 
