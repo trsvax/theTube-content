@@ -50,3 +50,16 @@ Or the [square showcase](https://www.moo.com/us/accessories/business-card-holder
 Asked Kiro to build it. Gave it the MOO design guidelines screenshot, said "logo and theTube.today, that's it." It pulled the logo mark SVG from the repo, grabbed the brand colors from `globals.css`, and produced the card as an SVG at the correct dimensions.
 
 The whole thing is a file at a URL. The card references the site. The site serves the card. The post documents both. Files at URLs — the whole contract.
+
+## The back
+
+Crockford put JSON on a business card. The back of this one is the contact form:
+
+```
+POST /tube/contact
+Authorization: Bearer <jwt>
+202 Noted
+Location: /fs/tube/contact/{id}
+```
+
+That's how you contact me. The protocol is the invitation. The business card is the API documentation. Hand someone the card and they know exactly how the system works.
