@@ -7,7 +7,7 @@ audience: public
 status: journaling
 coffee: 2
 summary: The tube writes to S3. End-to-end — curl with a JWT, CF Function gates, API Gateway forwards, Lambda writes, file lands in the bucket.
-workflow: draft
+workflow: published
 ---
 
 [share]:
