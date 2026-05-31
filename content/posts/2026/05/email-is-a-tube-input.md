@@ -130,6 +130,15 @@ The WebDAV server computes it on read — feeds today's inputs to the AI, return
 
 Everything lands in the tube. Everything is a file. The AI just decides what to surface. The spam is still there if you want it. The AI classifies, you decide. The filesystem is the truth. The summary is a view.
 
+## My AI assistant, not a service
+
+This isn't a subscription to someone's AI product. I built the infrastructure. I pick the model. I own the data. I decide the rules.
+
+- **A service**: their AI, their rules, their data, their summary of what they think I want to see
+- **Mine**: my AI, my rules, my data, my summary of what I actually asked for
+
+No monthly fee to a startup that might pivot or shut down. Just AWS costs (a dollar) and a model I can swap anytime. The tube is the infrastructure. The AI is pluggable. The data is mine.
+
 [journey]:
 prev: the-ticket-machine
 Everything is a tube input. Email, photos, form submissions, API requests. The tube doesn't care. It's all files. AI is just another processor in the back room.
