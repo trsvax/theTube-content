@@ -73,8 +73,12 @@ Every AWS input channel routes to the same place — a file in S3:
 | Webhook | API Gateway | Free tier | `tube/webhook/{source}/{id}.json` |
 | IoT | IoT Core | $1/million msgs | `tube/iot/{device}/{id}.json` |
 | Photos | iOS Shortcut → presigned PUT | Free | `tube/share/{id}.heic` |
+| Facebook | Messenger webhook (Page) | Free | `tube/facebook/{id}.json` |
+| LinkedIn | Webhooks (Company Page) | Free | `tube/linkedin/{id}.json` |
 
 One processor. One filesystem. One summary. The tube doesn't care which door you used.
+
+Facebook and LinkedIn both offer webhooks for Pages/Company Pages — incoming messages, comments, mentions all route to your API Gateway. Personal accounts are walled, but Pages are open. The business model tells you who'll cooperate: platforms that want you to build on them give you webhooks. Platforms that don't want you to leave don't.
 
 ## Add compute when you observe the need
 
