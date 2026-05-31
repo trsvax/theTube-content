@@ -139,6 +139,14 @@ This isn't a subscription to someone's AI product. I built the infrastructure. I
 
 No monthly fee to a startup that might pivot or shut down. Just AWS costs (a dollar) and a model I can swap anytime. The tube is the infrastructure. The AI is pluggable. The data is mine.
 
+## My own algorithm
+
+Pull RSS feeds, Bluesky firehose, Mastodon timeline, newsletters — all into the tube. My AI reads them, classifies them, surfaces what matters to *me*, not what drives engagement for an ad platform.
+
+Twitter's algorithm optimizes for their revenue. Mine optimizes for my attention. Different objective function, same technique.
+
+`GET /fs/summary/feed` — my personalized timeline, computed on read. No ads, no rage bait, no "you might also like." Just the stuff my AI thinks I'd actually want to see.
+
 [journey]:
 prev: the-ticket-machine
 Everything is a tube input. Email, photos, form submissions, API requests. The tube doesn't care. It's all files. AI is just another processor in the back room.
