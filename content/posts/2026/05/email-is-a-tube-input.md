@@ -59,6 +59,23 @@ My real inbox only gets what matters + one digest. Everything else is in the tub
 
 A dollar a month at personal scale. Linear cost at any scale.
 
+## All the doors
+
+Every AWS input channel routes to the same place — a file in S3:
+
+| Channel | Service | Cost | Lands as |
+|---------|---------|------|----------|
+| HTTP | CloudFront + API Gateway | Free tier | `tube/{path}/{id}.json` |
+| Email | SES | Free–$0.10/1000 | `tube/email/{id}.eml` |
+| SMS | Pinpoint | $1/mo + $0.0075/msg | `tube/sms/{id}.json` |
+| Voice | Pinpoint/Connect | $1/mo + $0.013/min | `tube/voice/{id}.mp3` |
+| WhatsApp | Pinpoint | $0.05/conversation | `tube/whatsapp/{id}.json` |
+| Webhook | API Gateway | Free tier | `tube/webhook/{source}/{id}.json` |
+| IoT | IoT Core | $1/million msgs | `tube/iot/{device}/{id}.json` |
+| Photos | iOS Shortcut → presigned PUT | Free | `tube/share/{id}.heic` |
+
+One processor. One filesystem. One summary. The tube doesn't care which door you used.
+
 ## Add compute when you observe the need
 
 I didn't start with an email system. I started with a tube. Email is just another input. The classification is just another handler in the processor. The daily summary is just another scheduled Lambda. Each piece added when the need appeared, not guessed upfront.
