@@ -90,6 +90,6 @@ If you don't write it down, you chose to lose it. That's not AI's fault. That's 
 
 And the proposed solution? Write a Word doc describing a process. Put it on SharePoint. The fix for "we lose knowledge because we don't write things down" is to write things down in the same broken system that already failed. More documentation in a format that's disconnected from the code, not version controlled, not machine readable, and stale by next week.
 
-That's not a solution. That's the problem restated with extra steps.
+That's not a solution. That's the problem perpetuated with extra steps.
 
 Write it down. In a file. In git. Commit the journey.
