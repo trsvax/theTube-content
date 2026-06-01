@@ -92,4 +92,4 @@ And the proposed solution? Write a Word doc describing a process. Put it on Shar
 
 That's not a solution. That's the problem restated with extra steps.
 
-Write it down. Put it in git. Commit the journey.
+Write it down. In a file. In git. Commit the journey.
