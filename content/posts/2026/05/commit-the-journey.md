@@ -54,11 +54,11 @@ I've asked for requirements to be in git. They use Word to write them. Then they
 
 The oral tradition isn't developers failing to document code. It's everyone else refusing to put their decisions where the code lives. And these are the people who think they can replace developers with AI.
 
-They ask the developers what the requirements are. Because the developers are the only ones who wrote them down — in the code. The implementation *is* the spec, because nobody else committed one. The developer becomes the oracle not because they have special knowledge, but because they're the only ones who used a system that preserves knowledge.
+They end up asking the developers what the requirements are. Because the developers are the only ones who wrote them down — in the code. The implementation *is* the spec, because nobody else committed one. The developer becomes the oracle not because they have special knowledge, but because they're the only ones who used a system that preserves knowledge.
 
 ## The machine-readable problem
 
-The article worries that AI can't capture intent. But AI knows git better than most developers do. It can read and write every commit, every diff, every message, every branch, every merge — the entire history of every decision, instantly. The problem isn't that AI can't capture intent. It's that the intent was never committed in a machine-readable form.
+The article worries that AI can't capture intent. But AI knows git better than the people writing requirements in Word. Low bar. It can read and write every commit, every diff, every message, every branch, every merge — the entire history of every decision, instantly. The problem isn't that AI can't capture intent. It's that the intent was never committed in a machine-readable form.
 
 Oral tradition: not machine readable. Not even reliably human readable after the meeting. Memory is lossy, self-serving, contradictory.
 
@@ -88,8 +88,8 @@ AI doesn't kill the oral tradition. AI *is* the scribe. The conversation is the 
 
 If you don't write it down, you chose to lose it. That's not AI's fault. That's not turnover's fault. That's not the industry's fault.
 
-And the proposed solution? Write a Word doc describing a process. Put it on SharePoint. The fix for "we lose knowledge because we don't write things down" is to write things down in the same broken system that already failed. More documentation in a format that's disconnected from the code, not version controlled, not machine readable, and stale by next week.
+And the proposed solution? Write a Word doc describing a process. Put it on SharePoint. The fix for "we lose knowledge because we don't write things down" is to write things down in the same broken system that already failed. More documentation in a format that's disconnected from the code, not version controlled, not machine readable, and stale by next week. TL;DR.
 
-That's not a solution. That's the problem perpetuated with extra steps.
+That's the problem perpetuated with extra steps. No one reads it. The compiler can't read it.
 
 Write it down. In a file. In git. Commit the journey.
