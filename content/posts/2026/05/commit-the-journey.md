@@ -1,7 +1,7 @@
 ---
 title: Commit the Journey
 date: 2026-05-31
-tags: [tech]
+tags: [tech, rant]
 type: post
 audience: public
 summary: The oral tradition in software isn't dying because of AI. It's dying because the people who make decisions don't put them where the code lives.
