@@ -48,7 +48,11 @@ Calendar doesn't work for this. A hotel reservation on July 15th in a calendar l
 - Where those places are on the map (am I driving 8 hours between Tuesday's hotel and Wednesday's hotel?)
 - What's between them (parks, routes, points of interest)
 
-The data model is simple:
+The real problem is overlap — or rather, the lack of it. A hotel booking is "check-in afternoon Day 1, check-out morning Day 4." The next booking needs to start Day 4. Not Day 3 (you're still at the first place). Not Day 5 (you're sleeping in the car). The seam between bookings is where things break.
+
+A calendar shows colored blocks but can't answer: "which nights don't have a bed?" You have to mentally verify that check-out from Place A aligns with check-in at Place B, for every pair of stops. Ten stops means nine seams to eyeball.
+
+The data model makes this trivial:
 
 ```json
 {
@@ -56,17 +60,22 @@ The data model is simple:
     "name": "Parks Loop 2027",
     "start": "2027-06-01",
     "end": "2027-06-21",
-    "nights": [
-      { "date": "2027-06-01", "place": "Moab, UT", "confirmed": true, "notes": "Airbnb booked" },
-      { "date": "2027-06-02", "place": "Moab, UT", "confirmed": true },
-      { "date": "2027-06-03", "place": null, "confirmed": false },
-      { "date": "2027-06-04", "place": "Grand Canyon South Rim", "confirmed": false, "notes": "check campground availability" }
+    "stays": [
+      { "place": "Moab, UT", "checkIn": "2027-06-01", "checkOut": "2027-06-04", "confirmed": true, "notes": "Airbnb booked" },
+      { "place": "Grand Canyon South Rim", "checkIn": "2027-06-05", "checkOut": "2027-06-08", "confirmed": false, "notes": "check campground" }
     ]
   }]
 }
 ```
 
-A JSON file on S3. The app renders it as a timeline — green for confirmed, amber for tentative, red for unplanned. The map shows the nightly locations connected by lines so you can see the shape of the trip. Gaps are visible instantly.
+The gap detection is one line:
+
+```javascript
+const gaps = tripDates.filter(d => !stays.some(s => d >= s.checkIn && d < s.checkOut))
+// → ["2027-06-04"] — no bed that night
+```
+
+Same pattern as everything else: diff actual state against expected state, surface anomalies. Expected: every night covered. Actual: your bookings. Gaps are the alert. The app shows this as a timeline — green for confirmed, amber for tentative, red for uncovered. Gaps are visible instantly.
 
 You tap an unplanned night. The app shows what's nearby based on the previous and next confirmed stops. "You're in Moab on the 2nd and Grand Canyon on the 4th — here's what's in between." Not AI magic, just geography and simple math.
 
