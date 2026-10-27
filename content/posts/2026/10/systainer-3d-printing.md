@@ -39,6 +39,8 @@ The community has been at this for years. Printables, Thingiverse, and Maker's W
 
 The two pair up well: a Systainer for the bulk storage and a set of bins for the grab-and-go parts. One keeps the dust out and stacks for travel, the other sits open on the bench for the things you reach for every few minutes.
 
+The bin footprint is the interface, and it's worth making it speak more than one standard. Take the model for the bottom of a bin and adapt it to Gridfinity — the open modular grid that's become the default for benchtop storage. Same bin, two homes: it drops into a Gridfinity baseplate on the bench, or into a Systainer when it travels. One print, two systems.
+
 Most of these are parametric. You download an insert for a size-2 box, change the wall height or hole diameter in the parameters, and it fits your box and your bits. The good ones are built in OpenSCAD or Fusion with user parameters, so the dimensions are right there to edit.
 
 ## Design notes
