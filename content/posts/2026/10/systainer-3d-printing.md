@@ -51,6 +51,14 @@ A few things make the difference between an insert that works and one you reprin
 - **Filament.** PLA is fine for trays that live in the shop. For anything that rides in a hot car or carries weight, PETG or ABS holds up better.
 - **Test fit a corner first.** Print a small section, check it fits, then commit to the full part. Beats discovering the tolerance is off after a six-hour print.
 
+## Labels and QR
+
+The dividers and labels get printed too. The plan: a slot molded onto the front of each box, and a color-coded label that slips into it. Color tells you the category at a glance — green for fasteners, blue for electrical, whatever scheme works. The label is a physical thing you can swap, not a sticker that peels.
+
+On each label, a QR code. Scan it with a phone and the app tells you what's inside — the inventory, the layout, maybe a photo and when you last opened it. The box carries its own address. You don't have to remember what's in box 4 of the stack; you scan it.
+
+The interesting part is the bridge. The label is a physical interface to a digital record. The Systainer is the container, the QR code is the URL, and the app is the function that resolves it. Same shape as everything else — a file at an address, fetched on demand.
+
 ## The pattern
 
 The Systainer is a standard interface — a defined footprint, a defined height, defined ribs and latches. 3D printing is how you implement that interface with exactly what you need. The box is the contract. The insert is the code.
