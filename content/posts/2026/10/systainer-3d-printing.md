@@ -61,6 +61,8 @@ Keeping that record up to date is the part nobody wants to do by hand. So: open 
 
 Take it one more step: point the phone at the stack and the app overlays the boxes in front of you. The labels are the anchors — each one a marker the camera locks onto. Ask it for a part and it highlights the box that has it. Tap a box in the view and its contents float over the lid. You stop searching and start pointing. The stack becomes a queryable surface.
 
+The loop closes on itself: the app can generate the model for the label holder too. The holder is a parametric shape — a frame with a slot — and the app already knows which box it scanned. The Systainer front-panel dimensions are standardized and published, so it has everything it needs. Feed in the label size and slot depth, generate the STL from parameters — OpenSCAD headless, or a small geometry library that extrudes the shape and boolean-cuts the slot — and send it to the printer. Scan the box, get the model, print the label, snap it in. The physical anchor and the digital record both come from the same data.
+
 The interesting part is the bridge. The label is a physical interface to a digital record. The Systainer is the container, the QR code is the URL, and the app is the function that resolves it. Same shape as everything else — a file at an address, fetched on demand.
 
 ## The pattern
