@@ -53,7 +53,7 @@ A few things make the difference between an insert that works and one you reprin
 
 ## Labels and QR
 
-The dividers and labels get printed too. The plan: a slot molded onto the front of each box, and a color-coded label that slips into it. Color tells you the category at a glance — green for fasteners, blue for electrical, whatever scheme works. The label is a physical thing you can swap, not a sticker that peels.
+The dividers and labels get printed too. The plan: a label the size of a business card, printed in colored filament, with a QR code on its face, that slides into a slot on the front of the Systainer. The base color tells you what's inside at a glance — blue for bike, whatever scheme you settle on. It's a physical thing you can swap, not a sticker that peels.
 
 On each label, a QR code. Scan it with a phone and the app tells you what's inside — the inventory, the layout, maybe a photo and when you last opened it. The box carries its own address. You don't have to remember what's in box 4 of the stack; you scan it.
 
@@ -61,7 +61,7 @@ Keeping that record up to date is the part nobody wants to do by hand. So: open 
 
 Take it one more step: point the phone at the stack and the app overlays the boxes in front of you. The labels are the anchors — each one a marker the camera locks onto. Ask it for a part and it highlights the box that has it. Tap a box in the view and its contents float over the lid. You stop searching and start pointing. The stack becomes a queryable surface.
 
-The loop closes on itself: the app can generate the model for the label holder too. The holder is a parametric shape — a frame with a slot — and the app already knows which box it scanned. The Systainer front-panel dimensions are standardized and published, so it has everything it needs. Feed in the label size and slot depth, generate the STL from parameters — OpenSCAD headless, or a small geometry library that extrudes the shape and boolean-cuts the slot — and send it to the printer. Scan the box, get the model, print the label, snap it in. The physical anchor and the digital record both come from the same data.
+The loop closes on itself: the app can generate the model for the label too. The label is a business-card plate in colored filament with the QR code embossed on its face. The app already knows which box it scanned and what's inside, so it has the QR target and the color. Generate the STL from parameters — a small geometry library that extrudes the plate and cuts the QR pattern, or OpenSCAD headless — and send it to the printer. Scan the box, get the model, print the label, slide it in. The physical anchor and the digital record both come from the same data.
 
 The interesting part is the bridge. The label is a physical interface to a digital record. The Systainer is the container, the QR code is the URL, and the app is the function that resolves it. Same shape as everything else — a file at an address, fetched on demand.
 
