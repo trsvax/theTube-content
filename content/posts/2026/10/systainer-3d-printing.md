@@ -33,8 +33,11 @@ The community has been at this for years. Printables, Thingiverse, and Maker's W
 - **Tool inserts** — hold a specific tool plus its accessories, like a router with its guide and collet wrenches.
 - **Bit organizers** — rows of holes for router bits, drill bits, driver bits. The common one.
 - **Small-parts trays** — low walls, divided cells for screws, fittings, connectors.
+- **Bin organizers** — open-top or drawer-style bins for small parts you grab often. Labelable, rearrangeable, and the natural complement to a sealed Systainer.
 - **Dividers** — reconfigurable walls that let one box hold mixed contents.
 - **Adapters and latches** — fit non-Systainer gear into the system, or repair a broken latch.
+
+The two pair up well: a Systainer for the bulk storage and a set of bins for the grab-and-go parts. One keeps the dust out and stacks for travel, the other sits open on the bench for the things you reach for every few minutes.
 
 Most of these are parametric. You download an insert for a size-2 box, change the wall height or hole diameter in the parameters, and it fits your box and your bits. The good ones are built in OpenSCAD or Fusion with user parameters, so the dimensions are right there to edit.
 
