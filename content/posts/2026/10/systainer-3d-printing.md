@@ -59,6 +59,8 @@ On each label, a QR code. Scan it with a phone and the app tells you what's insi
 
 Keeping that record up to date is the part nobody wants to do by hand. So: open the box, snap a photo of the contents, and let AI write the inventory. The image goes up to S3, a Lambda runs a vision model over it, and the summary — a list of what's in there, the counts, maybe a guess at the categories — becomes the record the QR code resolves to. You don't curate the box's contents; you photograph it and let the model describe it back. Next time you scan, the app reads what the model saw.
 
+Take it one more step: point the phone at the stack and the app overlays the boxes in front of you. The labels are the anchors — each one a marker the camera locks onto. Ask it for a part and it highlights the box that has it. Tap a box in the view and its contents float over the lid. You stop searching and start pointing. The stack becomes a queryable surface.
+
 The interesting part is the bridge. The label is a physical interface to a digital record. The Systainer is the container, the QR code is the URL, and the app is the function that resolves it. Same shape as everything else — a file at an address, fetched on demand.
 
 ## The pattern
