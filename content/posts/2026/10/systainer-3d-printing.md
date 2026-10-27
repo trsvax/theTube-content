@@ -57,6 +57,8 @@ The dividers and labels get printed too. The plan: a slot molded onto the front 
 
 On each label, a QR code. Scan it with a phone and the app tells you what's inside — the inventory, the layout, maybe a photo and when you last opened it. The box carries its own address. You don't have to remember what's in box 4 of the stack; you scan it.
 
+Keeping that record up to date is the part nobody wants to do by hand. So: open the box, snap a photo of the contents, and let AI write the inventory. The image goes up to S3, a Lambda runs a vision model over it, and the summary — a list of what's in there, the counts, maybe a guess at the categories — becomes the record the QR code resolves to. You don't curate the box's contents; you photograph it and let the model describe it back. Next time you scan, the app reads what the model saw.
+
 The interesting part is the bridge. The label is a physical interface to a digital record. The Systainer is the container, the QR code is the URL, and the app is the function that resolves it. Same shape as everything else — a file at an address, fetched on demand.
 
 ## The pattern
