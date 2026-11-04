@@ -22,6 +22,16 @@ Three things:
 2. **Authenticate** — on every visit, the server sends a challenge. Safari prompts Face ID, the iPad signs the challenge with the private key in the Secure Enclave, the server verifies it against the stored public key, sets a session cookie.
 3. **Proxy** — authenticated requests get forwarded to code-server on `127.0.0.1:8080`. Unauthenticated requests get the login page.
 
+## Start on demand
+
+code-server doesn't need to run 24/7. The proxy is always on (it's lightweight — just Node and SQLite), but code-server is the heavy process. The proxy starts it on successful auth and shuts it down after a period of inactivity.
+
+On auth: check if code-server is running. If not, spawn it as a child process bound to `127.0.0.1:8080`. Proxy requests to it once it's up.
+
+On inactivity: a timer checks the last request timestamp. If nothing has hit the proxy for 30 minutes, kill the code-server process. Next auth spawns it again.
+
+This is more reliable than running code-server as a daemon — if it crashes or hangs, the proxy just starts a fresh instance on the next auth. No `brew services` to manage, no stale process. The proxy is the lifecycle manager.
+
 ## The stack
 
 - **Node 24** — `node:sqlite` is built in, no external database
@@ -46,10 +56,12 @@ The security boundary is Face ID on the iPad. The passkey lives in the Secure En
 ## The shape
 
 ```
-iPad (Safari) → Teleport → Node auth proxy (HTTPS) → code-server (localhost:8080)
+iPad (Safari) → Teleport → Node auth proxy (HTTPS, always on)
     ↳ Face ID unlocks passkey          ↳ verifies signature
                                        ↳ sets session cookie
-                                       ↳ proxies to code-server
+                                       ↳ spawns code-server if not running
+                                       ↳ proxies to code-server (localhost:8080)
+                                       ↳ kills code-server after 30 min idle
 ```
 
-Node server in front, code-server behind, Teleport as the pipe. No extra layers.
+Node proxy in front, code-server behind on demand, Teleport as the pipe. No extra layers.
