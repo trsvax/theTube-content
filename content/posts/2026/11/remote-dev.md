@@ -110,6 +110,16 @@ If you need the full macOS GUI — System Settings, a GUI app, something that do
 
 code-server is the daily driver. Remote desktop is the escape hatch.
 
+## Remote reboot
+
+You can reboot the Mac mini remotely via SSH: `sudo reboot`. The Mac comes back up, services start via LaunchDaemons (system-level, like systemd on Linux — they run on boot independent of login), Teleport reconnects, and you're back in.
+
+One catch: FileVault. If it's on, the Mac stops at a pre-boot password screen before the OS starts. No SSH, no services, no Teleport — just a black screen waiting for a password. You'd need to physically be there.
+
+On Apple Silicon (M6), the disk is always hardware-encrypted by the Secure Enclave. FileVault just adds the password gate on top. Turning it off doesn't make the disk unencrypted — it just means the Mac boots without asking for a password first. The data is still protected by hardware encryption.
+
+For a Mac mini in a locked Airstream, FileVault off is the reasonable call. The physical security is the locked Airstream itself. The tradeoff: anyone with physical access could boot the machine, but anyone with physical access to the Airstream is already a different problem.
+
 ## What you don't need
 
 - **iPad apps.** No Blink Shell, no Termius, no SSH client. The browser is the only app. Teleport has a small app for the VPN connection, but that's networking, not a dev tool.
