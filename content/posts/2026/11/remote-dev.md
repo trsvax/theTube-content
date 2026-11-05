@@ -18,9 +18,11 @@ The Mac mini stays home, always on. The iPad mini travels. Everything runs in th
 
 **Teleport.** You already have Ubiquiti gear and Teleport. It's a WireGuard tunnel built into your network that connects the iPad back to your LAN from anywhere. No third-party VPN service, no port forwarding, no public IP. It just works through hotel WiFi and coffee shop networks. This is the pipe.
 
-**code-server.** VS Code in the browser. Runs on your Mac at home, accessed from Safari on the iPad over Teleport. You get the file explorer, syntax-highlighted editing, extensions, and an integrated terminal — all in a browser tab. No app to install on the iPad.
+**code-server.** VS Code in the browser. Runs on your Mac at home, accessed from Safari on the iPad over Teleport. You get the file explorer, syntax-highlighted editing, extensions, and an integrated terminal — all in a browser tab. No app to install on the iPad. This is the heavy tier, for when you want the editor.
 
-**kiro-cli.** The terminal version of Kiro. Runs inside code-server's integrated terminal. Same chat, same agent workflows, same MCP, same steering files. You open the terminal panel in the browser, run `kiro-cli`, and you have essentially what you have now in the IDE.
+**A browser shell.** The lighter tier. A terminal in the browser — xterm.js on the iPad, a real `zsh` on the Mac over a WebSocket. No editor, no file explorer, just a command line. Most remote work is running a CLI tool, so this is often all you need.
+
+**kiro-cli.** The terminal version of Kiro. Runs in either terminal — code-server's integrated one or the standalone browser shell. Same chat, same agent workflows, same MCP, same steering files. You run `kiro-cli` and you have essentially what you have now in the IDE. Since kiro-cli edits files itself, you don't need the editor pane to work on code — which is why the browser shell alone often suffices.
 
 ## The hardware
 
@@ -82,27 +84,37 @@ Over Teleport the traffic is already encrypted (WireGuard), so HTTP between the 
 
 If you want a gate, use the password instead of the token. You type it once per Safari session. Slightly less convenient, meaningfully more secure.
 
-The better option: passkeys. A small Node server on the Mac mini handles WebAuthn and proxies to code-server — Face ID to authenticate, no password, no token in the URL, code-server locked to localhost. That's its own post: [A Passkey Proxy for code-server](https://thetube.today/posts/passkey-proxy).
+The better option: passkeys. A small Node server on the Mac mini handles WebAuthn and gates both backends — code-server and the browser shell — behind Face ID. No password, no token in the URL, code-server locked to localhost. That's its own post: [A Passkey Proxy for the Mac mini](https://thetube.today/posts/passkey-proxy).
 
 ## The mini does more than dev
 
 The Mac mini is always on and always home, which makes it a natural home server beyond just code-server. One use case: photo backup to S3. The mini joins your iCloud Photos pool, a job mirrors new photos to S3 as an offsite backup. The question of where the full-res comes from — external storage or a job that triggers iCloud downloads on demand — is a software problem worth its own post. For now: the mini can serve double duty, and the hardware choice (RAM, storage) should account for that.
 
-## Two AI tools, one setup
+## Two tiers, one door
 
-This isn't just for personal projects. The Copilot CLI runs in the terminal alongside kiro-cli. Copilot for work code, kiro-cli for personal projects.
+There are two surfaces behind the same Face ID auth:
 
-Same Mac mini. Same code-server. Same iPad. Both tools run in the integrated terminal — the editor is for editing, the AI lives in the terminal. They don't conflict because they're separate processes you run when you need them.
+- **Full dev** → code-server. The editor, file explorer, extensions, integrated terminal. Reach for it when you want to edit by hand.
+- **Just a terminal** → the browser shell. A `zsh` prompt in the browser. Run `kiro-cli` for coding, `llm` for a quick question, `git`, a build — anything. A terminal doesn't care what you run.
+
+The passkey proxy gates both. You authenticate once with Face ID; the session authorizes code-server over HTTP and the browser shell over a WebSocket. Pick the surface for the task.
+
+Most of the time the shell is enough. kiro-cli edits files on its own, so you don't need the editor to do dev work, and `llm` answers questions that have nothing to do with code. If you find you rarely open the editor, you can drop code-server entirely and keep just the shell — a much smaller stack you own completely. The details are in [the passkey proxy post](https://thetube.today/posts/passkey-proxy).
+
+## Not just personal projects
+
+The Copilot CLI runs in the shell alongside kiro-cli. Copilot for work code, kiro-cli for personal projects, `llm` for everything else. They're all just CLI tools in the same authenticated terminal — separate processes you run when you need them.
 
 ## What's tested, what isn't
 
 The basics work: code-server in the browser on the iPad over Teleport from outside the house. That's been tested — you go places and use it. What hasn't been tested yet:
 
-- kiro-cli and Copilot CLI running through code-server's terminal over the tunnel
+- kiro-cli and Copilot CLI running through the terminal over the tunnel
 - The Node auth proxy with passkeys over Teleport
+- The browser shell (xterm.js + node-pty) over the tunnel
 - VNC/Screen Sharing over the tunnel
 
-The remote dev path is proven. The AI tools and the passkey auth layer are the new pieces that need testing.
+The remote dev path is proven. The AI tools, the browser shell, and the passkey auth layer are the new pieces that need testing.
 
 ## Fallback: remote desktop
 
@@ -130,4 +142,4 @@ For a Mac mini in a locked Airstream, FileVault off is the reasonable call. The 
 
 The Mac mini has to stay awake and reachable. Teleport gives you the tunnel. The browser keeps you connected. A mini doesn't have the sleep problems of a MacBook — no lid, always plugged in — and the Airstream's lithium batteries handle power outages. Internet is covered too: dual WAN on the router load-balances Google and AT&T, so if one drops the other takes over. The last remaining risk is both ISPs going down at the same time, which is unlikely enough not to plan around.
 
-The Mac mini at home is the server. The iPad mini browser is the client. Teleport is the connection. The Node auth proxy is the gate. code-server is the editor. kiro-cli is the app. The Airstream's batteries are the UPS. That's the whole stack.
+The Mac mini at home is the server. The iPad mini browser is the client. Teleport is the connection. The Node auth proxy is the gate, Face ID the key. code-server is the editor for when you want it; the browser shell is the terminal for everything else. kiro-cli and llm are the apps. The Airstream's batteries are the UPS. That's the whole stack.
